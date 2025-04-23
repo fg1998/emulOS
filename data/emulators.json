@@ -1,0 +1,233 @@
+{
+  "config": {
+    "rompath": "/Users/fg1998/projetos/EmulOS/src/roms1",
+    "version": "1"
+  },
+  "brands": [
+    {
+      "name": "sinclair",
+      "desc": "Sinclair"
+    },
+    {
+      "name": "apple2",
+      "desc": "Apple ]["
+    },
+    {
+      "name": "commodore",
+      "desc": "Commodore 8 Bit"
+    },
+    {
+      "name": "msx",
+      "desc": "MSX "
+    },
+    {
+      "name": "amiga",
+      "desc": "Amiga"
+    }
+  ],
+  "emulators": [
+    {
+      "name": "FUSE",
+      "key": "fuse",
+      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "--full-screen"
+    },
+    {
+      "name": "ZEsarUX",
+      "key": "zesarux",
+      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "--vo sdl --fullscreen"
+    },
+    {
+      "name": "Vice",
+      "key": "commodore",
+      "path": "/Applications/Vice.app/Contents/macOS/vice",
+      "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc",
+      "param": ""
+    },
+    {
+      "name": "uae",
+      "key": "amiga",
+      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "desc": "Commodore Amiga emulator",
+      "param": ""
+    },
+    {
+      "name": "Virtual Apple",
+      "key": "apple2",
+      "path": "/Applications/Vice.app/Contents/macOS/apple2",
+      "desc": "Apple 8 bit emulator",
+      "param": ""
+    }
+  ],
+  "systems": [
+    {
+      "brand": "apple2",
+      "name": "Apple ][",
+      "desc": "Second Apple PCeff",
+      "emulator": "apple2",
+      "favorite": false,
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "apple2",
+      "name": "Original Macintosh 11",
+      "desc": "Apple's first Mac",
+      "emulator": "apple2",
+      "favorite": false,
+      "image": "mac.png",
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "sinclair",
+      "name": "ZX Spectrum 48kb",
+      "desc": "Color, 48Kb",
+      "emulator": "fuse",
+      "favorite": false,
+      "image": "spectrum.png",
+      "parameter": "--machine 48"
+    },
+    {
+      "brand": "sinclair",
+      "name": "Spectrum 128",
+      "desc": "Color, 128Kb",
+      "emulator": "zesarux",
+      "favorite": false,
+      "image": "128.png",
+      "parameter": "--machine 128"
+    },
+    {
+      "brand": "sinclair",
+      "name": "Spectrum +3",
+      "desc": "ROM 4.0",
+      "emulator": "zesarux",
+      "favorite": false,
+      "image": "plus3.png",
+      "parameter": "--machine plus3"
+    },
+    {
+      "brand": "sinclair",
+      "name": "Microdigital TK90X",
+      "desc": "Brasilian Clone",
+      "emulator": "zesarux",
+      "favorite": false,
+      "image": "tk90x.png",
+      "parameter": "--machine 48 --rom-48 ${rompath}/tk90x.rom --aspect-hint --full-screen"
+    },
+    {
+      "brand": "sinclair",
+      "name": "Microdigital TK95",
+      "desc": "Brazilian Clone",
+      "emulator": "fuse",
+      "favorite": true,
+      "parameter": "--machine 48 --rom-48 ${rompath}/tk95.rom"
+    },
+    {
+      "brand": "commodore",
+      "name": "PET",
+      "desc": "First Commodore computer",
+      "emulator": "commodore",
+      "favorite": false,
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "commodore",
+      "name": "Commodore 64",
+      "desc": "Full Color 8Bit computer, 64Kb Ram",
+      "emulator": "commodore",
+      "favorite": true,
+      "image": "c64.png",
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "commodore",
+      "name": "Commodore 128",
+      "desc": "Full Color 8Bit computer, 128Kb Ram",
+      "emulator": "commodore",
+      "favorite": false,
+      "image": "c128.png",
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "amiga",
+      "name": "Amiga 500+",
+      "desc": "16 Bit computer",
+      "emulator": "amiga",
+      "favorite": true,
+      "image": "a500.png",
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "msx",
+      "name": "Hotbit 1.2",
+      "desc": "Brazilian MSX 1.2",
+      "emulator": "msx",
+      "favorite": true,
+      "image": "hotbit.png",
+      "parameter": "Sharp_HB-8000_1.2"
+    },
+    {
+      "brand": "msx",
+      "name": "Expert 1.1",
+      "desc": "Brazilian MSX 1",
+      "emulator": "msx",
+      "favorite": true,
+      "image": "expert.png",
+      "parameter": "Gradiente_Expert_GPC-1"
+    },
+    {
+      "brand": "msx",
+      "name": "VG8000",
+      "desc": "Philips MSX 1.0",
+      "emulator": "msx",
+      "favorite": false,
+      "parameter": "--machine ACE --fullscreen"
+    },
+    {
+      "brand": "msx",
+      "name": "FS-5500 F2",
+      "desc": "Nationa FS-5500 F2 MSX2",
+      "emulator": "msx",
+      "image": "5500.png",
+      "favorite": false,
+      "parameter": "National_FS-5500F2"
+    },
+    {
+      "brand": "msx",
+      "name": "FS-A1WSX",
+      "desc": "Panasonic MSX2+",
+      "emulator": "msx",
+      "favorite": false,
+      "image": "fsa1wsx.png",
+      "parameter": "Panasonic_FS-A1WSX"
+    },
+    {
+      "brand": "msx",
+      "name": "Boosted MSX2",
+      "desc": "GFX9000, Moonsound, FMPac, SCC+",
+      "emulator": "msx",
+      "favorite": false,
+      "parameter": "Boosted_MSX2_EN"
+    },
+    {
+      "brand": "msx",
+      "name": "FS-A1GT",
+      "desc": "Panasonic MSX Turbo R",
+      "emulator": "msx",
+      "favorite": false,
+      "image": "fsa1gt.png",
+      "parameter": "Panasonic_FS-A1GT"
+    },
+    {
+      "brand": "amiga",
+      "name": "Amiga 1200",
+      "desc": "First AGA amiga computer",
+      "emulator": "amiga",
+      "parameter": "",
+      "favorite": false,
+      "image": ""
+    }
+  ]
+}

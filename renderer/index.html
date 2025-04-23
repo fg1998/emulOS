@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EmulOS</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <h2>EmulOS</h2>
+      <nav id="brand-list"></nav>
+      <div class="favorites-toggle">Favoritos</div>
+    </aside>
+    <main id="main">
+      <div class="top-icons left-control">
+        <button id="add-emulator" class="botao-redondo">
+          <i class="fa fa-plus"></i>
+        </button>
+        <button id="config-system" class="botao-redondo">
+          <i class="fa fa-gear"></i>
+        </button>
+        <button id="about" class="botao-redondo">
+          <i class="fa fa-exclamation"></i>
+        </button>
+        
+      </div>
+      <div id="system-list"></div>
+    </main>
+  </div>
+
+  <div id="about-modal">
+    <div class="modal-content">
+      <img src="assets/emulos_logo.png" alt="Logo EmulOS" class="emulos-logo">
+    <h2>EmulOS</h2>
+      <p>By fg1998 and the EmulOS team<br>https://github.com/fg1998/EmulOS</p>
+      This is a very initial development of an emulator frontend and Raspebrry Pi distro. 
+                There is no reason to donwload other than help us in the development.
+      <button id="close-about">Fechar</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

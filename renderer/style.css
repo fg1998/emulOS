@@ -1,0 +1,79 @@
+
+body {
+  margin: 0; font-family: 'Segoe UI', sans-serif;
+  background-color: #121212; color: #eee; display: flex; height: 100vh;
+}
+#app { display: flex; width: 100%; }
+#sidebar { width: 250px; background-color: #1e1e1e; padding: 1rem; box-shadow: 2px 0 5px rgba(0,0,0,0.2); }
+#sidebar h2 { color: #4fc3f7; }
+#brand-list div, .favorites-toggle { margin: 10px 0; cursor: pointer; padding: 5px 10px; border-radius: 8px; }
+#brand-list div:hover, .favorites-toggle:hover { background-color: #333; }
+#main { flex: 1; padding: 1rem; overflow-y: auto; position: relative; }
+.card { background-color: #1e1e1e; border-radius: 12px; padding: 1rem; margin: 1rem; display: inline-block; width: 250px; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
+.card img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+.card .title { font-weight: bold; margin-top: 10px; }
+.card .desc { font-size: 0.9em; color: #aaa; }
+.card .icons { margin-top: 10px; text-align: right; }
+.card .icons span { margin-left: 10px; cursor: pointer; }
+
+
+#about-modal {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #282828;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px black;
+  width: 400px;
+  text-align: center;
+}
+.modal-content button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.fav-icon {
+  color: #FFD700;
+}
+
+.emulos-logo {
+  width: 100px;
+}
+
+
+.botao-redondo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px; /* Largura do botão */
+  height: 33px; /* Altura do botão */
+  border-radius: 50%; /* Torna o botão redondo */
+  background-color: #bbb; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  font-size: 18px; /* Tamanho do ícone */
+  border: none; /* Sem borda */
+  cursor: pointer; /* Cursor de mão ao passar o mouse */
+  transition: background-color 0.3s; /* Efeito de transição */
+}
+
+.botao-redondo:hover {
+  background-color: #666; /* Cor ao passar o mouse */
+}
+
+.left-control {
+  padding-top: 10px;;
+  display: flex; /* Usa flexbox para alinhar os botões */
+  flex-direction: row; /* Alinha os botões lado a lado */
+  justify-content: flex-end; /* Alinha os botões à direita */
+  gap: 10px; /* Espaçamento entre os botões */
+  margin-right: 20px; /* Margem à direita para afastar dos limites da tela */
+}
