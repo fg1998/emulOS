@@ -1,3 +1,15 @@
+
+document.addEventListener("DOMContentLoaded", () => {
+  const splash = document.getElementById("splash-screen");
+  const main = document.querySelector("main");
+
+  if (splash && main) {
+    setTimeout(() => {
+      splash.style.display = "none";
+      main.style.display = "flex";
+    }, 4000);
+  }
+});
 const fs = require('fs');
 const path = require('path');
 
@@ -179,10 +191,10 @@ card.appendChild(fav);
     deleteIcon.onclick = () => deleteSystem(sys.name);
     icons.appendChild(deleteIcon);
 
-    const addIcon = document.createElement('span');
-    addIcon.innerHTML = '<i class="fa fa-gear"></i>';
-    addIcon.onclick = () => addNewSystemPrompt();
-    icons.appendChild(addIcon);
+    const gearIcon = document.createElement('span');
+gearIcon.innerHTML = '<i class="fa fa-gear"></i>';
+gearIcon.onclick = () => configSystem(sys);
+icons.appendChild(gearIcon);
 
     card.appendChild(icons);
     systemList.appendChild(card);
@@ -251,6 +263,56 @@ document.addEventListener('DOMContentLoaded', () => {
     runModal.classList.remove("show");
     setTimeout(() => {
       runModal.style.display = "none";
+    }, 500);
+  });
+});
+
+
+
+function configSystem(sys) {
+  const modal = document.getElementById("config-modal");
+
+  const fieldBrand = document.getElementById("config-brand");
+  const fieldName = document.getElementById("config-name");
+  const fieldDesc = document.getElementById("config-desc");
+  const fieldEmulator = document.getElementById("config-emulator");
+  const fieldParam = document.getElementById("config-parameter");
+
+  // Preencher dropdown de brands
+  fieldBrand.innerHTML = '';
+  data.brands.forEach(b => {
+    const option = document.createElement('option');
+    option.value = b.name;
+    option.textContent = b.desc;
+    if (b.name === sys.brand) option.selected = true;
+    fieldBrand.appendChild(option);
+  });
+
+  fieldName.value = sys.name || '';
+  fieldDesc.value = sys.desc || '';
+  fieldEmulator.innerHTML = '';
+  data.emulators.forEach(e => {
+    const option = document.createElement('option');
+    option.value = e.key;
+    option.textContent = e.key;
+    if (e.key === sys.emulator) option.selected = true;
+    fieldEmulator.appendChild(option);
+  });
+  fieldParam.value = sys.parameter || '';
+
+  modal.classList.add("show");
+  modal.style.display = "flex";
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("config-modal");
+  const closeBtn = document.getElementById("close-config");
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+    setTimeout(() => {
+      modal.style.display = "none";
     }, 500);
   });
 });
