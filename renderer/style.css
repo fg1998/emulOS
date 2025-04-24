@@ -142,8 +142,9 @@ body {
 }
 
 
+
 .modal-content.run {
-  background: #444;
+  background: #1c1c1c;
   color: #fff;
   padding: 30px;
   border-radius: 10px;
@@ -151,6 +152,47 @@ body {
   max-width: 90vw;
   min-height: 300px;
   box-shadow: 0 0 20px #000;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+
+
+
+#brand-list div.brand-selected {
+  background-color: #444;
+  color: #fff;
+}
+
+
+
+.modal-content.run {
+  background: #1c1c1c;
+  color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 700px;
+  max-width: 90vw;
+  min-height: 300px;
+  box-shadow: 0 0 20px #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.run-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+#run-modal-buttons {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

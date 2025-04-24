@@ -14,9 +14,12 @@ function renderSidebar() {
   brandList.innerHTML = '';
   data.brands.forEach(b => {
     const div = document.createElement('div');
-    div.textContent = b.desc;
+    div.innerHTML = `<i class="fa fa-desktop" style="margin-right: 8px;"></i> ${b.desc}`;
     div.dataset.brand = b.name;
     div.onclick = () => {
+      document.querySelectorAll('#brand-list div').forEach(d => d.classList.remove('brand-selected'));
+      div.classList.add('brand-selected');
+
       currentBrand = b.name;
       showFavorites = false;
       renderSystems();
@@ -25,7 +28,9 @@ function renderSidebar() {
   });
 }
 
-document.querySelector('.favorites-toggle').onclick = () => {
+const favToggle = document.querySelector('.favorites-toggle');
+favToggle.innerHTML = '<i class="fa fa-star" style="color: gold; margin-right: 8px;"></i> Favoritos';
+favToggle.onclick = () => {
   currentBrand = null;
   showFavorites = true;
   renderSystems();
