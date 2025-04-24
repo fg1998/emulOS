@@ -152,8 +152,22 @@ card.appendChild(fav);
     
     const editIcon = document.createElement('span');
     editIcon.innerHTML = '<i class="fa fa-play"></i>';
-    editIcon.onclick = () => editSystem(sys.name);
+    editIcon.onclick = () => {
+      const runModal = document.getElementById("run-modal");
+      const runDesc = document.getElementById("run-desc");
+    
+      runDesc.textContent = data.emulators.find(e => e.key === sys.emulator).desc|| "Sem descrição disponível.";
+      //runDesc.textContent = 
+      
+      //console.log(data.emulators)
+      //console.log(sys)
+      //console.log(data.emulators.find(e => e.key === sys.emulator).desc)
+
+      runModal.classList.add("show");
+      runModal.style.display = "flex";
+    };
     icons.appendChild(editIcon);
+    
 
     const deleteIcon = document.createElement('span');
     deleteIcon.innerHTML = '<i class="fa fa-trash"></i>';
@@ -178,12 +192,60 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('close-about');
 
   if (modal && openBtn && closeBtn) {
-    modal.style.display = 'none';
+    modal.classList.remove('show'); setTimeout(() => { modal.style.display = 'none'; }, 500);
     openBtn.addEventListener('click', () => {
-      modal.style.display = 'flex';
+      modal.classList.add('show'); modal.style.display = 'flex';
     });
     closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
+      modal.classList.remove('show'); setTimeout(() => { modal.style.display = 'none'; }, 500);
     });
   }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Animação de troca
+  const list = document.getElementById('system-list');
+  const brandItems = document.querySelectorAll('#brand-list div');
+
+  brandItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (list) {
+        list.classList.remove('fade-in');
+        list.classList.add('fade-out');
+        setTimeout(() => {
+          list.classList.remove('fade-out');
+          list.classList.add('fade-in');
+        }, 100);
+      }
+    });
+  });
+
+  // Selecionar automaticamente a primeira Brand
+  if (brandItems.length > 0) {
+    brandItems[0].click();
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const runModal = document.getElementById("run-modal");
+  const closeRun = document.getElementById("close-run");
+  const runDesc = document.getElementById("run-desc");
+
+  document.querySelectorAll(".fa-play").forEach(button => {
+    button.addEventListener("click", (e) => {
+      const card = e.currentTarget.closest(".card");
+      const desc = card?.dataset?.desc || "Sem descrição disponível.";
+      runDesc.textContent = desc;
+      runModal.classList.add("show");
+    });
+  });
+
+  closeRun.addEventListener("click", () => {
+    runModal.classList.remove("show");
+    setTimeout(() => {
+      runModal.style.display = "none";
+    }, 500);
+  });
 });

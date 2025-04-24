@@ -26,7 +26,7 @@ body {
   z-index: 1000;
 }
 .modal-content {
-  background: #282828;
+  background: #444;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px black;
@@ -77,3 +77,80 @@ body {
   gap: 10px; /* Espaçamento entre os botões */
   margin-right: 20px; /* Margem à direita para afastar dos limites da tela */
 }
+
+
+/* Animações retro-style */
+
+
+#system-list {
+  transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+  transform-origin: center center;
+}
+
+
+
+
+
+.fade-out {
+  opacity: 0;
+  transform: scale(0.85);
+  filter: blur(4px);
+}
+
+
+
+
+
+.fade-in {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+
+
+
+#about-modal {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
+
+#about-modal.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+#run-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
+
+#run-modal.show {
+  opacity: 1;
+  transform: scale(1);
+  display: flex;
+}
+
+
+.modal-content.run {
+  background: #444;
+  color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 700px;
+  max-width: 90vw;
+  min-height: 300px;
+  box-shadow: 0 0 20px #000;
+  text-align: center;
+}
+
