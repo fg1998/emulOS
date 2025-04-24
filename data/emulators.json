@@ -82,7 +82,7 @@
     },
     {
       "brand": "sinclair",
-      "name": "ZX Spectrum 48kb",
+      "name": "ZX Spectrum 48kb.",
       "desc": "Color, 48Kb",
       "emulator": "fuse",
       "favorite": false,
@@ -92,7 +92,7 @@
     {
       "brand": "sinclair",
       "name": "Spectrum 128",
-      "desc": "Color, 128Kb",
+      "desc": "Color, 128Kb...",
       "emulator": "zesarux",
       "favorite": false,
       "image": "128.png",

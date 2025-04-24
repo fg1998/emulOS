@@ -270,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function configSystem(sys) {
+  window.currentSystemConfig = sys;
   const modal = document.getElementById("config-modal");
 
   const fieldBrand = document.getElementById("config-brand");
@@ -315,4 +316,35 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "none";
     }, 500);
   });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const saveButton = document.getElementById("save-config");
+  const modal = document.getElementById("config-modal");
+
+  if (saveButton) {
+    saveButton.addEventListener("click", () => {
+      if (!window.currentSystemConfig) return;
+
+      const sys = window.currentSystemConfig;
+      sys.brand = document.getElementById("config-brand").value;
+      sys.name = document.getElementById("config-name").value;
+      sys.desc = document.getElementById("config-desc").value;
+      sys.emulator = document.getElementById("config-emulator").value;
+      sys.parameter = document.getElementById("config-parameter").value;
+
+      const fs = require('fs');
+      const path = require('path');
+      const dataFile = path.join(__dirname, '../data/emulators.json');
+      fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+      modal.classList.remove("show");
+      setTimeout(() => {
+        modal.style.display = "none";
+        renderSystems();
+      }, 500);
+    });
+  }
 });
