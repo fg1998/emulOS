@@ -1,0 +1,6 @@
+export OPENMSX_HOME=/home/fg1998/emulators/openmsx-bin
+export OPENMSX_USER_DATA=/home/fg1998/emulators/openmsx-bin/share
+
+
+$ ./openmsx -command "set fullscreen on" 
+

@@ -1,0 +1,13 @@
+How to compile
+
+git clone https://github.com/chernandezba/zesarux.git zesarux_src
+cd zesarux_src/src
+
+sudo apt-get install libssl-dev libpthread-stubs0-dev libasound2-dev
+
+./configure --prefix /home/fg1998/emulators/zesarux --enable-raspberry --enable-ssl
+
+make install
+# o Resultado ficará na pasta --prefix
+
+./zesarux --vo sdl --fullscreen --machine TK90X
