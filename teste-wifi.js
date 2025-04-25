@@ -1,3 +1,65 @@
+
+// === Confirm modal logic ===
+const confirmModal = document.getElementById('confirmModal');
+const confirmTitle = document.getElementById('confirmTitle');
+const confirmMessage = document.getElementById('confirmMessage');
+const confirmOk = document.getElementById('confirmOk');
+const confirmCancel = document.getElementById('confirmCancel');
+
+function openConfirm({ title, message, onConfirm }) {
+  confirmTitle.textContent = title;
+  confirmMessage.textContent = message;
+  confirmModal.classList.remove('hidden');
+
+  // Reset event handlers
+  const newOk = confirmOk.cloneNode(true);
+  const newCancel = confirmCancel.cloneNode(true);
+  confirmOk.replaceWith(newOk);
+  confirmCancel.replaceWith(newCancel);
+
+  newOk.addEventListener('click', () => {
+    confirmModal.classList.add('hidden');
+    onConfirm();
+  });
+  newCancel.addEventListener('click', () => {
+    confirmModal.classList.add('hidden');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnShutdown = document.getElementById('btnShutdown');
+  const btnReboot = document.getElementById('btnReboot');
+  const btnExitFrontend = document.getElementById('btnExitFrontend');
+
+  if (btnShutdown) {
+    btnShutdown.onclick = () => {
+      openConfirm({
+        title: 'Desligar Sistema',
+        message: 'Tem certeza que deseja desligar o sistema?',
+        onConfirm: () => window.ipcRenderer.send('shutdown-system')
+      });
+    };
+  }
+  if (btnReboot) {
+    btnReboot.onclick = () => {
+      openConfirm({
+        title: 'Reiniciar Sistema',
+        message: 'Tem certeza que deseja reiniciar o sistema?',
+        onConfirm: () => window.ipcRenderer.send('reboot-system')
+      });
+    };
+  }
+  if (btnExitFrontend) {
+    btnExitFrontend.onclick = () => {
+      openConfirm({
+        title: 'Sair do Frontend',
+        message: 'Tem certeza que deseja sair do frontend?',
+        onConfirm: () => window.ipcRenderer.send('exit-frontend')
+      });
+    };
+  }
+});
+
 const wifi = require("node-wifi");
 const si = require("systeminformation");
 
