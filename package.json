@@ -5,8 +5,12 @@
   "scripts": {
     "start": "electron ."
   },
-  "dependencies": {},
   "devDependencies": {
     "electron": "^29.0.0"
+  },
+  "dependencies": {
+    "node-wifi": "^2.0.16",
+    "systeminformation": "^5.25.11",
+    "wifi-control": "^2.0.1"
   }
 }

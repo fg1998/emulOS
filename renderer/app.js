@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 const fs = require('fs');
 const path = require('path');
 
+
+
+
+
 const dataFile = path.join(__dirname, '../data/emulators.json');
 let data = JSON.parse(fs.readFileSync(dataFile));
 
@@ -345,6 +349,46 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "none";
         renderSystems();
       }, 500);
+    });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const powerBtn = document.getElementById("power-button");
+  const powerModal = document.getElementById("power-modal");
+  const closeBtn = document.getElementById("close-power-modal");
+  const rebootBtn = document.getElementById("reboot-system");
+  const shutdownBtn = document.getElementById("shutdown-system");
+  const exitBtn = document.getElementById("exit-frontend");
+  const { exec } = require("child_process");
+
+  if (powerBtn && powerModal) {
+    powerBtn.addEventListener("click", () => {
+      powerModal.style.display = "flex";
+      powerModal.classList.add("show");
+    });
+  }
+  if (closeBtn && powerModal) {
+    closeBtn.addEventListener("click", () => {
+      powerModal.classList.remove("show");
+      setTimeout(() => { powerModal.style.display = "none"; }, 500);
+    });
+  }
+  if (rebootBtn) {
+    rebootBtn.addEventListener("click", () => {
+      exec("sudo reboot", (err) => { if (err) alert("Erro ao reiniciar: " + err); });
+    });
+  }
+  if (shutdownBtn) {
+    console.log('ShutDown')
+    shutdownBtn.addEventListener("click", () => {
+      exec("sudo halt", (err) => { if (err) alert("Erro ao desligar: " + err); });
+    });
+  }
+  if (exitBtn) {
+    exitBtn.addEventListener("click", () => {
+      window.close();
     });
   }
 });

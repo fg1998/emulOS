@@ -26,6 +26,12 @@
     </aside>
     <main id="main">
       <div class="top-icons right-control">
+
+
+        <button id="power-button" class="botao-redondo">
+          <i class="fa fa-power-off"></i>
+        </button>
+
         <button id="add-emulator" class="botao-redondo">
           <i class="fa fa-plus"></i>
         </button>
@@ -92,5 +98,19 @@
   </div>
 
   <script src="app.js"></script>
+
+<div id="power-modal" class="modal">
+  <div class="modal-content">
+    <h2>Controle de Sistema</h2>
+    <div class="modal-actions">
+      <button id="reboot-system">Reiniciar o sistema</button>
+      <button id="shutdown-system">Desligar o sistema</button>
+      <button id="exit-frontend">Sair do Frontend</button>
+    </div>
+    <div class="modal-actions">
+      <button id="close-power-modal">Fechar</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

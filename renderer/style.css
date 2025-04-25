@@ -297,3 +297,22 @@ body {
   gap: 10px;
   z-index: 1000;
 }
+
+#power-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1005;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
+
+#power-modal.show {
+  display: flex;
+  opacity: 1;
+  transform: scale(1);
+}
