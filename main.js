@@ -1,6 +1,9 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const wifi = require("node-wifi");
+const fs = require('fs');
+const execFile = require('child_process').execFile
+
 
 wifi.init({ iface: null})
 
@@ -39,8 +42,24 @@ app.on('window-all-closed', function () {
 });
 
 
-const fs = require('fs');
-const { ipcMain } = require('electron');
+ipcMain.on('wifiConfig', async(event, content) => {
+  console.log('wificonfig');
+  const command = "xterm";
+  //const command = "/home/fg1998/emulators/zesarux/zesarux"
+  const param = "-fullscreen -e sudo nmtui";
+  paramlist = param.split(' ')
+
+  const extProcess = execFile(command, paramlist, (error, stdout, stderr)=> {
+    if(error)
+    {
+      console.log(error)
+    }
+    console.log(error)
+  })
+  console.log()
+})
+
+
 
 ipcMain.handle('toggle-favorite', (event, systemId) => {
   const dataPath = path.join(__dirname, 'data', 'emulators.json');

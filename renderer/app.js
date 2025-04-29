@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+const { ipcRenderer, contentTracing } = require("electron");
+
+
 
 // Função para registrar mensagens no log
 function logMessage(message) {
@@ -22,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
   }
 });
-const fs = require('fs');
-const path = require('path');
+
 
 
 
@@ -391,12 +395,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if(wifiBtn) {
-    exec("sudo nmtui", (err) => { if (err) alert("Erro ao reiniciar: " + err); });
+    wifiBtn.addEventListener('click', () => {
+      console.log('wifi')
+      ipcRenderer.send('wifiConfig');
+    })
+   
   }
 
   if (rebootBtn) {
     rebootBtn.addEventListener("click", () => {
-      exec("sudo reboot", (err) => { if (err) alert("Erro ao reiniciar: " + err); });
+      exec("sudo nmtui", (err) => { if (err) alert("Erro ao reiniciar: " + err); });
     });
   }
   if (shutdownBtn) {
