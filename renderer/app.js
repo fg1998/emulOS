@@ -1,4 +1,16 @@
 
+// Função para registrar mensagens no log
+function logMessage(message) {
+  const logContainer = document.getElementById('log-container');
+  const logContent = document.getElementById('log-content');
+  const p = document.createElement('p');
+  p.textContent = message;
+  logContent.appendChild(p);
+  // Rola para o final automaticamente
+  logContainer.scrollTop = logContainer.scrollHeight;
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-screen");
   const main = document.querySelector("main");
@@ -354,6 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const powerBtn = document.getElementById("power-button");
   const powerModal = document.getElementById("power-modal");
@@ -361,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rebootBtn = document.getElementById("reboot-system");
   const shutdownBtn = document.getElementById("shutdown-system");
   const exitBtn = document.getElementById("exit-frontend");
+  const wifiBtn = document.getElementById('config-wifi')
   const { exec } = require("child_process");
 
   if (powerBtn && powerModal) {
@@ -375,6 +389,11 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => { powerModal.style.display = "none"; }, 500);
     });
   }
+
+  if(wifiBtn) {
+    exec("sudo nmtui", (err) => { if (err) alert("Erro ao reiniciar: " + err); });
+  }
+
   if (rebootBtn) {
     rebootBtn.addEventListener("click", () => {
       exec("sudo reboot", (err) => { if (err) alert("Erro ao reiniciar: " + err); });

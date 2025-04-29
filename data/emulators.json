@@ -129,7 +129,7 @@
       "name": "PET",
       "desc": "First Commodore computer",
       "emulator": "commodore",
-      "favorite": false,
+      "favorite": true,
       "parameter": "--machine ACE --fullscreen"
     },
     {
@@ -146,7 +146,7 @@
       "name": "Commodore 128",
       "desc": "Full Color 8Bit computer, 128Kb Ram",
       "emulator": "commodore",
-      "favorite": false,
+      "favorite": true,
       "image": "c128.png",
       "parameter": "--machine ACE --fullscreen"
     },
@@ -226,7 +226,7 @@
       "desc": "First AGA amiga computer",
       "emulator": "amiga",
       "parameter": "",
-      "favorite": false,
+      "favorite": true,
       "image": ""
     }
   ]

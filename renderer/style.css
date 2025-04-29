@@ -316,3 +316,32 @@ body {
   opacity: 1;
   transform: scale(1);
 }
+
+/* === Layout Flexível === */
+html, body {
+  height: 100vh;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+#main-container {
+  flex: 1 1 auto;      /* Ocupa espaço restante */
+  overflow-y: auto;    /* Scroll na área principal */
+}
+
+/* === Área de LOG === */
+#log-container {
+  flex: 0 0 20%;       /* Altura fixa em 20% */
+  background-color: #000;
+  color: #0f0;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  padding: 5px;
+  overflow-y: auto;    /* Scroll no log */
+  box-sizing: border-box;
+}
+#log-content p {
+  margin: 0;
+}
