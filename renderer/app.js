@@ -3,17 +3,29 @@ const path = require('path');
 const { ipcRenderer, contentTracing } = require("electron");
 
 
+// IPC EVENTS
+ipcRenderer.on('writeLog', (event, message) => {
+  logMessage(message);
+});
 
-// Função para registrar mensagens no log
-function logMessage(message) {
+
+// Log messages
+function logMessage(msg) {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  const timestamp = `${hours}:${minutes}:${seconds}`;
   const logContainer = document.getElementById('log-container');
   const logContent = document.getElementById('log-content');
   const p = document.createElement('p');
-  p.textContent = message;
+  p.textContent = `[${timestamp}] ${msg}`;
   logContent.appendChild(p);
   // Rola para o final automaticamente
   logContainer.scrollTop = logContainer.scrollHeight;
 }
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -394,8 +406,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
   if(wifiBtn) {
     wifiBtn.addEventListener('click', () => {
+      logMessage('Wifi Button clicked')
       console.log('wifi')
       ipcRenderer.send('wifiConfig');
     })

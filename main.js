@@ -44,6 +44,7 @@ app.on('window-all-closed', function () {
 
 ipcMain.on('wifiConfig', async(event, content) => {
   console.log('wificonfig');
+  event.reply('writeLog','Starting nmtui')
   const command = "xterm";
   //const command = "/home/fg1998/emulators/zesarux/zesarux"
   const param = "-fullscreen -e sudo nmtui";
@@ -53,10 +54,12 @@ ipcMain.on('wifiConfig', async(event, content) => {
     if(error)
     {
       console.log(error)
+      event.reply('logMessage', `Error: ${error.message}`)
+      return
     }
-    console.log(error)
+    if (stdout) event.reply('wifiLog', `stdout: ${stdout.trim()}`);
+    if (stderr) event.reply('wifiLog', `stderr: ${stderr.trim()}`)
   })
-  console.log()
 })
 
 

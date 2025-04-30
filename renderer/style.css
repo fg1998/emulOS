@@ -337,7 +337,7 @@ body {
   background-color: #000;
   color: #0f0;
   font-family: 'VT323', monospace;
-  font-size: 14px;
+  font-size: 18px;
   padding: 5px;
   overflow-y: auto;    /* Scroll no log */
   box-sizing: border-box;
