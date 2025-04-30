@@ -1,19 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const wifi = require("node-wifi");
 const fs = require('fs');
 const execFile = require('child_process').execFile
 
 
-wifi.init({ iface: null})
-
-wifi.getCurrentConnections((error, currentConnections) => {
-  if (error) {
-    console.error("Erro:", error);
-  } else {
-    console.log("Conectado:", currentConnections);
-  }
-});
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -27,7 +17,7 @@ function createWindow() {
   });
 
   win.loadFile('renderer/index.html');
-  win.webContents.openDevTools(); // DevTools ativado
+  //win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {

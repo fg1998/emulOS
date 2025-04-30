@@ -107,15 +107,10 @@ function deleteSystem(systemName) {
 }
 
 function renderSystems() {
-
-
   const dataFile = path.join(__dirname, "../data/emulators.json");
   let data = JSON.parse(fs.readFileSync(dataFile));
 
-
   systemList.innerHTML = "";
-
-
 
   let filtered = [];
   if (showFavorites) {
@@ -133,13 +128,22 @@ function renderSystems() {
     const card = document.createElement("div");
     card.className = "card";
 
+    
+    const input = document.createElement('input');
+    input.type = 'text'
+    input.id = 'id'
+    input.name = 'id'
+    input.value = sys.id
+
+    card.appendChild(input)
+    
+
     const img = document.createElement("img");
     img.src = "assets/" + (sys.image || `${sys.brand}_not_found.png`);
     img.onerror = () => {
       img.src = "assets/default.png";
     };
     card.appendChild(img);
-
 
     const title = document.createElement("div");
     title.className = "title";
@@ -361,8 +365,9 @@ document.addEventListener("DOMContentLoaded", () => {
         dataObj.systems.push(newSystem);
         logMessage(`new system add: ${newSystem.name}`);
       } else {
-        const sys = window.currentSystemConfig;
 
+        const sys = window.currentSystemConfig;
+ 
         Object.assign(sys, {
           brand: brandVal,
           name: nameVal,
@@ -370,9 +375,30 @@ document.addEventListener("DOMContentLoaded", () => {
           emulator: emulatorVal,
           parameter: paramVal,
         });
-      }
-      fs.writeFileSync(dataFile, JSON.stringify(dataObj, null, 2));
 
+        const idx = dataObj.systems.findIndex( s=> s.id === sys.id);
+        if (idx !== -1) {
+          console.log(idx)
+           console.log(dataObj.systems[idx]);
+           
+          Object.assign(dataObj.systems[idx], {
+            brand:     brandVal,
+            name:      nameVal,
+            desc:      descVal,
+            emulator:  emulatorVal,
+            parameter: paramVal
+          });
+          console.log(dataObj)
+          logMessage(`System updated: ${dataObj.systems[idx].name}`);
+        } else {
+          console.warn(`No system found with id=${idVal}`);
+        }
+        
+
+      }
+      console.log('salvando')
+      fs.writeFileSync(dataFile, JSON.stringify(dataObj, null, 2));
+      console.log('salvou')
       modal.classList.remove("show");
       setTimeout(() => {
         modal.style.display = "none";
