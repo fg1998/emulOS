@@ -3,6 +3,7 @@ const path = require("path");
 const { ipcRenderer, contentTracing } = require("electron");
 
 // IPC EVENTS
+
 ipcRenderer.on("writeLog", (event, message) => {
   logMessage(message);
 });
@@ -75,10 +76,8 @@ function toggleFavorite(systemName) {
 
   if (system) {
     system.favorite = !(system.favorite === true || system.favorite === true);
-    console.log(system.favorite);
 
     fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
-    console.log(dataFile);
     renderSystems();
   }
 }
@@ -92,6 +91,7 @@ function editSystem(systemName) {
   if (newName && newDesc) {
     sys.name = newName;
     sys.desc = newDesc;
+
     fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
     renderSystems();
   }
@@ -102,6 +102,7 @@ function deleteSystem(systemName) {
   if (!confirmDelete) return;
 
   data.systems = data.systems.filter((s) => s.name !== systemName);
+
   fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
   renderSystems();
 }
@@ -128,15 +129,13 @@ function renderSystems() {
     const card = document.createElement("div");
     card.className = "card";
 
-    
-    const input = document.createElement('input');
-    input.type = 'text'
-    input.id = 'id'
-    input.name = 'id'
-    input.value = sys.id
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.id = "id";
+    input.name = "id";
+    input.value = sys.id;
 
-    card.appendChild(input)
-    
+    card.appendChild(input);
 
     const img = document.createElement("img");
     img.src = "assets/" + (sys.image || `${sys.brand}_not_found.png`);
@@ -170,11 +169,7 @@ function renderSystems() {
       const runDesc = document.getElementById("run-desc");
 
       runDesc.textContent = data.emulators.find((e) => e.key === sys.emulator).desc || "Sem descrição disponível.";
-      //runDesc.textContent =
 
-      //console.log(data.emulators)
-      //console.log(sys)
-      //console.log(data.emulators.find(e => e.key === sys.emulator).desc)
 
       runModal.classList.add("show");
       runModal.style.display = "flex";
@@ -268,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function addEmulator() {
-  console.log("addemilator");
+
   window.currentSystemConfig = null;
   const modal = document.getElementById("config-modal");
 
@@ -365,9 +360,8 @@ document.addEventListener("DOMContentLoaded", () => {
         dataObj.systems.push(newSystem);
         logMessage(`new system add: ${newSystem.name}`);
       } else {
-
         const sys = window.currentSystemConfig;
- 
+
         Object.assign(sys, {
           brand: brandVal,
           name: nameVal,
@@ -376,29 +370,32 @@ document.addEventListener("DOMContentLoaded", () => {
           parameter: paramVal,
         });
 
-        const idx = dataObj.systems.findIndex( s=> s.id === sys.id);
+        const idx = dataObj.systems.findIndex((s) => s.id === sys.id);
         if (idx !== -1) {
-          console.log(idx)
-           console.log(dataObj.systems[idx]);
-           
           Object.assign(dataObj.systems[idx], {
-            brand:     brandVal,
-            name:      nameVal,
-            desc:      descVal,
-            emulator:  emulatorVal,
-            parameter: paramVal
+            brand: brandVal,
+            name: nameVal,
+            desc: descVal,
+            emulator: emulatorVal,
+            parameter: paramVal,
           });
-          console.log(dataObj)
+
           logMessage(`System updated: ${dataObj.systems[idx].name}`);
         } else {
           console.warn(`No system found with id=${idVal}`);
         }
-        
-
       }
-      console.log('salvando')
+
+      const oldName = path.join(__dirname, "../data/emulators_old.json");
+
+      try {
+        fs.renameSync(dataFile, oldName);
+      } catch (err) {
+        console.log(err);
+      }
       fs.writeFileSync(dataFile, JSON.stringify(dataObj, null, 2));
-      console.log('salvou')
+
+
       modal.classList.remove("show");
       setTimeout(() => {
         modal.style.display = "none";
@@ -420,34 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const saveButton = document.getElementById("save-config");
-  const modal = document.getElementById("config-modal");
 
-  if (saveButton) {
-    saveButton.addEventListener("click", () => {
-      if (!window.currentSystemConfig) return;
-
-      const sys = window.currentSystemConfig;
-      sys.brand = document.getElementById("config-brand").value;
-      sys.name = document.getElementById("config-name").value;
-      sys.desc = document.getElementById("config-desc").value;
-      sys.emulator = document.getElementById("config-emulator").value;
-      sys.parameter = document.getElementById("config-parameter").value;
-
-      const fs = require("fs");
-      const path = require("path");
-      const dataFile = path.join(__dirname, "../data/emulators.json");
-      fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
-
-      modal.classList.remove("show");
-      setTimeout(() => {
-        modal.style.display = "none";
-        renderSystems();
-      }, 500);
-    });
-  }
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   const powerBtn = document.getElementById("power-button");
@@ -484,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (wifiBtn) {
     wifiBtn.addEventListener("click", () => {
       logMessage("Wifi Button clicked");
-      console.log("wifi");
+
       ipcRenderer.send("wifiConfig");
     });
   }
@@ -497,7 +467,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   if (shutdownBtn) {
-    console.log("ShutDown");
+
     shutdownBtn.addEventListener("click", () => {
       exec("sudo halt", (err) => {
         if (err) alert("Erro ao desligar: " + err);
