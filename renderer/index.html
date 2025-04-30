@@ -1,123 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>EmulOS</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div id="main-container">
-
-  <div id="splash-screen">
-    <img src="assets/emulos_logo_1024.png" alt="EmulOS Logo">
-    <p style="text-align: center;">
-      <strong>EmulOS</strong><br>
-      <a href="https://www.emulos.com.br" style="color: #ccc;">www.emulos.com.br</a>
-    </p>
-    
-
-  </div>
-  
-  <div id="app">
-    <aside id="sidebar">
-      <h2>EmulOS</h2>
-      <nav id="brand-list"></nav>
-      <div class="favorites-toggle">Favoritos</div>
-    </aside>
-    <main id="main">
-      <div class="top-icons right-control">
-
-
-        <button id="power-button" class="botao-redondo">
-          <i class="fa fa-power-off"></i>
-        </button>
-
-        <button id="add-emulator" class="botao-redondo">
-          <i class="fa fa-plus"></i>
-        </button>
-        <button id="config-system" class="botao-redondo">
-          <i class="fa fa-gear"></i>
-        </button>
-
-        <button id="config-wifi" class="botao-redondo">
-          <i class="fa fa-ban fa-wifi"></i>
-        </button>
-
-        <button id="about" class="botao-redondo">
-          <i class="fa fa-exclamation"></i>
-        </button>
-        
+  <head>
+    <meta charset="UTF-8" />
+    <title>EmulOS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css" />
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="splash-screen">
+        <img src="assets/emulos_logo_1024.png" alt="EmulOS Logo" />
+        <p style="text-align: center">
+          <strong>EmulOS</strong><br />
+          <a href="https://www.emulos.com.br" style="color: #ccc">www.emulos.com.br</a>
+        </p>
       </div>
-      <div id="system-list"></div>
-    </main>
-<div id="config-modal">
-  <div class="modal-content config">
-    <h3>Configurar Sistema</h3>
-    <div id="config-form">
-  <label for="config-brand">Brand:</label>
-  <select id="config-brand"></select>
 
-  <label for="config-name">Name:</label>
-  <input type="text" id="config-name" />
+      <div id="app">
+        <aside id="sidebar">
+          <h2>EmulOS</h2>
+          <nav id="brand-list"></nav>
+          <div class="favorites-toggle">Favoritos</div>
+        </aside>
+        <main id="main">
+          <div class="top-icons right-control">
+            <button id="power-button" class="botao-redondo">
+              <i class="fa fa-power-off"></i>
+            </button>
 
-  <label for="config-desc">Desc:</label>
-  <input type="text" id="config-desc" />
+            <button id="add-emulator" class="botao-redondo">
+              <i class="fa fa-plus"></i>
+            </button>
+            <button id="config-system" class="botao-redondo">
+              <i class="fa fa-gear"></i>
+            </button>
 
-  <label for="config-emulator">Emulator:</label>
-  <select id="config-emulator"></select>
+            <button id="config-wifi" class="botao-redondo">
+              <i class="fa fa-ban fa-wifi"></i>
+            </button>
 
-  <label for="config-parameter">Parameter:</label>
-  <textarea id="config-parameter"></textarea>
-</div>
-    <div id="config-modal-buttons">
-      <button id="close-config">Fechar</button>
-      <button id="save-config">Salvar</button>
+            <button id="about" class="botao-redondo">
+              <i class="fa fa-exclamation"></i>
+            </button>
+          </div>
+          <div id="system-list"></div>
+        </main>
+        <div id="config-modal">
+          <div class="modal-content config">
+            <h3>Configurar Sistema</h3>
+            <div id="config-form">
+              <label for="config-brand">Brand:</label>
+              <select id="config-brand"></select>
+
+              <label for="config-name">Name:</label>
+              <input type="text" id="config-name" />
+
+              <label for="config-desc">Desc:</label>
+              <input type="text" id="config-desc" />
+
+              <label for="config-emulator">Emulator:</label>
+              <select id="config-emulator"></select>
+
+              <label for="config-parameter">Parameter:</label>
+              <textarea id="config-parameter"></textarea>
+            </div>
+            <div id="config-modal-buttons">
+              <button id="close-config">Fechar</button>
+              <button id="save-config">Salvar</button>
+            </div>
+          </div>
+        </div>
+        <div id="run-modal">
+          <div class="modal-content run">
+            <h3 id="run-desc">Descrição aqui</h3>
+            <div style="margin-top: 20px">
+              <button id="close-run">VOLTAR</button>
+              <button id="run-system">RUN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="about-modal">
+        <div class="modal-content">
+          <img src="assets/emulos_logo.png" alt="Logo EmulOS" class="emulos-logo" />
+          <h2>EmulOS</h2>
+          <p>By fg1998 and the EmulOS team<br />https://github.com/fg1998/EmulOS</p>
+          This is a very initial development of an emulator frontend and Raspebrry Pi distro. There is no reason to donwload other than help us in the development.
+          <button id="close-about">Fechar</button>
+        </div>
+      </div>
+
+      <script src="app.js"></script>
+
+      <div id="power-modal" class="modal">
+        <div class="modal-content">
+          <h2>Controle de Sistema</h2>
+          <div class="modal-actions">
+            <button id="reboot-system">Reiniciar o sistema</button>
+            <button id="shutdown-system">Desligar o sistema</button>
+            <button id="exit-frontend">Sair do Frontend</button>
+          </div>
+          <div class="modal-actions">
+            <button id="close-power-modal">Fechar</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div id="run-modal">
-  <div class="modal-content run">
-    <h3 id="run-desc">Descrição aqui</h3>
-    <div style="margin-top: 20px;">
-      <button id="close-run">VOLTAR</button>
-      <button id="run-system">RUN</button>
+    <!-- #main-container -->
+    <!-- Log area -->
+    <div id="log-container">
+      <div id="log-content"></div>
     </div>
-  </div>
-</div>
-  </div>
-
-  <div id="about-modal">
-    <div class="modal-content">
-      <img src="assets/emulos_logo.png" alt="Logo EmulOS" class="emulos-logo">
-    <h2>EmulOS</h2>
-      <p>By fg1998 and the EmulOS team<br>https://github.com/fg1998/EmulOS</p>
-      This is a very initial development of an emulator frontend and Raspebrry Pi distro. 
-                There is no reason to donwload other than help us in the development.
-      <button id="close-about">Fechar</button>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-
-<div id="power-modal" class="modal">
-  <div class="modal-content">
-    <h2>Controle de Sistema</h2>
-    <div class="modal-actions">
-      <button id="reboot-system">Reiniciar o sistema</button>
-      <button id="shutdown-system">Desligar o sistema</button>
-      <button id="exit-frontend">Sair do Frontend</button>
-    </div>
-    <div class="modal-actions">
-      <button id="close-power-modal">Fechar</button>
-    </div>
-  </div>
-</div>
-  </div> <!-- #main-container -->
-  <!-- Log area -->
-  <div id="log-container">
-    <div id="log-content"></div>
-  </div>
-</body>
+  </body>
 </html>

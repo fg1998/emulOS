@@ -218,7 +218,7 @@ body {
 }
 
 .modal-content.config {
-  background: #1c1c1c;
+  background: #444;
   color: #fff;
   padding: 30px;
   border-radius: 10px;
@@ -244,6 +244,7 @@ body {
   row-gap: 15px;
   column-gap: 20px;
   align-items: center;
+  margin-right: 20px;
 }
 
 #config-form label {
@@ -256,7 +257,7 @@ body {
 #config-form input,
 #config-form select,
 #config-form textarea {
-  width: 100%;
+
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #555;
