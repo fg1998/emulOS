@@ -91,12 +91,12 @@
     },
     {
       "brand": "sinclair",
-      "name": "6a.",
-      "desc": "6a..",
-      "emulator": "fuse",
+      "name": "Spectrum 128",
+      "desc": "Color, 128Kb...",
+      "emulator": "zesarux",
       "favorite": false,
       "image": "128.png",
-      "parameter": "6a..."
+      "parameter": "--machine 128"
     },
     {
       "brand": "sinclair",
@@ -228,15 +228,6 @@
       "parameter": "",
       "favorite": true,
       "image": ""
-    },
-    {
-      "id": "1746025589617",
-      "brand": "sinclair",
-      "name": "9",
-      "desc": "99",
-      "emulator": "fuse",
-      "parameter": "999",
-      "favorite": false
     }
   ]
 }
