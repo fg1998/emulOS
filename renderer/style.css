@@ -327,6 +327,41 @@ textarea {
   animation: fadeIn 1s ease-in-out;
 }
 
+/* Faz a splash ocupar toda a tela e centraliza seu conteúdo */
+#splash-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 1rem;
+  background-color: #000; /* ou a cor de fundo que usar */
+}
+
+/* Header com logo + título + URL em linha */
+#splash-screen .splash-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;       /* espaço entre logo, título e link */
+  font-size: 1.25rem; /* ajuste do tamanho do texto */
+}
+
+/* Imagem do logo com tamanho controlado */
+#splash-screen .splash-header img {
+  width: 64px;  /* ajuste conforme o tamanho do seu logo */
+  height: auto;
+}
+
+/* Link sem decoração e com leve destaque */
+#splash-screen .splash-header a {
+  text-decoration: none;
+  font-weight: normal;
+  color: #007bff; /* ou a cor de link que preferir */
+}
+
+
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -404,8 +439,8 @@ body {
   clear: both;       /* limpa qualquer float */
   width: 100%;       /* ocupa toda a largura do container */
   text-align: center;
-  font-size: 0.8em;
+  font-size: 0.6em;
   margin: 0.5em 0 0;  /* só margem superior */
-  max-width: 90%;
+  max-width: 40%;
   line-height: 1.4;
 }
