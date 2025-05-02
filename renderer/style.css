@@ -398,3 +398,14 @@ body {
 #log-content p {
   margin: 0;
 }
+
+.disclaimer {
+  display: block;    /* força bloco */
+  clear: both;       /* limpa qualquer float */
+  width: 100%;       /* ocupa toda a largura do container */
+  text-align: center;
+  font-size: 0.8em;
+  margin: 0.5em 0 0;  /* só margem superior */
+  max-width: 90%;
+  line-height: 1.4;
+}

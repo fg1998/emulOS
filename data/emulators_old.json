@@ -27,6 +27,10 @@
     {
       "name": "trs",
       "desc": "Tandy/Radio Shack"
+    },
+    {
+      "name": "Atari",
+      "desc": "Atari"
     }
   ],
   "emulators": [
@@ -441,11 +445,51 @@
       "id": "1746203681426",
       "brand": "trs",
       "name": "Microdigital CP-500",
-      "desc": "ntroduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
+      "desc": "Introduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
       "image": "cp500.png"
+    },
+    {
+      "id": "1746204504016",
+      "brand": "Atari",
+      "name": "Atari 800",
+      "desc": "Debuting in 1979, the 800 offered a 1.79 MHz MOS 6502, expandable 8–48 KB RAM, and 320×192 high-resolution graphics",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "atari800.png"
+    },
+    {
+      "id": "1746204609974",
+      "brand": "Atari",
+      "name": "Atari 800XL",
+      "desc": "Released in 1983 by Atari, the 800XL featured a 1.79 MHz MOS 6502C CPU, 64 KB RAM, and 320×192 graphics.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "atari800xl.png"
+    },
+    {
+      "id": "1746204798260",
+      "brand": "Atari",
+      "name": "Atari ST",
+      "desc": "Released in 1985, Atari’s 520ST ran a Motorola 68000 CPU at 8 MHz with 512 KiB RAM, 320×200 color graphics; floppy-disk storage.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "atari520st.png"
+    },
+    {
+      "id": "1746205326971",
+      "brand": "Atari",
+      "name": "Falcon 030",
+      "desc": "Introduced in 1992, Atari’s Falcon 030 ran a Motorola 68030 at 16 MHz with 1 MB RAM (expandable), onboard DSP, MIDI ports, and SVGA graphics.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "atarifalcon.png"
     }
   ]
 }

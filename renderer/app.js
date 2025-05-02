@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       splash.style.display = "none";
       main.style.display = "flex";
-    }, 1000);
+    }, 2000);
   }
 });
 
