@@ -272,6 +272,7 @@ function addEmulator() {
   const fieldDesc = document.getElementById("config-desc");
   const fieldEmulator = document.getElementById("config-emulator");
   const fieldParam = document.getElementById("config-parameter");
+  const fieldImage = document.getElementById("config-image")
 
   fieldBrand.innerHTML = "";
   data.brands.forEach((b) => {
@@ -291,6 +292,7 @@ function addEmulator() {
     fieldEmulator.appendChild(option);
   });
   fieldParam.value = "";
+  fieldImage.value = "";
 
   modal.classList.add("show");
   modal.style.display = "flex";
@@ -305,6 +307,7 @@ function configSystem(sys) {
   const fieldDesc = document.getElementById("config-desc");
   const fieldEmulator = document.getElementById("config-emulator");
   const fieldParam = document.getElementById("config-parameter");
+  const fieldImage = document.getElementById("config-image")
 
   // Preencher dropdown de brands
   fieldBrand.innerHTML = "";
@@ -327,6 +330,7 @@ function configSystem(sys) {
     fieldEmulator.appendChild(option);
   });
   fieldParam.value = sys.parameter || "";
+  fieldImage.value = sys.image || "";
 
   modal.classList.add("show");
   modal.style.display = "flex";
@@ -346,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const descVal = document.getElementById("config-desc").value;
       const emulatorVal = document.getElementById("config-emulator").value;
       const paramVal = document.getElementById("config-parameter").value;
+      const imageVal = document.getElementById("config-image").value;
 
       if (!window.currentSystemConfig) {
         const newSystem = {
@@ -356,6 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
           emulator: emulatorVal,
           parameter: paramVal,
           favorite: false,
+          image: imageVal
         };
         dataObj.systems.push(newSystem);
         logMessage(`new system add: ${newSystem.name}`);
@@ -368,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
           desc: descVal,
           emulator: emulatorVal,
           parameter: paramVal,
+          image : imageVal
         });
 
         const idx = dataObj.systems.findIndex((s) => s.id === sys.id);
@@ -378,6 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
             desc: descVal,
             emulator: emulatorVal,
             parameter: paramVal,
+            image : imageVal
           });
 
           logMessage(`System updated: ${dataObj.systems[idx].name}`);
