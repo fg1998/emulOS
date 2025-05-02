@@ -9,20 +9,20 @@
       "desc": "Sinclair"
     },
     {
-      "name": "apple2",
-      "desc": "Apple ]["
+      "name": "amstradcpc",
+      "desc": "Amstrad CPC"
+    },
+    {
+      "name": "apple",
+      "desc": "Apple"
     },
     {
       "name": "commodore",
-      "desc": "Commodore 8 Bit"
+      "desc": "Commodore"
     },
     {
       "name": "msx",
       "desc": "MSX "
-    },
-    {
-      "name": "amiga",
-      "desc": "Amiga"
     }
   ],
   "emulators": [
@@ -56,7 +56,7 @@
     },
     {
       "name": "Virtual Apple",
-      "key": "apple2",
+      "key": "apple",
       "path": "/Applications/Vice.app/Contents/macOS/apple2",
       "desc": "Apple 8 bit emulator",
       "param": ""
@@ -65,21 +65,22 @@
   "systems": [
     {
       "id": "1",
-      "brand": "apple2",
+      "brand": "apple",
       "name": "Apple ][",
-      "desc": "Second Apple PCeff",
-      "emulator": "apple2",
+      "desc": "1977’s Apple II was a massive success, featuring a MOS 6502 CPU at 1 MHz, expandable to 48 KB RAM, color graphics, and built-in BASIC.",
+      "emulator": "apple",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "--machine ACE --fullscreen",
+      "image": "apple2.png"
     },
     {
       "id": "2",
-      "brand": "apple2",
-      "name": "Original Macintosh 11",
-      "desc": "Apple's first Mac",
-      "emulator": "apple2",
+      "brand": "apple",
+      "name": "Apple GS",
+      "desc": "Released in 1986, achieved success with a 16-bit 65C816 CPU at 2.8 MHz, up to 1 MB RAM, enhanced graphics, and Ensoniq sound.",
+      "emulator": "apple",
       "favorite": false,
-      "image": "mac.png",
+      "image": "applegs.png",
       "parameter": "--machine ACE --fullscreen"
     },
     {
@@ -126,16 +127,17 @@
       "id": "7",
       "brand": "commodore",
       "name": "PET",
-      "desc": "First Commodore computer",
+      "desc": "1977’s Commodore PET launched with a MOS 6502 CPU at 1 MHz, 4 KB RAM, and a built-in cassette drive.",
       "emulator": "commodore",
       "favorite": true,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "--machine ACE --fullscreen",
+      "image": "pet.png"
     },
     {
       "id": "8",
       "brand": "commodore",
       "name": "Commodore 64",
-      "desc": "Full Color 8Bit computer, 64Kb Ram",
+      "desc": "1982’s Commodore 64 featured a MOS 6510 CPU at 1 MHz, 64 KB RAM, and the iconic SID sound chip.",
       "emulator": "commodore",
       "favorite": true,
       "image": "c64.png",
@@ -145,7 +147,7 @@
       "id": "9",
       "brand": "commodore",
       "name": "Commodore 128",
-      "desc": "Full Color 8Bit computer, 128Kb Ram",
+      "desc": "1985’s Commodore 128 offered dual CPUs (8502 at 2 MHz, Z80 at 4 MHz), 128 KB RAM, and three modes.",
       "emulator": "commodore",
       "favorite": true,
       "image": "c128.png",
@@ -231,13 +233,13 @@
     },
     {
       "id": "18",
-      "brand": "amiga",
-      "name": "Amiga 1200",
-      "desc": "First AGA amiga computer",
+      "brand": "commodore",
+      "name": "Amiga 1000",
+      "desc": "1985’s Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
       "emulator": "amiga",
       "parameter": "",
       "favorite": true,
-      "image": ""
+      "image": "a1000.png"
     },
     {
       "id": "1746187342995",
@@ -262,7 +264,7 @@
     {
       "id": "1746188745235",
       "brand": "sinclair",
-      "name": "QL",
+      "name": "Sinclair QL",
       "desc": "The Sinclair QL, launched in 1984, was an affordable business microcomputer with a Motorola 68008 CPU and innovative microdrive storage",
       "emulator": "zesarux",
       "parameter": "--machine ql --fullscreen",
@@ -298,6 +300,76 @@
       "parameter": "--machine tbblue --fullscreen",
       "favorite": false,
       "image": "next.png"
+    },
+    {
+      "id": "1746191781908",
+      "brand": "amstradcpc",
+      "name": "CPC 464",
+      "desc": "The Amstrad CPC 464 launched in 1984 with integrated cassette drive, 64 KB RAM, vibrant graphics, BASIC, and affordable home computing",
+      "emulator": "fuse",
+      "parameter": "--machine cpc464 --fullscreen",
+      "favorite": false,
+      "image": "cpc464.png"
+    },
+    {
+      "id": "1746192015135",
+      "brand": "amstradcpc",
+      "name": "CPC 664",
+      "desc": "Launched in 1985 offered 64 KB RAM, built-in 3-inch floppy drive, sleek design, vivid graphics, and BASIC.",
+      "emulator": "zesarux",
+      "parameter": "--machine cpc664 --fullscreen",
+      "favorite": false,
+      "image": "cpc664.png"
+    },
+    {
+      "id": "1746192157583",
+      "brand": "amstradcpc",
+      "name": "CPC 6128",
+      "desc": "The Amstrad CPC 6128 released in 1985 featured 128 KB RAM, built-in 3-inch floppy disk, advanced BASIC, and vibrant display modes.",
+      "emulator": "fuse",
+      "parameter": "--machine cpc6128 --fullscreen",
+      "favorite": false,
+      "image": "cpc6128.png"
+    },
+    {
+      "id": "1746193174813",
+      "brand": "commodore",
+      "name": "Amiga 500",
+      "desc": "1987’s Commodore Amiga 500 featured a 7.16 MHz Motorola 68000, 512 KB RAM, and the Agnus, Denise, Paula custom chips.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "a500.png"
+    },
+    {
+      "id": "1746193196544",
+      "brand": "commodore",
+      "name": "Amiga 1200",
+      "desc": "1992’s Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "a1200.png"
+    },
+    {
+      "id": "1746193236753",
+      "brand": "commodore",
+      "name": "Amiga 4000 (HD)",
+      "desc": "1992’s Commodore Amiga 4000 delivered a 25 MHz Motorola 68040 CPU, 2 MB Fast RAM expandable, and the AGA chipset.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "a4000.png"
+    },
+    {
+      "id": "1746193870184",
+      "brand": "apple",
+      "name": "Macintosh",
+      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "mac.png"
     }
   ]
 }
