@@ -23,6 +23,10 @@
     {
       "name": "msx",
       "desc": "MSX "
+    },
+    {
+      "name": "trs",
+      "desc": "Tandy/Radio Shack"
     }
   ],
   "emulators": [
@@ -221,7 +225,7 @@
       "emulator": "fuse",
       "favorite": false,
       "parameter": "Boosted_MSX2_EN",
-      "image": "boosted.png"
+      "image": "boostedMSX.png"
     },
     {
       "id": "17",
@@ -412,6 +416,36 @@
       "parameter": "",
       "favorite": false,
       "image": "lisa.png"
+    },
+    {
+      "id": "1746203338322",
+      "brand": "trs",
+      "name": "TRS-80 Model III",
+      "desc": "Released in 1980, used a Zilog Z80A at 2.03 MHz with 16–48 KB RAM and cassette storage.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "trs80model3.png"
+    },
+    {
+      "id": "1746203449033",
+      "brand": "trs",
+      "name": "TRS Color Computer 2",
+      "desc": "The TRS-80 Color Computer 2, introduced in 1983, featured a Motorola 6809E at 0.895 MHz, 16–64 KB RAM, and 256×192 graphics.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "trscolor2.png"
+    },
+    {
+      "id": "1746203681426",
+      "brand": "trs",
+      "name": "Microdigital CP-500",
+      "desc": "ntroduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "cp500.png"
     }
   ]
 }
