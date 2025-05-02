@@ -89,7 +89,7 @@
       "name": "ZX Spectrum 48kb",
       "desc": "The ZX Spectrum was among the decade’s best-selling computers, captivating millions via its iconic rubber keys and vibrant gaming library. 16kb or 48kb, color",
       "emulator": "fuse",
-      "favorite": false,
+      "favorite": true,
       "image": "spectrum48.png",
       "parameter": "--machine 48"
     },
@@ -119,7 +119,7 @@
       "name": "Microdigital TK95",
       "desc": "The Microdigital TK95, released in 1986, is an evolution of the TK90X with an enhanced mechanical keyboard, Z80A CPU, 48 KB RAM, 16 KB ROM, composite video output, and built-in joystick ports, housed in a plastic case.",
       "emulator": "fuse",
-      "favorite": true,
+      "favorite": false,
       "image": "tk95.png",
       "parameter": "--machine 48 --rom-48 ${rompath}/tk95.rom"
     },
@@ -129,7 +129,7 @@
       "name": "PET",
       "desc": "1977’s Commodore PET launched with a MOS 6502 CPU at 1 MHz, 4 KB RAM, and a built-in cassette drive.",
       "emulator": "commodore",
-      "favorite": true,
+      "favorite": false,
       "parameter": "--machine ACE --fullscreen",
       "image": "pet.png"
     },
@@ -149,7 +149,7 @@
       "name": "Commodore 128",
       "desc": "1985’s Commodore 128 offered dual CPUs (8502 at 2 MHz, Z80 at 4 MHz), 128 KB RAM, and three modes.",
       "emulator": "commodore",
-      "favorite": true,
+      "favorite": false,
       "image": "c128.png",
       "parameter": "--machine ACE --fullscreen"
     },
@@ -159,7 +159,7 @@
       "name": "Amiga 500+",
       "desc": "16 Bit computer",
       "emulator": "amiga",
-      "favorite": true,
+      "favorite": false,
       "image": "a500.png",
       "parameter": "--machine ACE --fullscreen"
     },
@@ -179,7 +179,7 @@
       "name": "Expert 1.1",
       "desc": "Brazilian MSX 1",
       "emulator": "msx",
-      "favorite": true,
+      "favorite": false,
       "image": "expert.png",
       "parameter": "Gradiente_Expert_GPC-1"
     },
@@ -188,17 +188,18 @@
       "brand": "msx",
       "name": "VG8000",
       "desc": "Philips MSX 1.0",
-      "emulator": "msx",
+      "emulator": "fuse",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "--machine ACE --fullscreen",
+      "image": "vg8000.png"
     },
     {
       "id": "14",
       "brand": "msx",
       "name": "FS-5500 F2",
       "desc": "Nationa FS-5500 F2 MSX2",
-      "emulator": "msx",
-      "image": "5500.png",
+      "emulator": "fuse",
+      "image": "fs5500f2.png",
       "favorite": false,
       "parameter": "National_FS-5500F2"
     },
@@ -217,9 +218,10 @@
       "brand": "msx",
       "name": "Boosted MSX2",
       "desc": "GFX9000, Moonsound, FMPac, SCC+",
-      "emulator": "msx",
+      "emulator": "fuse",
       "favorite": false,
-      "parameter": "Boosted_MSX2_EN"
+      "parameter": "Boosted_MSX2_EN",
+      "image": "boosted.png"
     },
     {
       "id": "17",
@@ -238,7 +240,7 @@
       "desc": "1985’s Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
       "emulator": "amiga",
       "parameter": "",
-      "favorite": true,
+      "favorite": false,
       "image": "a1000.png"
     },
     {
@@ -308,7 +310,7 @@
       "desc": "The Amstrad CPC 464 launched in 1984 with integrated cassette drive, 64 KB RAM, vibrant graphics, BASIC, and affordable home computing",
       "emulator": "fuse",
       "parameter": "--machine cpc464 --fullscreen",
-      "favorite": false,
+      "favorite": true,
       "image": "cpc464.png"
     },
     {
@@ -348,7 +350,7 @@
       "desc": "1992’s Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
       "emulator": "fuse",
       "parameter": "",
-      "favorite": false,
+      "favorite": true,
       "image": "a1200.png"
     },
     {
@@ -360,6 +362,56 @@
       "parameter": "",
       "favorite": false,
       "image": "a4000.png"
+    },
+    {
+      "id": "1746193870184",
+      "brand": "apple",
+      "name": "Macintosh",
+      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "mac.png"
+    },
+    {
+      "id": "1746194267547",
+      "brand": "apple",
+      "name": "Apple ][ Plus",
+      "desc": "Released June 1979, the Apple II Plus added Integer BASIC and 16–48 KB RAM support, offering color graphics and expansion slots, and became a major success.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": true,
+      "image": "apple2plus.png"
+    },
+    {
+      "id": "1746194356822",
+      "brand": "apple",
+      "name": "Apple III",
+      "desc": "Released May 1980, the Apple III featured a 1 MHz 6502A CPU, 128–256 KB RAM, built-in keyboard, 80-column display, targeted business users.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "apple3.png"
+    },
+    {
+      "id": "1746201310917",
+      "brand": "apple",
+      "name": "Apple ][ e",
+      "desc": "Released January 1983, the Apple IIe featured a 1 MHz 6502 CPU, 64 KB RAM (expandable to 128 KB), ProDOS support, durable keyboard.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "apple2e.png"
+    },
+    {
+      "id": "1746201510230",
+      "brand": "apple",
+      "name": "Lisa",
+      "desc": "Apple Lisa, released January 1983, featured a 5 MHz Motorola 68000 CPU, 1 MB RAM, GUI, dual floppy drives, aimed at professionals",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "lisa.png"
     }
   ]
 }
