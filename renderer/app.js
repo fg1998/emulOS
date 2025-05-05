@@ -491,7 +491,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if(runBtn) {
     runBtn.addEventListener("click", () => {
       const runParameterLocal = JSON.parse(document.getElementById('run-parameter').value)
-      logMessage(`Running ${runParameterLocal.name}`);
+      logMessage(`Running ${runParameterLocal.name} - ** WAIT **`);
+      const runModal = document.getElementById("run-modal");
+      runModal.classList.remove("show");
+      runModal.style.display = 'none'
+
       ipcRenderer.send("run-system", runParameterLocal);
     })
   }
