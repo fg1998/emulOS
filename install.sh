@@ -7,8 +7,8 @@ command -v dialog >/dev/null 2>&1 || {
 }
 
 # Variáveis de layout
-BACKTITLE="Welcome to EmulOS install script"
-TITLE="Menu Principal"
+BACKTITLE="EmulOS install script"
+TITLE=""
 MENU="Escolha uma opção:"
 
 HEIGHT=10
