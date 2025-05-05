@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
+const { stdout, stderr } = require('process');
 const execFile = require('child_process').execFile
 
 
@@ -55,9 +56,27 @@ ipcMain.on('wifiConfig', async(event, content) => {
 })
 
 ipcMain.on("run-system", async(event, content)=> {
-  console.log("Running")
+ 
+
   event.reply("Running main.js");
-  console.log(content)
+  const emulatorPath = content.emulator.path
+  const emulatorParam = content.emulator.param.split(' ')
+  const systemParam = content.parameter.split(' ')
+  const totalParam = [...emulatorParam, ...systemParam]
+  
+  console.log(totalParam)
+  const extProcess = execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
+    if(error)
+      {
+        console.log(error)
+        event.reply('logMessage', `Error: ${error.message}`)
+        return
+      }
+      if (stdout) event.reply('wifiLog', `stdout: ${stdout.trim()}`);
+      if (stderr) event.reply('wifiLog', `stderr: ${stderr.trim()}`)
+  })  
+
+  
 })
 
 

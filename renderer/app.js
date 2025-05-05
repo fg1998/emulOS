@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { ipcRenderer, contentTracing } = require("electron");
 const { exec } = require("child_process");
+const { json } = require("stream/consumers");
 
 // IPC EVENTS
 
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       splash.style.display = "none";
       main.style.display = "flex";
-    }, 4000);
+    }, 2000);
   }
 });
 
@@ -108,6 +109,10 @@ function deleteSystem(systemName) {
   renderSystems();
 }
 
+const emuByKey = new Map(
+  data.emulators.map(e => [e.key, e])
+);
+
 function renderSystems() {
   const dataFile = path.join(__dirname, "../data/emulators.json");
   let data = JSON.parse(fs.readFileSync(dataFile));
@@ -127,6 +132,10 @@ function renderSystems() {
   }
 
   filtered.forEach((sys) => {
+    
+    sys.emulator = emuByKey.get(sys.emulator) || null;
+
+
     const card = document.createElement("div");
     card.className = "card";
 
@@ -135,9 +144,17 @@ function renderSystems() {
     input.id = "id";
     input.name = "id";
     input.value = sys.id;
-
     card.appendChild(input);
 
+
+    const inputParam = document.createElement("input");
+    inputParam.type = "hidden"
+    inputParam.id = "parameter"
+    inputParam.name = "parameter"
+    inputParam.value = JSON.stringify(sys)
+    card.appendChild(inputParam);
+
+  
     const img = document.createElement("img");
     img.src = "assets/" + (sys.image || `${sys.brand}_not_found.png`);
     img.onerror = () => {
@@ -168,9 +185,14 @@ function renderSystems() {
     editIcon.onclick = () => {
       const runModal = document.getElementById("run-modal");
       const runDesc = document.getElementById("run-desc");
+      const runParameter = document.getElementById("run-parameter")
+      const runInstructions = document.getElementById("run-instructions")   
+  
 
-      runDesc.textContent = data.emulators.find((e) => e.key === sys.emulator).desc || "Sem descrição disponível.";
-
+      //runDesc.textContent = data.emulators.find((e) => e.key === sys.emulator).desc || "Sem descrição disponível.";
+      runDesc.textContent = sys.desc
+      runInstructions.innerHTML = sys.emulator.instructions
+      runParameter.value = JSON.stringify(sys);
 
       runModal.classList.add("show");
       runModal.style.display = "flex";
@@ -252,7 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
       
       
       const card = e.currentTarget.closest(".card");
-      console.log(card);
       const desc = card?.dataset?.desc || "Sem descrição disponível.";
       runDesc.textContent = desc;
       runParameter.value = card?.dataset.parameter
@@ -469,10 +490,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if(runBtn) {
     runBtn.addEventListener("click", () => {
-      logMessage("app.js runBtn Click");
-      ipcRenderer.send("run-system","{'foo' :1234'}");
+      const runParameterLocal = JSON.parse(document.getElementById('run-parameter').value)
+      logMessage(`Running ${runParameterLocal.name}`);
+      ipcRenderer.send("run-system", runParameterLocal);
     })
-    
   }
 
   if (wifiBtn) {
