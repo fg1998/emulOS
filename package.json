@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package:linux-arm": "electron-packager . EmulOS --platform=linux --arch=armv6l --out=dist --overwrite --icon=renderer/assets/icon.png"
   },
   "devDependencies": {
-    "electron": "^29.0.0"
+    "electron": "^29.0.0",
+    "electron-packager": "^17.1.2"
   },
   "dependencies": {
     "node-wifi": "^2.0.16",
