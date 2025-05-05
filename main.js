@@ -19,7 +19,7 @@ function createWindow() {
   });
 
   win.loadFile('renderer/index.html');
-  //win.webContents.openDevTools(); // DevTools ativado
+  win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {
@@ -53,6 +53,13 @@ ipcMain.on('wifiConfig', async(event, content) => {
     if (stderr) event.reply('wifiLog', `stderr: ${stderr.trim()}`)
   })
 })
+
+ipcMain.on("run-system", async(event, content)=> {
+  console.log("Running")
+  event.reply("Running main.js");
+  console.log(content)
+})
+
 
 
 

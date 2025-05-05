@@ -44,7 +44,7 @@
     {
       "name": "ZEsarUX",
       "key": "zesarux",
-      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "path": "~/emulators/zesarux/bin/zesarux --vo sdl --fullscreen",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen"
     },
@@ -119,7 +119,7 @@
       "emulator": "zesarux",
       "favorite": false,
       "image": "tk90x.png",
-      "parameter": "--machine 48 --rom-48 ${rompath}/tk90x.rom --aspect-hint --full-screen"
+      "parameter": "--machine TK90X"
     },
     {
       "id": "6",

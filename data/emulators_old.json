@@ -44,7 +44,7 @@
     {
       "name": "ZEsarUX",
       "key": "zesarux",
-      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "path": "~/emulators/zesarux/bin/zesarux --vo sdl --fullscreen",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen"
     },
@@ -490,6 +490,16 @@
       "parameter": "",
       "favorite": false,
       "image": "atarifalcon.png"
+    },
+    {
+      "id": "1746205656735",
+      "brand": "commodore",
+      "name": "VIC 20",
+      "desc": "Introduced in 1980, the VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "vic20.png"
     }
   ]
 }

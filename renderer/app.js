@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { ipcRenderer, contentTracing } = require("electron");
+const { exec } = require("child_process");
 
 // IPC EVENTS
 
@@ -244,12 +245,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const runModal = document.getElementById("run-modal");
   const closeRun = document.getElementById("close-run");
   const runDesc = document.getElementById("run-desc");
+  const runParameter = document.getElementById('run-parameter');
 
   document.querySelectorAll(".fa-play").forEach((button) => {
     button.addEventListener("click", (e) => {
+      
+      
       const card = e.currentTarget.closest(".card");
+      console.log(card);
       const desc = card?.dataset?.desc || "Sem descrição disponível.";
       runDesc.textContent = desc;
+      runParameter.value = card?.dataset.parameter
+      
       runModal.classList.add("show");
     });
   });
@@ -436,7 +443,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const exitBtn = document.getElementById("exit-frontend");
   const wifiBtn = document.getElementById("config-wifi");
   const addemulatorBtn = document.getElementById("add-emulator");
-  const { exec } = require("child_process");
+  const runBtn = document.getElementById('run-system')
+ 
 
   if (powerBtn && powerModal) {
     powerBtn.addEventListener("click", () => {
@@ -457,6 +465,14 @@ document.addEventListener("DOMContentLoaded", () => {
     addemulatorBtn.addEventListener("click", () => {
       addEmulator();
     });
+  }
+
+  if(runBtn) {
+    runBtn.addEventListener("click", () => {
+      logMessage("app.js runBtn Click");
+      ipcRenderer.send("run-system","{'foo' :1234'}");
+    })
+    
   }
 
   if (wifiBtn) {

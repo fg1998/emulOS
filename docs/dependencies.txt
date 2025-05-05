@@ -1,15 +1,8 @@
 nmtui
 xterm
-jq
-dialog
 
 
 
-to generate
-
+To package
 fakeroot
 dpkg
-ruby-full build-essential
-sudo gem install --no-document fpm
-export USE_SYSTEM_FPM=true
-npm rum dist:deb
