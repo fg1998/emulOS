@@ -20,7 +20,7 @@ function createWindow() {
   });
 
   win.loadFile('renderer/index.html');
-  win.webContents.openDevTools(); // DevTools ativado
+  //win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {

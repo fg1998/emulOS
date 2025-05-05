@@ -47,7 +47,7 @@
       "path": "/home/fg1998/emulators/zesarux/bin/zesarux",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen",
-      "instructions" : "[F5] Show Menu </br> [F10]"
+      "instructions": "[F5] Show Menu </br> [F10]"
     },
     {
       "name": "Vice",
@@ -97,10 +97,10 @@
       "brand": "sinclair",
       "name": "ZX Spectrum 48kb",
       "desc": "The ZX Spectrum was among the decade’s best-selling computers, captivating millions via its iconic rubber keys and vibrant gaming library. 16kb or 48kb, color",
-      "emulator": "fuse",
+      "emulator": "zesarux",
       "favorite": true,
       "image": "spectrum48.png",
-      "parameter": "--machine 48"
+      "parameter": "--machine 48k"
     },
     {
       "id": "4",
@@ -110,7 +110,7 @@
       "emulator": "zesarux",
       "favorite": false,
       "image": "spectrum128.png",
-      "parameter": "--machine 128"
+      "parameter": "--machine 128k"
     },
     {
       "id": "5",
@@ -127,10 +127,10 @@
       "brand": "sinclair",
       "name": "Microdigital TK95",
       "desc": "The Microdigital TK95, released in 1986, is an evolution of the TK90X with an enhanced mechanical keyboard, Z80A CPU, 48 KB RAM, 16 KB ROM, composite video output, and built-in joystick ports, housed in a plastic case.",
-      "emulator": "fuse",
+      "emulator": "zesarux",
       "favorite": false,
       "image": "tk95.png",
-      "parameter": "--machine 48 --rom-48 ${rompath}/tk95.rom"
+      "parameter": "--machine tk95"
     },
     {
       "id": "7",
@@ -258,7 +258,7 @@
       "name": "ZX81",
       "desc": "The Sinclair ZX81 revolutionized home computing in 1981, offering affordable programming, minimal graphics, and inspiring a hobbyist community, sparking innovation",
       "emulator": "zesarux",
-      "parameter": "--machine zx81 --fullscreen",
+      "parameter": "--machine zx81",
       "image": "zx81.png",
       "favorite": false
     },
@@ -267,8 +267,8 @@
       "brand": "sinclair",
       "name": "Cambridge Z88",
       "desc": "The Cambridge Z88, launched in 1987, pioneered portable computing with battery efficiency, integrated software suite, and compact design for professionals.",
-      "emulator": "fuse",
-      "parameter": "--machine z88 -- fullscreen",
+      "emulator": "zesarux",
+      "parameter": "--machine z88",
       "favorite": false,
       "image": "z88.png"
     },
@@ -278,7 +278,7 @@
       "name": "Sinclair QL",
       "desc": "The Sinclair QL, launched in 1984, was an affordable business microcomputer with a Motorola 68008 CPU and innovative microdrive storage",
       "emulator": "zesarux",
-      "parameter": "--machine ql --fullscreen",
+      "parameter": "--machine ql",
       "favorite": false,
       "image": "ql.png"
     },
@@ -287,8 +287,8 @@
       "brand": "sinclair",
       "name": "Sam Coupe",
       "desc": "The Sam Coupé was an 8-bit microcomputer manufactured by Miles Gordon Technology in 1989, featuring advanced graphics, stereo sound, microdrives.",
-      "emulator": "fuse",
-      "parameter": "--machine sam --fullscreen",
+      "emulator": "zesarux",
+      "parameter": "--machine sam",
       "favorite": false,
       "image": "sam.png"
     },
@@ -307,8 +307,8 @@
       "brand": "sinclair",
       "name": "ZX Spectrum NEXT",
       "desc": "The ZX Spectrum Next is an FPGA-based developed by Victor Truco and launched in 2017 offering Z80 at 28 MHz, 2 MB RAM, HDMI, SD storage.",
-      "emulator": "fuse",
-      "parameter": "--machine tbblue --fullscreen",
+      "emulator": "zesarux",
+      "parameter": "--machine tbblue",
       "favorite": false,
       "image": "next.png"
     },
