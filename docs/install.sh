@@ -1,4 +1,31 @@
 #!/bin/bash
+sudo apt update
+
+#install X
+sudo apt install --no-install-recommends \
+  xserver-xorg \
+  xinit \
+  openbox \
+  matchbox-window-manager -y
+
+
+
+sudo apt-get install git -y
+git clone https://github.com/fg1998/emulOS.git
+sudo apt-get install curl -y
+
+#NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+** MISSING EXPORT NVM COMMANDS
+
+nvm install --lts
+
+
+
+
+cd emulOS
+
+
 
 echo "Install fuse"
 wget https://files.retropie.org.uk/archives/fuse-1.5.7.tar.gz

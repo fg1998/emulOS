@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { stdout, stderr } = require('process');
@@ -7,10 +7,14 @@ const execFile = require('child_process').execFile
 
 
 function createWindow() {
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const win = new BrowserWindow({
-    width: 1280,
-    height: 800,
+    x: 0,
+    y:0 ,
+    width: width,
+    height: height,
     //kiosk: true,
+    //fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -68,7 +72,7 @@ ipcMain.on("run-system", async(event, content)=> {
     if(error)
       {
         console.log('****', error)
-        event.reply('writeLogError', `Error: ${error.message}`)
+        event.reply('writeLog', `[red] Error: ${error.message}`)
         return
       }
       if (stdout) event.reply('run-system', `stdout: ${stdout.trim()}`);

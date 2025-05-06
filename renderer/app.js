@@ -10,26 +10,113 @@ ipcRenderer.on("writeLog", (event, message) => {
   logMessage(message, false);
 });
 
-ipcRenderer.on('writeLogError', (event, message) => {
-  logMessage(message, true);
-});
 
-// Log messages
-function logMessage(msg,  error) {
+
+// fila de mensagens
+const messageQueue = [];
+let typingInProgress = false;
+
+function logMessage(msg, error) {
   const now = new Date();
-  const hours = now.getHours().toString().padStart(2, "0");
-  const minutes = now.getMinutes().toString().padStart(2, "0");
-  const seconds = now.getSeconds().toString().padStart(2, "0");
-  const timestamp = `${hours}:${minutes}:${seconds}`;
-  const logContainer = document.getElementById("log-container");
-  const logContent = document.getElementById("log-content");
-  const p = document.createElement("p");
-  if(error) { p.classList.add('log-erro') }
-  p.textContent = `[${timestamp}] ${msg}`;
-  logContent.appendChild(p);
-  // scroll to the end
-  logContainer.scrollTop = logContainer.scrollHeight;
+  const ts = `[${now.getHours().toString().padStart(2, "0")}:` +
+             `${now.getMinutes().toString().padStart(2, "0")}:` +
+             `${now.getSeconds().toString().padStart(2, "0")}] `;
+  messageQueue.push({ text: ts + msg, isError: !!error });
+  if (!typingInProgress) processQueue();
 }
+
+function processQueue() {
+  if (messageQueue.length === 0) {
+    typingInProgress = false;
+    return;
+  }
+  typingInProgress = true;
+  const { text, isError } = messageQueue.shift();
+
+  const logContainer = document.getElementById("log-container");
+  const logContent   = document.getElementById("log-content");
+  const p = document.createElement("p");
+  logContent.appendChild(p);
+
+  // cursor bloco
+  const cursor = document.createElement("span");
+  cursor.classList.add("log-cursor");
+  p.appendChild(cursor);
+
+  // 1) Parseia o texto em segmentos [texto, cor]
+  const segments = [];
+  const regex = /\[([a-zA-Z]+)\]/g;
+  let lastIndex = 0, match;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push({ text: text.slice(lastIndex, match.index), color: null });
+    }
+    segments.push({ text: '', color: match[1].toLowerCase() });
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    segments.push({ text: text.slice(lastIndex), color: null });
+  }
+  // Agora mescla segmentos de cor com o próximo texto
+  const merged = [];
+  let currentColor = null;
+  for (let seg of segments) {
+    if (seg.color) {
+      currentColor = seg.color;
+    } else {
+      merged.push({ text: seg.text, color: currentColor });
+      currentColor = null;
+    }
+  }
+
+  // 2) Tipo por caractere, criando spans coloridos
+  let segIdx = 0, charIdx = 0;
+  let activeSpan = null;
+
+  function typeNext() {
+    if (segIdx >= merged.length) {
+      cursor.remove();
+      processQueue();
+      return;
+    }
+
+    const { text: segText, color } = merged[segIdx];
+
+    // se mudou de segmento de cor, cria novo span
+    if (charIdx === 0) {
+      if (activeSpan) {
+        // fechou segmento anterior
+        activeSpan = null;
+      }
+      if (color) {
+        activeSpan = document.createElement("span");
+        activeSpan.style.color = color;
+        p.insertBefore(activeSpan, cursor);
+      }
+    }
+
+    // pega o caractere atual
+    const ch = segText.charAt(charIdx);
+    if (activeSpan) {
+      activeSpan.insertAdjacentText("beforeend", ch);
+    } else {
+      cursor.insertAdjacentText("beforebegin", ch);
+    }
+    charIdx++;
+    logContainer.scrollTop = logContainer.scrollHeight;
+
+    if (charIdx >= segText.length) {
+      // avança para próximo segmento
+      segIdx++;
+      charIdx = 0;
+    }
+
+    setTimeout(typeNext, 10);
+  }
+
+  typeNext();
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-screen");
@@ -41,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       main.style.display = "flex";
     }, 2000);
   }
+
 });
 
 const dataFile = path.join(__dirname, "../data/emulators.json");
@@ -216,7 +304,6 @@ function renderSystems() {
     card.appendChild(icons);
     systemList.appendChild(card);
   });
-  logMessage("Systems rendered")
 }
 
 renderSidebar();
@@ -534,4 +621,17 @@ document.addEventListener("DOMContentLoaded", () => {
       window.close();
     });
   }
+
+});
+
+
+window.addEventListener('load', () => {
+
+  setTimeout(() => {
+    logMessage("Welcome to [white] ** EmulOS **");
+    logMessage("Proudly developed by fg1998 and the emulOS team.")
+    logMessage("If you appreciate EmulOS, please consider supporting our development on Patreon")
+    logMessage("[yellow] Caso você seja um compatriota brasileiro, considere fazer uma doação via PIX para fg1998@gmail.com")
+  }, 3000);
+  
 });

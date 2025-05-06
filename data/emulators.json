@@ -47,7 +47,7 @@
       "path": "/home/fg1998/emulators/zesarux/bin/zesarux",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen",
-      "instructions": "[F5] Show Menu </br> [F10]"
+      "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
     },
     {
       "name": "Vice",

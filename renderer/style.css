@@ -1,3 +1,19 @@
+
+@font-face {
+  font-family: 'VT323';
+  src: url('./assets/vt323-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.log-content {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
@@ -431,13 +447,7 @@ body {
   box-sizing: border-box;
 }
 
-.log-erro {
-  color: red !important;
-}
 
-#log-content p {
-  margin: 0;
-}
 
 .disclaimer {
   display: block;    /* força bloco */
@@ -449,3 +459,20 @@ body {
   max-width: 40%;
   line-height: 1.4;
 }
+
+
+/* Cursor bloco sólido piscando */
+.log-cursor {
+  display: inline-block;
+  width: 0.6ch;             /* largura de um caractere */
+  height: 1em;              /* altura da linha */
+  background-color: currentColor;
+  vertical-align: bottom;
+  animation: blink 0.1s steps(1) infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
