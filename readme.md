@@ -2,9 +2,11 @@
 # EmulOS  
 
 <br>
-**EmulOS** is an upcoming front-end for the Raspberry Pi, focusing on computer emulators rather than games.
+EmulOS is an upcoming front-end for the Raspberry Pi, focusing on computer emulators rather than games.
 
 The ROMs will not be displayed, only the systems and their variations. The goal is to emulate as many systems as possible without worrying about the ROMs. More than just a front-end, EmulOS is a complete distro for the Raspberry Pi and a full desktop environment.
+
+![screenshot](https://github.com/fg1998/emulOS/blob/main/screenshot.png)
 
 EmulOS is being developed with the Raspberry Pi 400 in mind, as its form factor is the one I find most appealing compared to computers from the 80s/90s.
 
