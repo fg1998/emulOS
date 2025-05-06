@@ -40,7 +40,7 @@ app.on('window-all-closed', function () {
 
 
 ipcMain.on('wifiConfig', async(event, content) => {
-  console.log('wificonfig');
+
   event.reply('writeLog','Starting nmtui')
   const command = "xterm";
   //const command = "/home/fg1998/emulators/zesarux/zesarux"

@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: 'VT323';
-  src: url('./assets/vt323-regular.ttf') format('truetype');
+  src: url('./assets/VT323-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -11,6 +11,14 @@
   font-size: 1rem;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+
+#log-content p {
+  display: block;      /* em vez de flex, se você tiver atribuído flex involuntariamente */
+  height: auto;        /* remove aquele height:100vh que vi no inspetor */
+  margin: 0;           /* zera a margem em cima/embaixo */
+  padding: 0;          /* se tiver padding indesejado */
+  line-height: 1.2em;  /* ajusta o espaçamento interno */
 }
 
 
@@ -441,7 +449,7 @@ body {
   background-color: #000;
   color: #0f0;
   font-family: "VT323", monospace;
-  font-size: 18px;
+  font-size: 20px;
   padding: 5px;
   overflow-y: auto; /* Scroll no log */
   box-sizing: border-box;

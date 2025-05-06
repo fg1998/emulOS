@@ -8,6 +8,7 @@ sudo apt install --no-install-recommends \
   openbox \
   matchbox-window-manager -y
 
+sudo apt install xterm -y
 
 
 sudo apt-get install git -y
