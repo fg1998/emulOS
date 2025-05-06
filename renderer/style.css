@@ -430,6 +430,11 @@ body {
   overflow-y: auto; /* Scroll no log */
   box-sizing: border-box;
 }
+
+.log-erro {
+  color: red !important;
+}
+
 #log-content p {
   margin: 0;
 }

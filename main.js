@@ -10,7 +10,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1280,
     height: 800,
-    kiosk: true,
+    //kiosk: true,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -58,22 +58,21 @@ ipcMain.on('wifiConfig', async(event, content) => {
 ipcMain.on("run-system", async(event, content)=> {
  
 
-  event.reply("Running main.js");
+  event.reply('writeLog',`Starting ${content.name}`)
+  
   const emulatorPath = content.emulator.path
   const emulatorParam = content.emulator.param.split(' ')
   const systemParam = content.parameter.split(' ')
   const totalParam = [...emulatorParam, ...systemParam]
-  
-  console.log(totalParam)
   const extProcess = execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
     if(error)
       {
-        console.log(error)
-        event.reply('logMessage', `Error: ${error.message}`)
+        console.log('****', error)
+        event.reply('writeLogError', `Error: ${error.message}`)
         return
       }
-      if (stdout) event.reply('wifiLog', `stdout: ${stdout.trim()}`);
-      if (stderr) event.reply('wifiLog', `stderr: ${stderr.trim()}`)
+      if (stdout) event.reply('run-system', `stdout: ${stdout.trim()}`);
+      if (stderr) event.reply('run-system', `stderr: ${stderr.trim()}`)
   })  
 
   

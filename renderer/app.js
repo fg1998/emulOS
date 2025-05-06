@@ -7,11 +7,15 @@ const { json } = require("stream/consumers");
 // IPC EVENTS
 
 ipcRenderer.on("writeLog", (event, message) => {
-  logMessage(message);
+  logMessage(message, false);
+});
+
+ipcRenderer.on('writeLogError', (event, message) => {
+  logMessage(message, true);
 });
 
 // Log messages
-function logMessage(msg) {
+function logMessage(msg,  error) {
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, "0");
   const minutes = now.getMinutes().toString().padStart(2, "0");
@@ -20,9 +24,10 @@ function logMessage(msg) {
   const logContainer = document.getElementById("log-container");
   const logContent = document.getElementById("log-content");
   const p = document.createElement("p");
+  if(error) { p.classList.add('log-erro') }
   p.textContent = `[${timestamp}] ${msg}`;
   logContent.appendChild(p);
-  // Rola para o final automaticamente
+  // scroll to the end
   logContainer.scrollTop = logContainer.scrollHeight;
 }
 
@@ -135,7 +140,6 @@ function renderSystems() {
     
     sys.emulator = emuByKey.get(sys.emulator) || null;
 
-
     const card = document.createElement("div");
     card.className = "card";
 
@@ -212,6 +216,7 @@ function renderSystems() {
     card.appendChild(icons);
     systemList.appendChild(card);
   });
+  logMessage("Systems rendered")
 }
 
 renderSidebar();
@@ -354,7 +359,8 @@ function configSystem(sys) {
     const option = document.createElement("option");
     option.value = e.key;
     option.textContent = e.key;
-    if (e.key === sys.emulator) option.selected = true;
+
+    if (e.key === sys.emulator.key) option.selected = true;
     fieldEmulator.appendChild(option);
   });
   fieldParam.value = sys.parameter || "";
@@ -491,7 +497,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(runBtn) {
     runBtn.addEventListener("click", () => {
       const runParameterLocal = JSON.parse(document.getElementById('run-parameter').value)
-      logMessage(`Running ${runParameterLocal.name} - ** WAIT **`);
+      //logMessage(`Running ${runParameterLocal.name} - ** WAIT **`);
       const runModal = document.getElementById("run-modal");
       runModal.classList.remove("show");
       runModal.style.display = 'none'
