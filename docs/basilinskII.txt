@@ -1,0 +1,9 @@
+https://github.com/cebix/macemu
+
+cd macemu/BasiliskII/src/Unix
+./autogen.sh           # se necessário
+./configure \
+  --enable-sdl-video \
+  --enable-sdl-audio \
+  --enable-addressing=direct
+make clean && make -j$(nproc)

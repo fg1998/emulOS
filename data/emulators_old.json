@@ -392,12 +392,12 @@
     {
       "id": "1746201510230",
       "brand": "apple",
-      "name": "Lisa",
-      "desc": "Apple Lisa, released January 1983, featured a 5 MHz Motorola 68000 CPU, 1 MB RAM, GUI, dual floppy drives, aimed at professionals",
-      "emulator": "fuse",
-      "parameter": "",
+      "name": "Performa System 7.5.5",
+      "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
+      "emulator": "basiliskii",
+      "parameter": "--disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
       "favorite": false,
-      "image": "lisa.png"
+      "image": "performa6200.png"
     },
     {
       "id": "1746193870184",

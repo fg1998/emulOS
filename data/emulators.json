@@ -393,11 +393,11 @@
       "id": "1746201510230",
       "brand": "apple",
       "name": "Performa System 7.5.5",
-      "desc": "Mac Performa ",
+      "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
       "emulator": "basiliskii",
       "parameter": "--disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
       "favorite": false,
-      "image": "lisa.png"
+      "image": "performa5230.png"
     },
     {
       "id": "1746193870184",
