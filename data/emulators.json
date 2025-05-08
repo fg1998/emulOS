@@ -44,9 +44,9 @@
     {
       "name": "ZEsarUX",
       "key": "zesarux",
-      "path": "/home/fg1998/emulators/zesarux/bin/zesarux",
+      "path": "/home/emulos/emulators/zesarux/bin/zesarux",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
-      "param": "--vo sdl --fullscreen",
+      "param": "--vo sdl --fullscreen --disablefooter",
       "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
     },
     {
@@ -64,34 +64,31 @@
       "param": ""
     },
     {
-      "name": "Virtual Apple",
-      "key": "apple",
-      "path": "/Applications/Vice.app/Contents/macOS/apple2",
+      "name": "linapple",
+      "key": "linapple",
+      "path": "/home/emulos/emulators/linapple/bin/linapple",
       "desc": "Apple 8 bit emulator",
-      "param": ""
+      "param": "-f",
+      "instructions": "[F1] - Help </br> CTRL + [F2] - Could Boot </br> CTRL + [F10] - Hot Reset (Control + Reset) </br> [F12] - Exit"
+    },
+    {
+      "name": "minivmac",
+      "key": "minivmac",
+      "path": "/home/emulos/emulators/minivmac/minivmac",
+      "desc": "Original Macintosh Emulator",
+      "param": "-r /home/emulos/emulators/RetroPieBIOS/BIOS/vMac.ROM",
+      "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
+    },
+    {
+      "name": "basiliskII",
+      "key": "basiliskii",
+      "path": "/home/emulos/emulators/BasiliskII/bin/BasiliskII",
+      "desc": "Apple Classic Performa Emulator",
+      "param": "--rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
+      "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     }
   ],
   "systems": [
-    {
-      "id": "1",
-      "brand": "apple",
-      "name": "Apple ][",
-      "desc": "1977’s Apple II was a massive success, featuring a MOS 6502 CPU at 1 MHz, expandable to 48 KB RAM, color graphics, and built-in BASIC.",
-      "emulator": "apple",
-      "favorite": false,
-      "parameter": "--machine ACE --fullscreen",
-      "image": "apple2.png"
-    },
-    {
-      "id": "2",
-      "brand": "apple",
-      "name": "Apple GS",
-      "desc": "Released in 1986, achieved success with a 16-bit 65C816 CPU at 2.8 MHz, up to 1 MB RAM, enhanced graphics, and Ensoniq sound.",
-      "emulator": "apple",
-      "favorite": false,
-      "image": "applegs.png",
-      "parameter": "--machine ACE --fullscreen"
-    },
     {
       "id": "3",
       "brand": "sinclair",
@@ -297,7 +294,7 @@
       "brand": "sinclair",
       "name": "ZX Uno",
       "desc": "The ZX-Uno is an FPGA-based ZX Spectrum clone, crowdfunded in 2016, featuring SD card storage, PS/2 keyboard, composite video, audio.",
-      "emulator": "fuse",
+      "emulator": "zesarux",
       "parameter": "--machine zxuno --fullscreen",
       "favorite": false,
       "image": "uno.png"
@@ -317,7 +314,7 @@
       "brand": "amstradcpc",
       "name": "CPC 464",
       "desc": "The Amstrad CPC 464 launched in 1984 with integrated cassette drive, 64 KB RAM, vibrant graphics, BASIC, and affordable home computing",
-      "emulator": "fuse",
+      "emulator": "zesarux",
       "parameter": "--machine cpc464 --fullscreen",
       "favorite": true,
       "image": "cpc464.png"
@@ -337,7 +334,7 @@
       "brand": "amstradcpc",
       "name": "CPC 6128",
       "desc": "The Amstrad CPC 6128 released in 1985 featured 128 KB RAM, built-in 3-inch floppy disk, advanced BASIC, and vibrant display modes.",
-      "emulator": "fuse",
+      "emulator": "zesarux",
       "parameter": "--machine cpc6128 --fullscreen",
       "favorite": false,
       "image": "cpc6128.png"
@@ -373,54 +370,54 @@
       "image": "a4000.png"
     },
     {
-      "id": "1746193870184",
-      "brand": "apple",
-      "name": "Macintosh",
-      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
-      "emulator": "fuse",
-      "parameter": "",
-      "favorite": false,
-      "image": "mac.png"
-    },
-    {
       "id": "1746194267547",
       "brand": "apple",
       "name": "Apple ][ Plus",
       "desc": "Released June 1979, the Apple II Plus added Integer BASIC and 16–48 KB RAM support, offering color graphics and expansion slots, and became a major success.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "linapple",
+      "parameter": "--conf /home/emulos/emulators/linapple/linapple_apple2plus.conf",
       "favorite": true,
       "image": "apple2plus.png"
     },
     {
-      "id": "1746194356822",
-      "brand": "apple",
-      "name": "Apple III",
-      "desc": "Released May 1980, the Apple III featured a 1 MHz 6502A CPU, 128–256 KB RAM, built-in keyboard, 80-column display, targeted business users.",
-      "emulator": "fuse",
-      "parameter": "",
-      "favorite": false,
-      "image": "apple3.png"
-    },
-    {
       "id": "1746201310917",
       "brand": "apple",
-      "name": "Apple ][ e",
+      "name": "Apple //e",
       "desc": "Released January 1983, the Apple IIe featured a 1 MHz 6502 CPU, 64 KB RAM (expandable to 128 KB), ProDOS support, durable keyboard.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "linapple",
+      "parameter": "--conf /home/emulos/emulators/linapple/linapple_apple2e.conf",
       "favorite": false,
       "image": "apple2e.png"
     },
     {
       "id": "1746201510230",
       "brand": "apple",
-      "name": "Lisa",
-      "desc": "Apple Lisa, released January 1983, featured a 5 MHz Motorola 68000 CPU, 1 MB RAM, GUI, dual floppy drives, aimed at professionals",
-      "emulator": "fuse",
-      "parameter": "",
+      "name": "Performa System 7.5.5",
+      "desc": "Mac Performa ",
+      "emulator": "basiliskii",
+      "parameter": "--disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
       "favorite": false,
       "image": "lisa.png"
+    },
+    {
+      "id": "1746193870184",
+      "brand": "apple",
+      "name": "Macintosh 128 system 1.1",
+      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
+      "emulator": "minivmac",
+      "parameter": "/home/emulos/emulators/minivmac/system1-1/system.image",
+      "favorite": false,
+      "image": "mac.png"
+    },
+    {
+      "id": "1746193870184",
+      "brand": "apple",
+      "name": "Macintosh 128 system 2.2",
+      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
+      "emulator": "minivmac",
+      "parameter": "/home/emulos/emulators/minivmac/system2-2/system.image",
+      "favorite": false,
+      "image": "mac.png"
     },
     {
       "id": "1746203338322",

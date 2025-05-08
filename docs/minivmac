@@ -1,0 +1,6 @@
+https://github.com/vanfanel/minivmac_sdl2.git
+
+/home/emulos/RetroPie-Setup/scriptmodules/emulators/minivmac/gcc10_fix.diff
+
+applyPatch "$md_data/gcc10_fix.diff"
+

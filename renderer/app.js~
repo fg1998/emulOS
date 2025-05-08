@@ -111,7 +111,7 @@ function processQueue() {
       charIdx = 0;
     }
 
-    setTimeout(typeNext, 5);
+    setTimeout(typeNext, 10);
   }
 
   typeNext();

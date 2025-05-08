@@ -13,8 +13,8 @@ function createWindow() {
     y:0 ,
     width: width,
     height: height,
-    //kiosk: true,
-    //fullscreen: true,
+    kiosk: true,
+    fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -63,11 +63,17 @@ ipcMain.on("run-system", async(event, content)=> {
  
 
   event.reply('writeLog',`Starting ${content.name}`)
+ 
   
   const emulatorPath = content.emulator.path
   const emulatorParam = content.emulator.param.split(' ')
   const systemParam = content.parameter.split(' ')
+  
+ 
   const totalParam = [...emulatorParam, ...systemParam]
+  
+  event.reply('writeLog', emulatorPath + " " + totalParam.join(' '));
+  
   const extProcess = execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
     if(error)
       {
