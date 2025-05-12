@@ -13,7 +13,7 @@ function createWindow() {
     y:0 ,
     width: width,
     height: height,
-    kiosk: true,
+   //kiosk: true,
     fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {

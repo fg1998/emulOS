@@ -219,6 +219,14 @@ function renderSystems() {
     filtered = data.systems.filter((sys) => sys.brand === currentBrand);
   }
 
+  // ordena por year (crescente) e depois por name
+filtered.sort((a, b) => {
+  const yearDiff = parseInt(a.year, 10) - parseInt(b.year, 10);
+  if (yearDiff !== 0) return yearDiff;
+  return a.name.localeCompare(b.name);
+});
+
+
   if (filtered.length === 0) {
     systemList.innerHTML = '<p style="color: #ccc;">Nenhum sistema encontrado.</p>';
     return;
@@ -256,7 +264,7 @@ function renderSystems() {
 
     const title = document.createElement("div");
     title.className = "title";
-    title.textContent = sys.name;
+    title.innerHTML = `${sys.name} <small>(${sys.year})</small>`;
     card.appendChild(title);
 
     const desc = document.createElement("div");
