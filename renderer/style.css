@@ -14,11 +14,11 @@
 }
 
 #log-content p {
-  display: block;      /* em vez de flex, se você tiver atribuído flex involuntariamente */
-  height: auto;        /* remove aquele height:100vh que vi no inspetor */
-  margin: 0;           /* zera a margem em cima/embaixo */
-  padding: 0;          /* se tiver padding indesejado */
-  line-height: 1.2em;  /* ajusta o espaçamento interno */
+  display: block;      
+  height: auto;        
+  margin: 0;           
+  padding: 0;         
+  line-height: 1.2em;  
 }
 
 
@@ -100,7 +100,7 @@ textarea {
   cursor: pointer;
 }
 
-#about-modal {
+#about-modal,#error-modal {
   position: fixed;
   top: 0;
   left: 0;

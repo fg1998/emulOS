@@ -59,21 +59,9 @@ ipcMain.on('wifiConfig', async(event, content) => {
   })
 })
 
-ipcMain.on("run-system", async(event, content)=> {
+ipcMain.on("run-system", (event, content)=> {
  
   event.reply('writeLog',`Starting ${content.name}`)
-
-  
-  for(let i=0; i< content.romcheck.length; i++) {
-    const biosFileToCheck = path.join(content.config.biospath, content.romcheck[i])
-    try {
-      await fs.access(biosFileToCheck, fs.constants.F_OK)
-    }catch(err){
-      event.reply('writeLog',`[red] File '${content.romcheck[i]}' was not found in path '${content.config.biospath}'`)
-      return
-    }
-  }
-  
 
   const emulatorPath = content.emulator.path
   const emulatorParam = content.emulator.param.split(' ')

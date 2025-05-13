@@ -1,8 +1,10 @@
 const fs = require("fs");
+const fsPromises = require('fs').promises;
 const path = require("path");
 const { ipcRenderer, contentTracing } = require("electron");
 const { exec } = require("child_process");
 const { json } = require("stream/consumers");
+const { log } = require("console");
 
 // IPC EVENTS
 
@@ -590,17 +592,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if(runBtn) {
-    runBtn.addEventListener("click", () => {
+    runBtn.addEventListener("click", async () => {
+
       const runParameterLocal = JSON.parse(document.getElementById('run-parameter').value)
       const runModal = document.getElementById("run-modal");
-
-      // General Config
-      runParameterLocal.config = data.config
 
       runModal.classList.remove("show");
       runModal.style.display = 'none'
 
-      ipcRenderer.send("run-system", runParameterLocal);
+      // General Config
+      runParameterLocal.config = data.config
+      
+      let romcheck = runParameterLocal.romcheck || [];
+
+      try {
+        await Promise.all(
+          romcheck.map(async (rom) => {
+            const biosFileToCheck = path.join(runParameterLocal.config.biospath, rom);
+            try {
+              await fsPromises.access(biosFileToCheck, fs.constants.F_OK);
+            } catch(err) {
+   
+              //logMessage(`[red] File '${runParameterLocal.romcheck[i]}' was not found in path '${runParameterLocal.config.biospath}' `)
+              throw new Error(`Missing file: ${rom}`)
+            }
+          })
+        );
+        ipcRenderer.send("run-system", runParameterLocal);
+
+
+      } catch(error) {
+        logMessage(`[red]${error}`)
+      }
+
+
+      
+
     })
   }
 
