@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs').promises;
 const { stdout, stderr } = require('process');
 const execFile = require('child_process').execFile
 
@@ -24,7 +24,7 @@ function createWindow() {
   });
 
   win.loadFile('renderer/index.html');
-  //win.webContents.openDevTools(); // DevTools ativado
+  win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {
@@ -61,10 +61,20 @@ ipcMain.on('wifiConfig', async(event, content) => {
 
 ipcMain.on("run-system", async(event, content)=> {
  
-
   event.reply('writeLog',`Starting ${content.name}`)
- 
+
   
+  for(let i=0; i< content.romcheck.length; i++) {
+    const biosFileToCheck = path.join(content.config.biospath, content.romcheck[i])
+    try {
+      await fs.access(biosFileToCheck, fs.constants.F_OK)
+    }catch(err){
+      event.reply('writeLog',`[red] File '${content.romcheck[i]}' was not found in path '${content.config.biospath}'`)
+      return
+    }
+  }
+  
+
   const emulatorPath = content.emulator.path
   const emulatorParam = content.emulator.param.split(' ')
   const systemParam = content.parameter.split(' ')
@@ -83,9 +93,7 @@ ipcMain.on("run-system", async(event, content)=> {
       }
       if (stdout) event.reply('run-system', `stdout: ${stdout.trim()}`);
       if (stderr) event.reply('run-system', `stderr: ${stderr.trim()}`)
-  })  
-
-  
+  }) 
 })
 
 

@@ -592,8 +592,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if(runBtn) {
     runBtn.addEventListener("click", () => {
       const runParameterLocal = JSON.parse(document.getElementById('run-parameter').value)
-      //logMessage(`Running ${runParameterLocal.name} - ** WAIT **`);
       const runModal = document.getElementById("run-modal");
+
+      // General Config
+      runParameterLocal.config = data.config
+
       runModal.classList.remove("show");
       runModal.style.display = 'none'
 
@@ -637,7 +640,6 @@ window.addEventListener('load', () => {
 
   setTimeout(() => {
     logMessage("Welcome to [white] ** EmulOS **");
-    logMessage("Proudly developed by fg1998 and the emulOS team.")
     logMessage("If you appreciate EmulOS, please consider supporting our development on Patreon")
     logMessage("[yellow] Caso você seja um compatriota brasileiro, considere fazer uma doação via PIX para fg1998@gmail.com")
   }, 3000);

@@ -1,7 +1,6 @@
 {
   "config": {
-    "rompath": "/Users/fg1998/projetos/EmulOS/src/roms1",
-    "version": "1"
+    "biospath": "/home/emulos/emulators/bios"
   },
   "brands": [
     {
