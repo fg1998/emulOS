@@ -256,9 +256,9 @@ filtered.sort((a, b) => {
 
   
     const img = document.createElement("img");
-    img.src = "assets/" + (sys.image || `${sys.brand}_not_found.png`);
+    img.src = "assets/" + (sys.image || `not_found.png`);
     img.onerror = () => {
-      img.src = "assets/default.png";
+      img.src = "assets/not_found.png";
     };
     card.appendChild(img);
 
