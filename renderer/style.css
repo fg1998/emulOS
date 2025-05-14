@@ -112,6 +112,11 @@ textarea {
   align-items: center;
   z-index: 1000;
 }
+
+.modal-error {
+  width: 700px !important;
+}
+
 .modal-content {
   background: #444;
   padding: 20px;

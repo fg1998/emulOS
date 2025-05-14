@@ -322,6 +322,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("about-modal");
   const openBtn = document.getElementById("about");
   const closeBtn = document.getElementById("close-about");
+  const errorModal = document.getElementById('error-modal');
+  const closeError = document.getElementById('close-error')
 
   if (modal && openBtn && closeBtn) {
     modal.classList.remove("show");
@@ -339,6 +341,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 500);
     });
   }
+
+  if(errorModal && closeError){
+    closeError.addEventListener('click', () => {
+      errorModal.classList.remove("show");
+      setTimeout(() => {
+        errorModal.style.display = "none";
+      }, 500);
+    });
+    
+  }
+
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -623,6 +636,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       } catch(error) {
         logMessage(`[red]${error}`)
+        doError("missing_bios")
       }
 
 
@@ -672,3 +686,9 @@ window.addEventListener('load', () => {
   }, 3000);
   
 });
+
+function doError(errorType){
+  const errorModal = document.getElementById('error-modal');
+  errorModal.classList.add("show");
+  errorModal.style.display = "flex";
+}
