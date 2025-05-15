@@ -18,34 +18,68 @@ Main Menu-> Settings
 Accessibility
 Audio
 Configuration file
+Danger Zone
+Debug
 Display
+External tools paths
+File Browser
 Function keys
 General
 Hardware
+Network
+OSD
+Snapshot
+Statistics
 Storage
 ZX Desktop
 ZX Vision
-[ ] Advanced menu items
+[X] Advanced menu items
 ESC Close
 
 Main Menu-> Settings Menu-> Display Settings
 Video out to file: 
 [X] Autodetect Real Video
 [X] Real Video
+[ ] Interlaced mode
+[ ] Gigascreen
 [ ] Flash color
+[ ] Snow effect
+[ ] ULAplus
+[ ] Timex video modes
+[ ] Spectra
+[ ] ZGX Sprite Chip
+[X] Colours enabled
+    OSD Adv. KB length [50]
+[ ] OSD Adv. final space
+[X] OCR Alternate chars
 Colour settings
 ESC Close
 
 Main Menu-> Settings Menu-> General Settings
 [X] Full Screen
+[ ] No ZX Desktop on Full Screen
+[ ] No Border on Full Screen
+[X] No Footer on Full Screen
 [X] Border enabled
+    Frameskip [0] (50 FPS)
+[X]  Frameskip to ZX Desktop background
 [X] Auto Frameskip
-    Window Size Zoom [1]
+[X]  Also when moving objects
+[ ] RPi slow improve performance
+[X] Flash enabled
+[X] Clicking mouse opens menu
+[ ] Limit menu opening
+[ ] Zoom horizontal equal to vertical
+    Window Size Width Zoom [2]
+    Window Size Height Zoom [2]
 [ ] Autochange Zoom big display
+[ ] Reduce display factor 0.75
+[ ] Window Footer
     Language [Default]
     ZEsarUX logo [Normal]
 [ ] Show welcome logo & message
-    Online Download Path [</emulos/emulos]
+    Online Download Path []
+Change Video Driver
 [X] Search index enabled
     Reset search index
     Full scan search index
@@ -102,5 +136,14 @@ Main Menu-> Display Menu-> Text aventure Tools
 On Screen Adventure Keyboard
 Extract words to Adv. Keyb.
 [ ] Location Description Processing
+ESC Close
+
+Main Menu-> Settings-> Danger Zone
+    Preferred Timer [Auto]
+    Timer priority list:
+     sdl
+     usleep
+     date
+    Current Timer [sdl]
 ESC Close
 

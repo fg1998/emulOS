@@ -1,7 +1,6 @@
 {
   "config": {
-    "rompath": "/Users/fg1998/projetos/EmulOS/src/roms1",
-    "version": "1"
+    "biospath": "/home/emulos/emulators/bios"
   },
   "brands": [
     {
@@ -59,7 +58,7 @@
     {
       "name": "uae",
       "key": "amiga",
-      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "path": "/home/emulos/emulators/fs-uae/fs-uae",
       "desc": "Commodore Amiga emulator",
       "param": ""
     },
@@ -97,7 +96,8 @@
       "emulator": "zesarux",
       "favorite": true,
       "image": "spectrum48.png",
-      "parameter": "--machine 48k"
+      "parameter": "--machine 48k",
+      "year" : "1982"
     },
     {
       "id": "4",
@@ -107,67 +107,74 @@
       "emulator": "zesarux",
       "favorite": false,
       "image": "spectrum128.png",
-      "parameter": "--machine 128k"
+      "parameter": "--machine 128k",
+      "year" : "1986"
     },
     {
       "id": "5",
       "brand": "sinclair",
       "name": "Microdigital TK90X",
-      "desc": "The Microdigital TK90X, introduced in 1985, is a Brazilian clone of the Sinclair ZX Spectrum. It uses a Z80A CPU, offers 16–48KB RAM, BASIC ROM, CMOS graphics, and TV output.",
+      "desc": "The Microdigital TK90X is a Brazilian clone of the Sinclair ZX Spectrum. It uses a Z80A CPU, offers 16–48KB RAM, BASIC ROM, CMOS graphics, and TV output.",
       "emulator": "zesarux",
       "favorite": false,
       "image": "tk90x.png",
-      "parameter": "--machine TK90X"
+      "parameter": "--machine TK90X",
+      "year" : "1985"
     },
     {
       "id": "6",
       "brand": "sinclair",
       "name": "Microdigital TK95",
-      "desc": "The Microdigital TK95, released in 1986, is an evolution of the TK90X with an enhanced mechanical keyboard, Z80A CPU, 48 KB RAM, 16 KB ROM, composite video output, and built-in joystick ports, housed in a plastic case.",
+      "desc": "The Microdigital TK95 is an evolution of the TK90X with an enhanced mechanical keyboard, Z80A CPU, 48 KB RAM, 16 KB ROM, composite video output, and built-in joystick ports, housed in a plastic case.",
       "emulator": "zesarux",
       "favorite": false,
       "image": "tk95.png",
-      "parameter": "--machine tk95"
+      "parameter": "--machine tk95",
+      "year" : "1986"
     },
     {
       "id": "7",
       "brand": "commodore",
       "name": "PET",
-      "desc": "1977’s Commodore PET launched with a MOS 6502 CPU at 1 MHz, 4 KB RAM, and a built-in cassette drive.",
+      "desc": "Commodore PET launched with a MOS 6502 CPU at 1 MHz, 4 KB RAM, and a built-in cassette drive.",
       "emulator": "commodore",
       "favorite": false,
       "parameter": "--machine ACE --fullscreen",
-      "image": "pet.png"
+      "image": "pet.png",
+      "year": "1977"
+    },
+    {
+      "id": "1746205656735",
+      "brand": "commodore",
+      "name": "VIC 20",
+      "desc": "The VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "vic20.png",
+      "year": "1980"
     },
     {
       "id": "8",
       "brand": "commodore",
       "name": "Commodore 64",
-      "desc": "1982’s Commodore 64 featured a MOS 6510 CPU at 1 MHz, 64 KB RAM, and the iconic SID sound chip.",
+      "desc": "Commodore 64 featured a MOS 6510 CPU at 1 MHz, 64 KB RAM, and the iconic SID sound chip.",
       "emulator": "commodore",
       "favorite": true,
       "image": "c64.png",
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "--machine ACE --fullscreen",
+      "year" : "1982"
     },
     {
       "id": "9",
       "brand": "commodore",
       "name": "Commodore 128",
-      "desc": "1985’s Commodore 128 offered dual CPUs (8502 at 2 MHz, Z80 at 4 MHz), 128 KB RAM, and three modes.",
+      "desc": "Commodore 128 offered dual CPUs (8502 at 2 MHz, Z80 at 4 MHz), 128 KB RAM, and three modes.",
       "emulator": "commodore",
       "favorite": false,
       "image": "c128.png",
-      "parameter": "--machine ACE --fullscreen"
-    },
-    {
-      "id": "10",
-      "brand": "amiga",
-      "name": "Amiga 500+",
-      "desc": "16 Bit computer",
-      "emulator": "amiga",
-      "favorite": false,
-      "image": "a500.png",
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "--machine ACE --fullscreen",
+      "year" : "1985"
     },
     {
       "id": "11",
@@ -177,7 +184,8 @@
       "emulator": "msx",
       "favorite": true,
       "image": "hotbit.png",
-      "parameter": "Sharp_HB-8000_1.2"
+      "parameter": "Sharp_HB-8000_1.2",
+      "year": "1985"
     },
     {
       "id": "12",
@@ -187,7 +195,8 @@
       "emulator": "msx",
       "favorite": false,
       "image": "expert.png",
-      "parameter": "Gradiente_Expert_GPC-1"
+      "parameter": "Gradiente_Expert_GPC-1",
+      "year": "1985"
     },
     {
       "id": "13",
@@ -197,17 +206,19 @@
       "emulator": "fuse",
       "favorite": false,
       "parameter": "--machine ACE --fullscreen",
-      "image": "vg8000.png"
+      "image": "vg8000.png",
+      "year" :"1983"
     },
     {
       "id": "14",
       "brand": "msx",
       "name": "FS-5500 F2",
-      "desc": "Nationa FS-5500 F2 MSX2",
+      "desc": "National FS-5500 F2 MSX2",
       "emulator": "fuse",
       "image": "fs5500f2.png",
       "favorite": false,
-      "parameter": "National_FS-5500F2"
+      "parameter": "National_FS-5500F2",
+      "year": "1985"
     },
     {
       "id": "15",
@@ -217,7 +228,8 @@
       "emulator": "msx",
       "favorite": false,
       "image": "fsa1wsx.png",
-      "parameter": "Panasonic_FS-A1WSX"
+      "parameter": "Panasonic_FS-A1WSX",
+      "year":"1989"
     },
     {
       "id": "16",
@@ -227,7 +239,8 @@
       "emulator": "fuse",
       "favorite": false,
       "parameter": "Boosted_MSX2_EN",
-      "image": "boostedMSX.png"
+      "image": "boostedMSX.png",
+      "year": "2024"
     },
     {
       "id": "17",
@@ -237,17 +250,20 @@
       "emulator": "msx",
       "favorite": false,
       "image": "fsa1gt.png",
-      "parameter": "Panasonic_FS-A1GT"
+      "parameter": "Panasonic_FS-A1GT",
+      "year" : "1991"
     },
     {
       "id": "18",
       "brand": "commodore",
       "name": "Amiga 1000",
-      "desc": "1985’s Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
+      "desc": "1985 Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
       "emulator": "amiga",
-      "parameter": "",
+      "parameter": "/home/emulos/emulators/bios/amiga1000_workbench1_2.fs-uae",
       "favorite": false,
-      "image": "a1000.png"
+      "image": "a1000.png",
+      "romcheck" : ["kickstart_13_rev35_5_A500_A1000_A2000_CDTV.rom"],
+      "year": "1985"
     },
     {
       "id": "1746187342995",
@@ -257,7 +273,8 @@
       "emulator": "zesarux",
       "parameter": "--machine zx81",
       "image": "zx81.png",
-      "favorite": false
+      "favorite": false,
+      "year" : "1981"
     },
     {
       "id": "1746187705637",
@@ -267,17 +284,19 @@
       "emulator": "zesarux",
       "parameter": "--machine z88",
       "favorite": false,
-      "image": "z88.png"
+      "image": "z88.png",
+      "year": "1987"
     },
     {
       "id": "1746188745235",
       "brand": "sinclair",
       "name": "Sinclair QL",
-      "desc": "The Sinclair QL, launched in 1984, was an affordable business microcomputer with a Motorola 68008 CPU and innovative microdrive storage",
+      "desc": "The Sinclair QL was an affordable business microcomputer with a Motorola 68008 CPU and innovative microdrive storage",
       "emulator": "zesarux",
       "parameter": "--machine ql",
       "favorite": false,
-      "image": "ql.png"
+      "image": "ql.png",
+      "year": "1984"
     },
     {
       "id": "1746189319331",
@@ -287,7 +306,8 @@
       "emulator": "zesarux",
       "parameter": "--machine sam",
       "favorite": false,
-      "image": "sam.png"
+      "image": "sam.png",
+      "year" :"1989"
     },
     {
       "id": "1746189592269",
@@ -297,7 +317,8 @@
       "emulator": "zesarux",
       "parameter": "--machine zxuno --fullscreen",
       "favorite": false,
-      "image": "uno.png"
+      "image": "uno.png",
+      "year" : "2016"
     },
     {
       "id": "1746190076243",
@@ -307,7 +328,8 @@
       "emulator": "zesarux",
       "parameter": "--machine tbblue",
       "favorite": false,
-      "image": "next.png"
+      "image": "next.png",
+      "year" : "2017"
     },
     {
       "id": "1746191781908",
@@ -317,7 +339,8 @@
       "emulator": "zesarux",
       "parameter": "--machine cpc464 --fullscreen",
       "favorite": true,
-      "image": "cpc464.png"
+      "image": "cpc464.png",
+      "year":"1984"
     },
     {
       "id": "1746192015135",
@@ -327,7 +350,8 @@
       "emulator": "zesarux",
       "parameter": "--machine cpc664 --fullscreen",
       "favorite": false,
-      "image": "cpc664.png"
+      "image": "cpc664.png",
+      "year": "1985"
     },
     {
       "id": "1746192157583",
@@ -337,57 +361,90 @@
       "emulator": "zesarux",
       "parameter": "--machine cpc6128 --fullscreen",
       "favorite": false,
-      "image": "cpc6128.png"
+      "image": "cpc6128.png",
+      "year": "1985"
     },
     {
       "id": "1746193174813",
       "brand": "commodore",
       "name": "Amiga 500",
-      "desc": "1987’s Commodore Amiga 500 featured a 7.16 MHz Motorola 68000, 512 KB RAM, and the Agnus, Denise, Paula custom chips.",
+      "desc": "Commodore Amiga 500 featured a 7.16 MHz Motorola 68000, 512 KB RAM, and the Agnus, Denise, Paula custom chips.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "a500.png"
+      "image": "a500.png",
+      "romcheck": ["Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom"],
+      "year": "1987"
+    },
+    {
+      "id": "10",
+      "brand": "commodore",
+      "name": "Amiga 500+",
+      "desc": "Commodore A500+ includes 1MB chip RAM, Kickstart 2.04, onboard clock port and PCMCIA slot, unlike A500’s 512KB and Kickstart 1.3.",
+      "emulator": "commodore",
+      "favorite": false,
+      "image": "a500.png",
+      "parameter": "--machine ACE --fullscreen",
+      "romcheck": ["Kickstart v2.04 rev 37.175 (1991)(Commodore)(A500+).rom"],
+      "year": "1991"
+    },
+    {
+      "id": "1746193196512",
+      "brand": "commodore",
+      "name": "Amiga 600",
+      "desc": "Commodore Amiga 600 features 1MB Chip RAM, onboard PCMCIA slot, compact design, Paula audio, limited expansion compared to original A500.",
+      "emulator": "commodore",
+      "favorite": false,
+      "image": "a600.png",
+      "parameter": "--machine ACE --fullscreen",
+      "romcheck": ["Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD)[!].rom"],
+      "year": "1992"
     },
     {
       "id": "1746193196544",
       "brand": "commodore",
       "name": "Amiga 1200",
-      "desc": "1992’s Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
+      "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": true,
-      "image": "a1200.png"
+      "image": "a1200.png",
+      "romcheck": ["Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200).rom"],
+      "year": "1992"
     },
     {
       "id": "1746193236753",
       "brand": "commodore",
       "name": "Amiga 4000 (HD)",
-      "desc": "1992’s Commodore Amiga 4000 delivered a 25 MHz Motorola 68040 CPU, 2 MB Fast RAM expandable, and the AGA chipset.",
+      "desc": "Commodore Amiga 4000 delivered a 25 MHz Motorola 68040 CPU, 2 MB Fast RAM expandable, and the AGA chipset.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "a4000.png"
+      "image": "a4000.png",
+      "romcheck": ["Kickstart v3.1 rev 40.68 (1993)(Commodore)(A4000).rom"],
+      "year": "1992"
     },
     {
       "id": "1746194267547",
       "brand": "apple",
       "name": "Apple ][ Plus",
-      "desc": "Released June 1979, the Apple II Plus added Integer BASIC and 16–48 KB RAM support, offering color graphics and expansion slots, and became a major success.",
+      "desc": "Apple II Plus added Integer BASIC and 16–48 KB RAM support, offering color graphics and expansion slots, and became a major success.",
       "emulator": "linapple",
       "parameter": "--conf /home/emulos/emulators/linapple/linapple_apple2plus.conf",
       "favorite": true,
-      "image": "apple2plus.png"
+      "image": "apple2plus.png",
+      "year": "1979"
     },
     {
       "id": "1746201310917",
       "brand": "apple",
       "name": "Apple //e",
-      "desc": "Released January 1983, the Apple IIe featured a 1 MHz 6502 CPU, 64 KB RAM (expandable to 128 KB), ProDOS support, durable keyboard.",
+      "desc": "Apple IIe featured a 1 MHz 6502 CPU, 64 KB RAM (expandable to 128 KB), ProDOS support, durable keyboard.",
       "emulator": "linapple",
       "parameter": "--conf /home/emulos/emulators/linapple/linapple_apple2e.conf",
       "favorite": false,
-      "image": "apple2e.png"
+      "image": "apple2e.png",
+      "year":"1983"
     },
     {
       "id": "1746201510230",
@@ -397,7 +454,8 @@
       "emulator": "basiliskii",
       "parameter": "--disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
       "favorite": false,
-      "image": "performa6200.png"
+      "image": "performa5230.png",
+      "year": "1996"
     },
     {
       "id": "1746193870184",
@@ -407,7 +465,8 @@
       "emulator": "minivmac",
       "parameter": "/home/emulos/emulators/minivmac/system1-1/system.image",
       "favorite": false,
-      "image": "mac.png"
+      "image": "mac.png",
+      "year": "1984"
     },
     {
       "id": "1746193870184",
@@ -417,7 +476,8 @@
       "emulator": "minivmac",
       "parameter": "/home/emulos/emulators/minivmac/system2-2/system.image",
       "favorite": false,
-      "image": "mac.png"
+      "image": "mac.png",
+      "year":"1984"
     },
     {
       "id": "1746203338322",
@@ -427,17 +487,19 @@
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "trs80model3.png"
+      "image": "trs80model3.png",
+      "year": "1980"
     },
     {
       "id": "1746203449033",
       "brand": "trs",
       "name": "TRS Color Computer 2",
-      "desc": "The TRS-80 Color Computer 2, introduced in 1983, featured a Motorola 6809E at 0.895 MHz, 16–64 KB RAM, and 256×192 graphics.",
+      "desc": "The TRS-80 Color Computer 2 featured a Motorola 6809E at 0.895 MHz, 16–64 KB RAM, and 256×192 graphics.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "trscolor2.png"
+      "image": "trscolor2.png",
+      "year": "1983"
     },
     {
       "id": "1746203681426",
@@ -447,37 +509,41 @@
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "cp500.png"
+      "image": "cp500.png",
+      "year":"1982"
     },
     {
       "id": "1746204504016",
       "brand": "Atari",
       "name": "Atari 800",
-      "desc": "Debuting in 1979, the 800 offered a 1.79 MHz MOS 6502, expandable 8–48 KB RAM, and 320×192 high-resolution graphics",
+      "desc": "Atari 800 offered a 1.79 MHz MOS 6502, expandable 8–48 KB RAM, and 320×192 high-resolution graphics",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "atari800.png"
+      "image": "atari800.png",
+      "year":"1979"
     },
     {
       "id": "1746204609974",
       "brand": "Atari",
       "name": "Atari 800XL",
-      "desc": "Released in 1983 by Atari, the 800XL featured a 1.79 MHz MOS 6502C CPU, 64 KB RAM, and 320×192 graphics.",
+      "desc": "Atari 800XL featured a 1.79 MHz MOS 6502C CPU, 64 KB RAM, and 320×192 graphics.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "atari800xl.png"
+      "image": "atari800xl.png",
+      "year": "1983"
     },
     {
       "id": "1746204798260",
       "brand": "Atari",
       "name": "Atari ST",
-      "desc": "Released in 1985, Atari’s 520ST ran a Motorola 68000 CPU at 8 MHz with 512 KiB RAM, 320×200 color graphics; floppy-disk storage.",
+      "desc": "Atari 520ST ran a Motorola 68000 CPU at 8 MHz with 512 KiB RAM, 320×200 color graphics; floppy-disk storage.",
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "atari520st.png"
+      "image": "atari520st.png",
+      "year":"195"
     },
     {
       "id": "1746205326971",
@@ -487,17 +553,8 @@
       "emulator": "fuse",
       "parameter": "",
       "favorite": false,
-      "image": "atarifalcon.png"
-    },
-    {
-      "id": "1746205656735",
-      "brand": "commodore",
-      "name": "VIC 20",
-      "desc": "Introduced in 1980, the VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
-      "emulator": "fuse",
-      "parameter": "",
-      "favorite": false,
-      "image": "vic20.png"
+      "image": "atarifalcon.png",
+      "year" : "1992"
     }
   ]
 }

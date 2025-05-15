@@ -689,6 +689,11 @@ window.addEventListener('load', () => {
 
 function doError(errorType){
   const errorModal = document.getElementById('error-modal');
+  const errorMessage = document.getElementById('error-message');
+  errorMessage.innerHTML += '<p>It seems a required BIOS or OS file is missing from the expected folder. emulOS depends on the same BIOS files as RetroPie, so you’ll need to obtain them by either</p>'
+  errorMessage.innerHTML += '<li>Transferring the files via SSH from your device</li>'
+  errorMessage.innerHTML += "<li>Downloading them directly with curl from their raw URLs</li>"
+  errorMessage.innerHTML += '<p>Please note that many of these files are proprietary—make sure you have a valid license or own the original hardware before using them. To download via curl, click the download button below and follow the on-screen instructions.</p>'
   errorModal.classList.add("show");
   errorModal.style.display = "flex";
 }

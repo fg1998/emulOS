@@ -1,0 +1,6 @@
+#amiga Kickstart
+
+
+ curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v1.3%20r34.5%20(1987)(Commodore)(A500-A1000-A2000-CDTV)%5B!%5D.rom' \
+ -o '/home/emulos/emulators/bios/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom'
