@@ -58,9 +58,10 @@
     {
       "name": "uae",
       "key": "amiga",
-      "path": "/home/emulos/emulators/fs-uae/fs-uae",
+      "path": "/home/emulos/emulators/amiberry/bin/amiberry",
       "desc": "Commodore Amiga emulator",
-      "param": ""
+      "param": "-G",
+      "instructions": "[F1] - Open Settings [F10] - Quit"
     },
     {
       "name": "linapple",
@@ -256,14 +257,15 @@
     {
       "id": "18",
       "brand": "commodore",
-      "name": "Amiga 1000 (Workbench 1.2)",
+      "name": "Amiga 1000 (Workbench 1.1)",
       "desc": "1985 Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
       "emulator": "amiga",
-      "parameter": "/home/emulos/emulators/bios/amiga1000_workbench1_2.fs-uae",
+      "parameter": "/home/emulos/emulos/config/workbench_11_amiga1000.uae",
       "favorite": false,
       "image": "a1000.png",
       "romcheck": [
-        "kickstart_13_rev35_5_A500_A1000_A2000_CDTV.rom"
+        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf"
       ],
       "year": "1985"
     },
@@ -371,12 +373,13 @@
       "brand": "commodore",
       "name": "Amiga 500",
       "desc": "Commodore Amiga 500 featured a 7.16 MHz Motorola 68000, 512 KB RAM, and the Agnus, Denise, Paula custom chips.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "amiga",
+      "parameter": "/home/emulos/emulos/config/workbench_13_amiga500.uae",
       "favorite": false,
       "image": "a500.png",
       "romcheck": [
-        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom"
+        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "Workbench v1.3 rev 34.20 (1988)(Commodore)(A500-A2000)(Disk 1 of 2)(Workbench)[m].adf"
       ],
       "year": "1987"
     },
@@ -385,26 +388,26 @@
       "brand": "commodore",
       "name": "Amiga 500+",
       "desc": "Commodore A500+ includes 1MB chip RAM, Kickstart 2.04, onboard clock port and PCMCIA slot, unlike A500’s 512KB and Kickstart 1.3.",
-      "emulator": "commodore",
+      "emulator": "amiga",
       "favorite": false,
       "image": "a500.png",
-      "parameter": "--machine ACE --fullscreen",
+      "parameter": "/home/emulos/emulos/config/workbench_204_amiga500plus.uae",
       "romcheck": [
-        "Kickstart v2.04 rev 37.175 (1991)(Commodore)(A500+).rom"
+        "Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
       ],
       "year": "1991"
     },
     {
       "id": "1746193196512",
       "brand": "commodore",
-      "name": "Amiga 600",
+      "name": "Amiga 600 HD",
       "desc": "Commodore Amiga 600 features 1MB Chip RAM, onboard PCMCIA slot, compact design, Paula audio, limited expansion compared to original A500.",
-      "emulator": "commodore",
+      "emulator": "amiga",
       "favorite": false,
       "image": "a600.png",
-      "parameter": "--machine ACE --fullscreen",
+      "parameter": "/home/emulos/emulos/config/workbench_204_amiga600HD.uae",
       "romcheck": [
-        "Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD)[!].rom"
+        "Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
       ],
       "year": "1992"
     },
