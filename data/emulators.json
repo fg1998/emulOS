@@ -84,7 +84,7 @@
       "key": "basiliskii",
       "path": "/home/emulos/emulators/BasiliskII/bin/BasiliskII",
       "desc": "Apple Classic Performa Emulator",
-      "param": "--rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
+      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     }
   ],
@@ -416,12 +416,12 @@
       "brand": "commodore",
       "name": "Amiga 1200",
       "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "amiga",
+      "parameter": "/home/emulos/emulos/config/workbench_301_amiga1200.uae",
       "favorite": true,
       "image": "a1200.png",
       "romcheck": [
-        "Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200).rom"
+        "Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
       ],
       "year": "1992"
     },

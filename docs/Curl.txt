@@ -67,4 +67,10 @@ sudo rm /home/emulos/emulators/bios/wb204_disk4.zip
 #Amiga 600
 curl -L \
 'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v2.05%20r37.350%20(1992)(Commodore)(A600HD)%5B!%5D.rom' \
--o 'Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom'
+-o '/home/emulos/emulators/bios/Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom'
+
+
+#Amiga1200
+curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v3.1%20r40.68%20(1993)(Commodore)(A1200)%5B!%5D.rom' \
+-o '/home/emulos/emulators/bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom'

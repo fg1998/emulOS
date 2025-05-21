@@ -400,7 +400,7 @@
     {
       "id": "1746193196512",
       "brand": "commodore",
-      "name": "Amiga 600",
+      "name": "Amiga 600 HD",
       "desc": "Commodore Amiga 600 features 1MB Chip RAM, onboard PCMCIA slot, compact design, Paula audio, limited expansion compared to original A500.",
       "emulator": "amiga",
       "favorite": false,
@@ -421,7 +421,7 @@
       "favorite": true,
       "image": "a1200.png",
       "romcheck": [
-        "Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200).rom"
+        "Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
       ],
       "year": "1992"
     },
