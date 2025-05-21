@@ -1,0 +1,9 @@
+
+sudo apt install libsdl2-dev libsdl2-image-dev libmpg123-dev libpng-dev zlib1g-dev libasound2-dev libvorbis-dev libflac-dev libpcap-dev automake bison flex libjpeg-dev portaudio19-dev xa65 dos2unix
+
+./autogen.sh
+
+./configure --prefix=/home/emulos/emulators/vice --enable-sdl2ui --without-oss --enable-ethernet --enable-x64 --disable-pdf-docs --with-fastsid
+
+make
+make install

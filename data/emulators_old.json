@@ -49,11 +49,36 @@
       "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
     },
     {
-      "name": "Vice",
-      "key": "commodore",
-      "path": "/Applications/Vice.app/Contents/macOS/vice",
-      "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc",
-      "param": ""
+      "name": "Vice X64",
+      "key": "commodore64",
+      "path": "/home/emulos/emulators/vice/bin/x64",
+      "desc": "Vice commodore 8 bit emulator - c64",
+      "param": "-VICIIfull",
+      "instructions": "[F12] - Menu"
+    },
+    {
+      "name": "Vice X128",
+      "key": "commodore128",
+      "path": "/home/emulos/emulators/vice/bin/x128",
+      "desc": "Vice commodore 8 bit emulator - c128",
+      "param": "-VICIIfull",
+      "instructions": "[F12] - Menu"
+    },
+    {
+      "name": "Vice PET",
+      "key": "commodorePet",
+      "path": "/home/emulos/emulators/vice/bin/x128",
+      "desc": "Vice commodore 8 bit emulator - PET",
+      "param": "",
+      "instructions": "[F12] - Menu"
+    },
+    {
+      "name": "Vice VIC",
+      "key": "commodoreVic",
+      "path": "/home/emulos/emulators/vice/bin/xvic",
+      "desc": "Vice commodore 8 bit emulator - VIC",
+      "param": "-VICfull",
+      "instructions": "[F12] - Menu"
     },
     {
       "name": "uae",
@@ -84,7 +109,7 @@
       "key": "basiliskii",
       "path": "/home/emulos/emulators/BasiliskII/bin/BasiliskII",
       "desc": "Apple Classic Performa Emulator",
-      "param": "--rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
+      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     }
   ],
@@ -134,22 +159,22 @@
       "year": "1986"
     },
     {
-      "id": "7",
+      "id": "1746205656735",
       "brand": "commodore",
       "name": "PET",
-      "desc": "Commodore PET launched with a MOS 6502 CPU at 1 MHz, 4 KB RAM, and a built-in cassette drive.",
-      "emulator": "commodore",
+      "desc": "The VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
+      "emulator": "commodore128",
+      "parameter": "",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen",
       "image": "pet.png",
-      "year": "1977"
+      "year": "1980"
     },
     {
       "id": "1746205656735",
       "brand": "commodore",
       "name": "VIC 20",
       "desc": "The VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
-      "emulator": "fuse",
+      "emulator": "commodoreVic",
       "parameter": "",
       "favorite": false,
       "image": "vic20.png",
@@ -160,10 +185,10 @@
       "brand": "commodore",
       "name": "Commodore 64",
       "desc": "Commodore 64 featured a MOS 6510 CPU at 1 MHz, 64 KB RAM, and the iconic SID sound chip.",
-      "emulator": "commodore",
+      "emulator": "commodore64",
       "favorite": true,
       "image": "c64.png",
-      "parameter": "--machine ACE --fullscreen",
+      "parameter": "",
       "year": "1982"
     },
     {
@@ -171,10 +196,10 @@
       "brand": "commodore",
       "name": "Commodore 128",
       "desc": "Commodore 128 offered dual CPUs (8502 at 2 MHz, Z80 at 4 MHz), 128 KB RAM, and three modes.",
-      "emulator": "commodore",
+      "emulator": "commodore128",
       "favorite": false,
       "image": "c128.png",
-      "parameter": "--machine ACE --fullscreen",
+      "parameter": "",
       "year": "1985"
     },
     {
@@ -416,8 +441,8 @@
       "brand": "commodore",
       "name": "Amiga 1200",
       "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "amiga",
+      "parameter": "/home/emulos/emulos/config/workbench_301_amiga1200.uae",
       "favorite": true,
       "image": "a1200.png",
       "romcheck": [
