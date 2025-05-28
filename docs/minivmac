@@ -1,6 +1,13 @@
-https://github.com/vanfanel/minivmac_sdl2.git
+git clone https://github.com/vanfanel/minivmac_sdl2.git
 
-/home/emulos/RetroPie-Setup/scriptmodules/emulators/minivmac/gcc10_fix.diff
+sudo apt install libsdl2-dev -y
 
-applyPatch "$md_data/gcc10_fix.diff"
+#/home/emulos/RetroPie-Setup/scriptmodules/emulators/minivmac/gcc10_fix.diff
+curl -L 'https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/refs/heads/master/scriptmodules/emulators/minivmac/gcc10_fix.diff' -o gcc10_fix.diff
 
+
+patch -p1 < gcc10_fix.diff 
+
+
+# All Macintosh ROMS
+#https://www.macintoshrepository.org/7038-all-macintosh-roms-68k-ppc-

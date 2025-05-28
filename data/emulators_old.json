@@ -97,9 +97,9 @@
     {
       "name": "minivmac",
       "key": "minivmac",
-      "path": "/home/emulos/emulators/minivmac/minivmac",
+      "path": "${emulatorpath}/minivmac/minivmac",
       "desc": "Original Macintosh Emulator",
-      "param": "-r /home/emulos/emulators/RetroPieBIOS/BIOS/vMac.ROM",
+      "param": "",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     },
     {
@@ -490,7 +490,7 @@
       "name": "Performa System 7.5.5",
       "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
       "emulator": "basiliskii",
-      "parameter": "--disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
+      "parameter": "-r${biospath}/vMac.ROM --disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
       "favorite": false,
       "image": "performa5230.png",
       "year": "1996"
@@ -501,7 +501,7 @@
       "name": "Macintosh 128 system 1.1",
       "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
       "emulator": "minivmac",
-      "parameter": "/home/emulos/emulators/minivmac/system1-1/system.image",
+      "parameter": "-r 4{biospath}/vMac.ROM ${biospath}/disk1.img",
       "favorite": false,
       "image": "mac.png",
       "year": "1984"
@@ -613,6 +613,16 @@
       "parameter": "",
       "favorite": false,
       "image": "bbc.png"
+    },
+    {
+      "id": "1748453332239",
+      "brand": "misc",
+      "name": "IBM PC",
+      "desc": "Launched in 1981, revolutionized personal computing with open architecture, Intel CPU, MS-DOS, and widespread business and home use.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "ibmpc.png"
     }
   ]
 }

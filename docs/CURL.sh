@@ -9,6 +9,13 @@ unzip_with_path() {
 }
 
 
+#MSX
+curl -L -O -A "Mozilla/5.0" "https://download.file-hunter.com/System%20ROMs/Full%20Set%20System%20ROMs%20for%20OpenMSX%20-%2021-04-2025.zip" \
+-o '/home/emulos/emulators/bios/msx/msx2.zip' 
+unzip_with_path /home/emulos/emulators/bios/msx/msx.zip
+
+
+
 #amiga Kickstart
 #workbench
 #https://archive.org/download/commodore-amiga-operating-systems-workbench
@@ -64,15 +71,15 @@ unzip_with_path /home/emulos/emulators/bios/wb204_disk2.zip
 
 curl -L \
 https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v2.04%20rev%2037.67%20%281991%29%28Commodore%29%28Disk%203%20of%204%29%28Fonts%29.zip \
--o '/home/emulos/emulators/bios/wb204_disk3.zip' && \
-unzip_with_path /home/emulos/emulators/bios/wb204_disk3.zip && \
+-o '/home/emulos/emulators/bios/wb204_disk3.zip'  \
+unzip_with_path /home/emulos/emulators/bios/wb204_disk3.zip  \
 
 
 
 curl -L \
 https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v2.04%20rev%2037.67%20%281991%29%28Commodore%29%28Disk%204%20of%204%29%28Install%29.zip \
--o '/home/emulos/emulators/bios/wb204_disk4.zip' && \
-unzip_with_path /home/emulos/emulators/bios/wb204_disk4.zip && \
+-o '/home/emulos/emulators/bios/wb204_disk4.zip'  \
+unzip_with_path /home/emulos/emulators/bios/wb204_disk4.zip \
 
 
 
@@ -93,3 +100,4 @@ curl -L \
 curl -L \
 'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v3.1%20r40.68%20(1993)(Commodore)(A4000).rom' \
 -o '/home/emulos/emulators/bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom' 
+
