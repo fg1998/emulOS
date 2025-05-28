@@ -1,5 +1,7 @@
+https://sourceforge.net/projects/vice-emu/files/releases/vice-3.9.tar.gz/download
 
-sudo apt install libsdl2-dev libsdl2-image-dev libmpg123-dev libpng-dev zlib1g-dev libasound2-dev libvorbis-dev libflac-dev libpcap-dev automake bison flex libjpeg-dev portaudio19-dev xa65 dos2unix
+
+sudo apt install libsdl2-dev libsdl2-image-dev libmpg123-dev libpng-dev zlib1g-dev libasound2-dev libvorbis-dev libflac-dev libpcap-dev automake bison flex libjpeg-dev portaudio19-dev xa65 dos2unix -y
 
 ./autogen.sh
 

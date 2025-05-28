@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('path');
 const fs = require('fs').promises;
 const { stdout, stderr } = require('process');
+const { system } = require('systeminformation');
 const execFile = require('child_process').execFile
 
 
@@ -63,14 +64,19 @@ ipcMain.on("run-system", (event, content)=> {
  
   event.reply('writeLog',`Starting ${content.name}`)
 
-  const emulatorPath = content.emulator.path
+  const emulatorPath = content.emulator.path.replace('${emulatorpath}', content.config.emulatorpath)
   const emulatorParam = content.emulator.param.split(' ')
-  const systemParam = content.parameter.split(' ')
+  const spTEMP = content.parameter.replace('${configpath}', content.config.configpath)
+  const systemParam = spTEMP.split(' ')
+
+
+  
   
  
   const totalParam = [...emulatorParam, ...systemParam]
   
   event.reply('writeLog', emulatorPath + " " + totalParam.join(' '));
+  console.log(emulatorPath, ...totalParam)
   
   const extProcess = execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
     if(error)

@@ -622,6 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await Promise.all(
           romcheck.map(async (rom) => {
             const biosFileToCheck = path.join(runParameterLocal.config.biospath, rom);
+            
             try {
               await fsPromises.access(biosFileToCheck, fs.constants.F_OK);
             } catch(err) {

@@ -1,6 +1,8 @@
 {
   "config": {
-    "biospath": "/home/emulos/emulators/bios"
+    "biospath": "/home/emulos/emulators/bios",
+    "configpath": "/home/emulos/emulOS/config",
+    "emulatorpath": "/home/emulos/emulators"
   },
   "brands": [
     {
@@ -43,15 +45,15 @@
     {
       "name": "ZEsarUX",
       "key": "zesarux",
-      "path": "/home/emulos/emulators/zesarux/bin/zesarux",
+      "path": "${emulatorpath}/zesarux/bin/zesarux",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
-      "param": "--vo sdl --fullscreen --disablefooter",
+      "param": "--vo sdl --fullscreen --disablefooter --quickexit --nowelcomemessage",
       "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
     },
     {
       "name": "Vice X64",
       "key": "commodore64",
-      "path": "/home/emulos/emulators/vice/bin/x64",
+      "path": "${emulatorpath}/vice/bin/x64",
       "desc": "Vice commodore 8 bit emulator - c64",
       "param": "-VICIIfull",
       "instructions": "[F12] - Menu"
@@ -59,7 +61,7 @@
     {
       "name": "Vice X128",
       "key": "commodore128",
-      "path": "/home/emulos/emulators/vice/bin/x128",
+      "path": "${emulatorpath}/vice/bin/x128",
       "desc": "Vice commodore 8 bit emulator - c128",
       "param": "-VICIIfull",
       "instructions": "[F12] - Menu"
@@ -67,7 +69,7 @@
     {
       "name": "Vice VIC",
       "key": "commodoreVic",
-      "path": "/home/emulos/emulators/vice/bin/xvic",
+      "path": "${emulatorpath}/vice/bin/xvic",
       "desc": "Vice commodore 8 bit emulator - VIC",
       "param": "-VICfull",
       "instructions": "[F12] - Menu"
@@ -75,7 +77,7 @@
     {
       "name": "uae",
       "key": "amiga",
-      "path": "/home/emulos/emulators/amiberry/bin/amiberry",
+      "path": "${emulatorpath}/amiberry/bin/amiberry",
       "desc": "Commodore Amiga emulator",
       "param": "-G",
       "instructions": "[F1] - Open Settings [F10] - Quit"
@@ -83,10 +85,10 @@
     {
       "name": "linapple",
       "key": "linapple",
-      "path": "/home/emulos/emulators/linapple/bin/linapple",
+      "path": "${emulatorpath}/linapple/linapple",
       "desc": "Apple 8 bit emulator",
-      "param": "-f",
-      "instructions": "[F1] - Help </br> CTRL + [F2] - Could Boot </br> CTRL + [F10] - Hot Reset (Control + Reset) </br> [F12] - Exit"
+      "param": "--conf",
+      "instructions": "[F1] - Help </br> CTRL + [F2] - Could Boot </br> CTRL + [F12] - Hot Reset (Control + Reset) </br> [F12] - Exit"
     },
     {
       "name": "minivmac",
@@ -277,7 +279,7 @@
       "name": "Amiga 1000 (Workbench 1.1)",
       "desc": "1985 Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
       "emulator": "amiga",
-      "parameter": "/home/emulos/emulos/config/workbench_11_amiga1000.uae",
+      "parameter": "-f ${configpath}/workbench_11_amiga1000.uae",
       "favorite": false,
       "image": "a1000.png",
       "romcheck": [
@@ -391,7 +393,7 @@
       "name": "Amiga 500",
       "desc": "Commodore Amiga 500 featured a 7.16 MHz Motorola 68000, 512 KB RAM, and the Agnus, Denise, Paula custom chips.",
       "emulator": "amiga",
-      "parameter": "/home/emulos/emulos/config/workbench_13_amiga500.uae",
+      "parameter": "-f ${configpath}/workbench_13_amiga500.uae",
       "favorite": false,
       "image": "a500.png",
       "romcheck": [
@@ -408,7 +410,7 @@
       "emulator": "amiga",
       "favorite": false,
       "image": "a500.png",
-      "parameter": "/home/emulos/emulos/config/workbench_204_amiga500plus.uae",
+      "parameter": "-f ${configpath}/workbench_204_amiga500plus.uae",
       "romcheck": [
         "Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
       ],
@@ -422,7 +424,7 @@
       "emulator": "amiga",
       "favorite": false,
       "image": "a600.png",
-      "parameter": "/home/emulos/emulos/config/workbench_204_amiga600HD.uae",
+      "parameter": "-f ${configpath}/workbench_204_amiga600HD.uae",
       "romcheck": [
         "Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
       ],
@@ -434,7 +436,7 @@
       "name": "Amiga 1200",
       "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
       "emulator": "amiga",
-      "parameter": "/home/emulos/emulos/config/workbench_301_amiga1200.uae",
+      "parameter": "-f ${configpath}/workbench_301_amiga1200.uae",
       "favorite": true,
       "image": "a1200.png",
       "romcheck": [
@@ -445,14 +447,14 @@
     {
       "id": "1746193236753",
       "brand": "commodore",
-      "name": "Amiga 4000 (HD)",
+      "name": "Amiga 4000 ClassicWB",
       "desc": "Commodore Amiga 4000 delivered a 25 MHz Motorola 68040 CPU, 2 MB Fast RAM expandable, and the AGA chipset.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "amiga",
+      "parameter": "-f ${configpath}/classicwb_a4000.uae",
       "favorite": false,
       "image": "a4000.png",
       "romcheck": [
-        "Kickstart v3.1 rev 40.68 (1993)(Commodore)(A4000).rom"
+        "Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
       ],
       "year": "1992"
     },
@@ -462,7 +464,7 @@
       "name": "Apple ][ Plus",
       "desc": "Apple II Plus added Integer BASIC and 16–48 KB RAM support, offering color graphics and expansion slots, and became a major success.",
       "emulator": "linapple",
-      "parameter": "--conf /home/emulos/emulators/linapple/linapple_apple2plus.conf",
+      "parameter": "${configpath}/linapple_apple2plus.conf",
       "favorite": true,
       "image": "apple2plus.png",
       "year": "1979"
@@ -473,7 +475,7 @@
       "name": "Apple //e",
       "desc": "Apple IIe featured a 1 MHz 6502 CPU, 64 KB RAM (expandable to 128 KB), ProDOS support, durable keyboard.",
       "emulator": "linapple",
-      "parameter": "--conf /home/emulos/emulators/linapple/linapple_apple2e.conf",
+      "parameter": "${configpath}/linapple_apple2e.conf",
       "favorite": false,
       "image": "apple2e.png",
       "year": "1983"

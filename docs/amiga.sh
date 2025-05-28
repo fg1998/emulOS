@@ -1,0 +1,95 @@
+#!/bin/bash
+set -x
+
+unzip_with_path() {
+  zipfile="$1"
+  destdir="$(dirname "$zipfile")"
+  unzip "$zipfile" -d "$destdir"
+  rm "$zipfile"
+}
+
+
+#amiga Kickstart
+#workbench
+#https://archive.org/download/commodore-amiga-operating-systems-workbench
+#classicwb
+#https://classicwb.abime.net/
+
+##Amiga 1000
+ curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v1.3%20r34.5%20(1987)(Commodore)(A500-A1000-A2000-CDTV)%5B!%5D.rom' \
+ -o '/home/emulos/emulators/bios/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom'
+
+curl -L \
+'https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v1.1%20rev%2031.334%20%281986%29%28Commodore%29%28Disk%201%20of%202%29%28Workbench%29%5Bm%20icon%20positions%5D.zip' \
+-o '/home/emulos/emulators/bios/workbench_1.1_31_334.zip'
+unzip_with_path /home/emulos/emulators/bios/workbench_1.1_31_334.zip
+
+
+
+#Amiga 500 OCS
+ curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v1.3%20r34.5%20(1987)(Commodore)(A500-A1000-A2000-CDTV)%5B!%5D.rom' \
+ -o '/home/emulos/emulators/bios/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom'
+
+curl -L \
+'https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v1.3%20rev%2034.20%20%281988%29%28Commodore%29%28A500-A2000%29%28Disk%201%20of%202%29%28Workbench%29%5Bm%5D.zip' \
+-o '/home/emulos/emulators/bios/wb13_disk1.zip' 
+unzip_with_path /home/emulos/emulators/bios/wb13_disk1.zip
+
+
+curl -L \
+'https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v1.3%20rev%2034.20%20%281988%29%28Commodore%29%28A500-A2000%29%28Disk%202%20of%202%29%28Extras%29.zip' \
+-o '/home/emulos/emulators/bios/wb13_disk2.zip'
+unzip_with_path /home/emulos/emulators/bios/wb13_disk2.zip
+
+
+#Amiga 500+
+
+curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v2.04%20r37.175%20(1991)(Commodore)(A500+)%5B!%5D.rom' \
+-o '/home/emulos/emulators/bios/Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom'
+
+curl -L 'https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v2.04%20rev%2037.67%20%281991%29%28Commodore%29%28Disk%201%20of%204%29%28Workbench%29.zip' \
+-o '/home/emulos/emulators/bios/wb204_disk1.zip'
+unzip_with_path /home/emulos/emulators/bios/wb204_disk1.zip
+
+
+curl -L \
+https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v2.04%20rev%2037.67%20%281991%29%28Commodore%29%28Disk%202%20of%204%29%28Extras%29.zip \
+-o '/home/emulos/emulators/bios/wb204_disk2.zip'
+unzip_with_path /home/emulos/emulators/bios/wb204_disk2.zip
+
+
+
+curl -L \
+https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v2.04%20rev%2037.67%20%281991%29%28Commodore%29%28Disk%203%20of%204%29%28Fonts%29.zip \
+-o '/home/emulos/emulators/bios/wb204_disk3.zip' && \
+unzip_with_path /home/emulos/emulators/bios/wb204_disk3.zip && \
+
+
+
+curl -L \
+https://archive.org/download/commodore-amiga-operating-systems-workbench/Workbench%20v2.04%20rev%2037.67%20%281991%29%28Commodore%29%28Disk%204%20of%204%29%28Install%29.zip \
+-o '/home/emulos/emulators/bios/wb204_disk4.zip' && \
+unzip_with_path /home/emulos/emulators/bios/wb204_disk4.zip && \
+
+
+
+#Amiga 600
+curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v2.05%20r37.350%20(1992)(Commodore)(A600HD)%5B!%5D.rom' \
+-o '/home/emulos/emulators/bios/Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom'
+
+
+#Amiga1200
+curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v3.1%20r40.68%20(1993)(Commodore)(A1200)%5B!%5D.rom' \
+-o '/home/emulos/emulators/bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom'
+
+
+
+#amiga4000
+curl -L \
+'https://github.com/BatoceraPLUS/Batocera.PLUS-bios/raw/refs/heads/main/Kickstart%20v3.1%20r40.68%20(1993)(Commodore)(A4000).rom' \
+-o '/home/emulos/emulators/bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom' 

@@ -1,3 +1,7 @@
-  sudo apt install build-essential git cmake libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libflac-dev libmpg123-dev libpng-dev libmpeg2-4-dev libserialport-dev libportmidi-dev libenet-dev
-  cmake -B build -DCMAKE_INSTALL_PREFIX=/home/emulos/emulators/amiberry && cmake --build build
-  sudo cmake --install build --prefix /home/emulos/emulators/amiberry
+  git clone https://github.com/BlitterStudio/amiberry.git
+  
+  sudo apt install build-essential git cmake libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libflac-dev libmpg123-dev libpng-dev libmpeg2-4-dev libserialport-dev libportmidi-dev libenet-dev -y
+  #cmake -B build -DCMAKE_INSTALL_PREFIX=/home/emulos/emulators/amiberry && cmake --build build
+  cmake -B build -DCMAKE_INSTALL_PREFIX=~/emulators/amiberry && cmake --build build
+  #sudo cmake --install build --prefix /home/emulos/emulators/amiberry
+   
