@@ -105,9 +105,9 @@
     {
       "name": "basiliskII",
       "key": "basiliskii",
-      "path": "/home/emulos/emulators/BasiliskII/bin/BasiliskII",
+      "path": "${emulatorpath}/BasiliskII/BasiliskII",
       "desc": "Apple Classic Performa Emulator",
-      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
+      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom ${biospath}/macintosh/performa.rom",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     }
   ],
@@ -490,7 +490,7 @@
       "name": "Performa System 7.5.5",
       "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
       "emulator": "basiliskii",
-      "parameter": "-r${biospath}/vMac.ROM --disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
+      "parameter": "--disk ${biospath}/755_2GB_drive.dsk",
       "favorite": false,
       "image": "performa5230.png",
       "year": "1996"
