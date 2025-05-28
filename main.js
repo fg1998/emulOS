@@ -25,7 +25,7 @@ function createWindow() {
   });
 
   win.loadFile('renderer/index.html');
-  win.webContents.openDevTools(); // DevTools ativado
+  //win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {
@@ -65,13 +65,14 @@ ipcMain.on("run-system", (event, content)=> {
   event.reply('writeLog',`Starting ${content.name}`)
 
   const emulatorPath = content.emulator.path.replace('${emulatorpath}', content.config.emulatorpath)
-  const emulatorParam = content.emulator.param ? content.emulator.param.split(' ') : "";
+  
+  
+  const epTEMP = content.emulator.param.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
+  const emulatorParam =  epTEMP ? epTEMP.split(' ') : [];     //content.emulator.param ? content.emulator.param.split(' ') : "";
 
   
 
   const spTEMP = content.parameter.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
-  
-  //const systemParam = spTEMP.split(' ')
   const systemParam = spTEMP ? spTEMP.split(' ') : [];
 
 
