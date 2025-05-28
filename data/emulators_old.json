@@ -32,6 +32,10 @@
     {
       "name": "Atari",
       "desc": "Atari"
+    },
+    {
+      "name": "misc",
+      "desc": "Misc"
     }
   ],
   "emulators": [
@@ -447,14 +451,14 @@
     {
       "id": "1746193236753",
       "brand": "commodore",
-      "name": "Amiga 4000 (HD)",
+      "name": "Amiga 4000 ClassicWB",
       "desc": "Commodore Amiga 4000 delivered a 25 MHz Motorola 68040 CPU, 2 MB Fast RAM expandable, and the AGA chipset.",
       "emulator": "amiga",
-      "parameter": "-f",
+      "parameter": "-f ${configpath}/classicwb_a4000.uae",
       "favorite": false,
       "image": "a4000.png",
       "romcheck": [
-        "Kickstart v3.1 rev 40.68 (1993)(Commodore)(A4000).rom"
+        "Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
       ],
       "year": "1992"
     },
@@ -589,6 +593,26 @@
       "favorite": false,
       "image": "atarifalcon.png",
       "year": "1992"
+    },
+    {
+      "id": "1748452744401",
+      "brand": "misc",
+      "name": "Texas TI-99/4A",
+      "desc": "Texas Instruments TI-99/4A: early 1980s home computer with 16-bit CPU, color graphics, speech, and cartridge-based software.",
+      "emulator": "amiga",
+      "parameter": "",
+      "favorite": false,
+      "image": "ti99.png"
+    },
+    {
+      "id": "1748452940331",
+      "brand": "misc",
+      "name": "BBC Micro",
+      "desc": "980s British computer by Acorn, used in education, featured BASIC, expandable hardware, and solid build quality.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "bbc.png"
     }
   ]
 }

@@ -32,6 +32,10 @@
     {
       "name": "Atari",
       "desc": "Atari"
+    },
+    {
+      "name": "misc",
+      "desc": "Misc"
     }
   ],
   "emulators": [
@@ -589,6 +593,36 @@
       "favorite": false,
       "image": "atarifalcon.png",
       "year": "1992"
+    },
+    {
+      "id": "1748452744401",
+      "brand": "misc",
+      "name": "Texas TI-99/4A",
+      "desc": "Texas Instruments TI-99/4A: early 1980s home computer with 16-bit CPU, color graphics, speech, and cartridge-based software.",
+      "emulator": "amiga",
+      "parameter": "",
+      "favorite": false,
+      "image": "ti99.png"
+    },
+    {
+      "id": "1748452940331",
+      "brand": "misc",
+      "name": "BBC Micro",
+      "desc": "980s British computer by Acorn, used in education, featured BASIC, expandable hardware, and solid build quality.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "bbc.png"
+    },
+    {
+      "id": "1748453332239",
+      "brand": "misc",
+      "name": "IBM PC",
+      "desc": "Launched in 1981, revolutionized personal computing with open architecture, Intel CPU, MS-DOS, and widespread business and home use.",
+      "emulator": "fuse",
+      "parameter": "",
+      "favorite": false,
+      "image": "ibmpc.png"
     }
   ]
 }
