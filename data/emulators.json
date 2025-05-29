@@ -23,7 +23,7 @@
     },
     {
       "name": "msx",
-      "desc": "MSX "
+      "desc": "MSX"
     },
     {
       "name": "trs",
@@ -99,7 +99,7 @@
       "key": "minivmac",
       "path": "${emulatorpath}/minivmac/minivmac",
       "desc": "Original Macintosh Emulator",
-      "param":"-r ${biospath}/macintosh/vMac.ROM",
+      "param": "-r ${biospath}/macintosh/vMac.ROM",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     },
     {
@@ -109,6 +109,14 @@
       "desc": "Apple Classic Performa Emulator",
       "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom ${biospath}/macintosh/performa.rom",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
+    },
+    {
+      "name": "openMSX",
+      "key": "openMSX",
+      "path": "${emulatorpath}/openMSX/bin/openmsx",
+      "desc": "MSX Emulator",
+      "param": "",
+      "instructions": "Alt + [F4] - Exit"
     }
   ],
   "systems": [
@@ -205,10 +213,10 @@
       "brand": "msx",
       "name": "Hotbit 1.2",
       "desc": "Brazilian MSX 1.2",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": true,
       "image": "hotbit.png",
-      "parameter": "Sharp_HB-8000_1.2",
+      "parameter": "-machine Sharp_HB-8000_1.2",
       "year": "1985"
     },
     {
@@ -216,10 +224,10 @@
       "brand": "msx",
       "name": "Expert 1.1",
       "desc": "Brazilian MSX 1",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": false,
       "image": "expert.png",
-      "parameter": "Gradiente_Expert_GPC-1",
+      "parameter": "-machine Gradiente_Expert_GPC-1",
       "year": "1985"
     },
     {
@@ -227,9 +235,9 @@
       "brand": "msx",
       "name": "VG8000",
       "desc": "Philips MSX 1.0",
-      "emulator": "fuse",
+      "emulator": "openMSX",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen",
+      "parameter": "-machine Philips_VG_8000",
       "image": "vg8000.png",
       "year": "1983"
     },
@@ -238,10 +246,10 @@
       "brand": "msx",
       "name": "FS-5500 F2",
       "desc": "National FS-5500 F2 MSX2",
-      "emulator": "fuse",
+      "emulator": "openMSX",
       "image": "fs5500f2.png",
       "favorite": false,
-      "parameter": "National_FS-5500F2",
+      "parameter": "-machine National_FS-5500F2",
       "year": "1985"
     },
     {
@@ -249,20 +257,53 @@
       "brand": "msx",
       "name": "FS-A1WSX",
       "desc": "Panasonic MSX2+",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": false,
       "image": "fsa1wsx.png",
-      "parameter": "Panasonic_FS-A1WSX",
+      "parameter": "-machine Panasonic_FS-A1WSX",
       "year": "1989"
     },
     {
       "id": "16",
       "brand": "msx",
       "name": "Boosted MSX2",
-      "desc": "GFX9000, Moonsound, FMPac, SCC+",
-      "emulator": "fuse",
+      "desc": "2048Kb, V9958, SCC+, FMPAC, MSX Audio, MoonSound, GFX9000, 512Kb RAM, Basic Compiler",
+      "emulator": "openMSX",
       "favorite": false,
-      "parameter": "Boosted_MSX2_EN",
+      "parameter": "-machine Boosted_MSX2_EN",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "1633441",
+      "brand": "msx",
+      "name": "Boosted MSX2+ JP",
+      "desc": "Kanji ROM, MSX-MUSIC, 2048 Kb, V9958, SCC+, MSX Audio, MoonSound, GFX9000, 512Kb RAM, Basic Compiler ",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSX2+_JP",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "166664322",
+      "brand": "msx",
+      "name": "Boosted Turbo-R",
+      "desc": "R800, Kanji ROM, MSX-Music, PCM, MSX-MIDI, 2048 kb Mapper, V9958, SCC+, MSX Audio, MoonSound, GFX9000, %12Kb MegaRAM, Basic compiler, IDE Interface with 100Mb HD and CD-ROM",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSXturboR_with_IDE",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "166664332",
+      "brand": "msx",
+      "name": "Nextor IDE Expert 3",
+      "desc": "Custom MSX2+ with Nextor IDE and hard Disk",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine CIEL_Expert-Turbo -exta DDX_3.0 -extb nextor -hda ~/emulators/bios/MSXhd.dsk",
       "image": "boostedMSX.png",
       "year": "2024"
     },
@@ -271,10 +312,10 @@
       "brand": "msx",
       "name": "FS-A1GT",
       "desc": "Panasonic MSX Turbo R",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": false,
       "image": "fsa1gt.png",
-      "parameter": "Panasonic_FS-A1GT",
+      "parameter": "-machine Panasonic_FS-A1GT",
       "year": "1991"
     },
     {
@@ -287,8 +328,8 @@
       "favorite": false,
       "image": "a1000.png",
       "romcheck": [
-        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
-        "Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf"
+        "amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "amiga/Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf"
       ],
       "year": "1985"
     },
@@ -401,8 +442,8 @@
       "favorite": false,
       "image": "a500.png",
       "romcheck": [
-        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
-        "Workbench v1.3 rev 34.20 (1988)(Commodore)(A500-A2000)(Disk 1 of 2)(Workbench)[m].adf"
+        "amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "amiga/Workbench v1.3 rev 34.20 (1988)(Commodore)(A500-A2000)(Disk 1 of 2)(Workbench)[m].adf"
       ],
       "year": "1987"
     },
@@ -416,7 +457,7 @@
       "image": "a500.png",
       "parameter": "-f ${configpath}/workbench_204_amiga500plus.uae",
       "romcheck": [
-        "Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
+        "amiga/Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
       ],
       "year": "1991"
     },
@@ -430,21 +471,21 @@
       "image": "a600.png",
       "parameter": "-f ${configpath}/workbench_204_amiga600HD.uae",
       "romcheck": [
-        "Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
+        "amiga/Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
       ],
       "year": "1992"
     },
     {
       "id": "1746193196544",
       "brand": "commodore",
-      "name": "Amiga 1200",
+      "name": "Amiga 1200 HD",
       "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
       "emulator": "amiga",
       "parameter": "-f ${configpath}/workbench_301_amiga1200.uae",
       "favorite": true,
       "image": "a1200.png",
       "romcheck": [
-        "Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
+        "amiga/Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
       ],
       "year": "1992"
     },
@@ -458,7 +499,7 @@
       "favorite": false,
       "image": "a4000.png",
       "romcheck": [
-        "Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
+        "amiga/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
       ],
       "year": "1992"
     },
@@ -490,7 +531,7 @@
       "name": "Performa System 7.5.5",
       "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
       "emulator": "basiliskii",
-      "parameter": "--disk ${biospath}/755_2GB_drive.dsk",
+      "parameter": "--disk ${biospath}/macintosh/755_2GB_drive.dsk",
       "favorite": false,
       "image": "performa5230.png",
       "year": "1996"

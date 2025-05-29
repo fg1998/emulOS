@@ -17,7 +17,7 @@ amiberry.quit_amiberry=F10
 ; common
 use_gui=no
 use_debugger=false
-kickstart_rom_file=/home/emulos/emulators/bios/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom
+kickstart_rom_file=/home/emulos/emulators/bios/amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom
 kickstart_ext_rom_file=
 flash_file=
 cart_file=
@@ -25,7 +25,7 @@ rtc_file=
 kickshifter=false
 scsidevice_disable=false
 floppy_volume=33
-floppy0=/home/emulos/emulators/bios/Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf
+floppy0=/home/emulos/emulators/bios/amiga/Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf
 floppy1=
 floppy1type=-1
 floppy2=

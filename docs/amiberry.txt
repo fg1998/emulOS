@@ -5,3 +5,7 @@
   cmake -B build -DCMAKE_INSTALL_PREFIX=~/emulators/amiberry && cmake --build build
   #sudo cmake --install build --prefix /home/emulos/emulators/amiberry
    
+
+   #https://classicwb.abime.net/
+
+   

@@ -23,7 +23,7 @@
     },
     {
       "name": "msx",
-      "desc": "MSX "
+      "desc": "MSX"
     },
     {
       "name": "trs",
@@ -99,15 +99,24 @@
       "key": "minivmac",
       "path": "${emulatorpath}/minivmac/minivmac",
       "desc": "Original Macintosh Emulator",
+      "param": "-r ${biospath}/macintosh/vMac.ROM",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
     },
     {
       "name": "basiliskII",
       "key": "basiliskii",
-      "path": "/home/emulos/emulators/BasiliskII/bin/BasiliskII",
+      "path": "${emulatorpath}/BasiliskII/BasiliskII",
       "desc": "Apple Classic Performa Emulator",
-      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom /home/emulos/emulators/BasiliskII/bios/performa.rom",
+      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom ${biospath}/macintosh/performa.rom",
       "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
+    },
+    {
+      "name": "openMSX",
+      "key": "openMSX",
+      "path": "${emulatorpath}/openMSX/bin/openmsx",
+      "desc": "MSX Emulator",
+      "param": "-command 'set fullscreen on'",
+      "instructions": "Alt + [F4] - Exit"
     }
   ],
   "systems": [
@@ -204,10 +213,10 @@
       "brand": "msx",
       "name": "Hotbit 1.2",
       "desc": "Brazilian MSX 1.2",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": true,
       "image": "hotbit.png",
-      "parameter": "Sharp_HB-8000_1.2",
+      "parameter": "-machine Sharp_HB-8000_1.2",
       "year": "1985"
     },
     {
@@ -215,10 +224,10 @@
       "brand": "msx",
       "name": "Expert 1.1",
       "desc": "Brazilian MSX 1",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": false,
       "image": "expert.png",
-      "parameter": "Gradiente_Expert_GPC-1",
+      "parameter": "-machine Gradiente_Expert_GPC-1",
       "year": "1985"
     },
     {
@@ -226,7 +235,7 @@
       "brand": "msx",
       "name": "VG8000",
       "desc": "Philips MSX 1.0",
-      "emulator": "fuse",
+      "emulator": "openMSX",
       "favorite": false,
       "parameter": "--machine ACE --fullscreen",
       "image": "vg8000.png",
@@ -237,10 +246,10 @@
       "brand": "msx",
       "name": "FS-5500 F2",
       "desc": "National FS-5500 F2 MSX2",
-      "emulator": "fuse",
+      "emulator": "openMSX",
       "image": "fs5500f2.png",
       "favorite": false,
-      "parameter": "National_FS-5500F2",
+      "parameter": "-machine National_FS-5500F2",
       "year": "1985"
     },
     {
@@ -248,10 +257,10 @@
       "brand": "msx",
       "name": "FS-A1WSX",
       "desc": "Panasonic MSX2+",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": false,
       "image": "fsa1wsx.png",
-      "parameter": "Panasonic_FS-A1WSX",
+      "parameter": "-machine Panasonic_FS-A1WSX",
       "year": "1989"
     },
     {
@@ -259,7 +268,7 @@
       "brand": "msx",
       "name": "Boosted MSX2",
       "desc": "GFX9000, Moonsound, FMPac, SCC+",
-      "emulator": "fuse",
+      "emulator": "openMSX",
       "favorite": false,
       "parameter": "Boosted_MSX2_EN",
       "image": "boostedMSX.png",
@@ -270,10 +279,10 @@
       "brand": "msx",
       "name": "FS-A1GT",
       "desc": "Panasonic MSX Turbo R",
-      "emulator": "msx",
+      "emulator": "openMSX",
       "favorite": false,
       "image": "fsa1gt.png",
-      "parameter": "Panasonic_FS-A1GT",
+      "parameter": "-machine Panasonic_FS-A1GT",
       "year": "1991"
     },
     {
@@ -286,8 +295,8 @@
       "favorite": false,
       "image": "a1000.png",
       "romcheck": [
-        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
-        "Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf"
+        "amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "amiga/Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf"
       ],
       "year": "1985"
     },
@@ -400,8 +409,8 @@
       "favorite": false,
       "image": "a500.png",
       "romcheck": [
-        "Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
-        "Workbench v1.3 rev 34.20 (1988)(Commodore)(A500-A2000)(Disk 1 of 2)(Workbench)[m].adf"
+        "amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "amiga/Workbench v1.3 rev 34.20 (1988)(Commodore)(A500-A2000)(Disk 1 of 2)(Workbench)[m].adf"
       ],
       "year": "1987"
     },
@@ -415,7 +424,7 @@
       "image": "a500.png",
       "parameter": "-f ${configpath}/workbench_204_amiga500plus.uae",
       "romcheck": [
-        "Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
+        "amiga/Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
       ],
       "year": "1991"
     },
@@ -429,21 +438,21 @@
       "image": "a600.png",
       "parameter": "-f ${configpath}/workbench_204_amiga600HD.uae",
       "romcheck": [
-        "Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
+        "amiga/Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
       ],
       "year": "1992"
     },
     {
       "id": "1746193196544",
       "brand": "commodore",
-      "name": "Amiga 1200",
+      "name": "Amiga 1200 HD",
       "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
       "emulator": "amiga",
       "parameter": "-f ${configpath}/workbench_301_amiga1200.uae",
       "favorite": true,
       "image": "a1200.png",
       "romcheck": [
-        "Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
+        "amiga/Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
       ],
       "year": "1992"
     },
@@ -457,7 +466,7 @@
       "favorite": false,
       "image": "a4000.png",
       "romcheck": [
-        "Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
+        "amiga/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
       ],
       "year": "1992"
     },
@@ -489,7 +498,7 @@
       "name": "Performa System 7.5.5",
       "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
       "emulator": "basiliskii",
-      "parameter": "-r${biospath}/vMac.ROM --disk /home/emulos/emulators/BasiliskII/755_2GB_drive.dsk",
+      "parameter": "--disk ${biospath}/macintosh/755_2GB_drive.dsk",
       "favorite": false,
       "image": "performa5230.png",
       "year": "1996"
@@ -497,10 +506,10 @@
     {
       "id": "1746193870184",
       "brand": "apple",
-      "name": "Macintosh 128 system 1.1",
+      "name": "Macintosh 128 system 3.2",
       "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
       "emulator": "minivmac",
-      "parameter": "-r ${biospath}/vMac.ROM ${biospath}/disk1.dsk",
+      "parameter": "${biospath}/macintosh/system3_2.dsk",
       "favorite": false,
       "image": "mac.png",
       "year": "1984"
@@ -511,7 +520,7 @@
       "name": "Macintosh 128 system 2.2",
       "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
       "emulator": "minivmac",
-      "parameter": "/home/emulos/emulators/minivmac/system2-2/system.image",
+      "parameter": "${biospath}/macintosh/system1_1.dsk",
       "favorite": false,
       "image": "mac.png",
       "year": "1984"
