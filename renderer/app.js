@@ -416,6 +416,7 @@ function addEmulator() {
   const fieldEmulator = document.getElementById("config-emulator");
   const fieldParam = document.getElementById("config-parameter");
   const fieldImage = document.getElementById("config-image")
+  const fieldYear = document.getElementById("config-year")
 
   fieldBrand.innerHTML = "";
   data.brands.forEach((b) => {
@@ -428,6 +429,7 @@ function addEmulator() {
   fieldName.value = "";
   fieldDesc.value = "";
   fieldEmulator.innerHTML = "";
+  fieldYear.value = "";
   data.emulators.forEach((e) => {
     const option = document.createElement("option");
     option.value = e.key;
@@ -451,6 +453,7 @@ function configSystem(sys) {
   const fieldEmulator = document.getElementById("config-emulator");
   const fieldParam = document.getElementById("config-parameter");
   const fieldImage = document.getElementById("config-image")
+  const fieldYear = document.getElementById('config-year');
 
   // Preencher dropdown de brands
   fieldBrand.innerHTML = "";
@@ -464,6 +467,7 @@ function configSystem(sys) {
 
   fieldName.value = sys.name || "";
   fieldDesc.value = sys.desc || "";
+  fieldYear.value = sys.year || "";
   fieldEmulator.innerHTML = "";
   data.emulators.forEach((e) => {
     const option = document.createElement("option");
@@ -495,6 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const emulatorVal = document.getElementById("config-emulator").value;
       const paramVal = document.getElementById("config-parameter").value;
       const imageVal = document.getElementById("config-image").value;
+      const yearVal = document.getElementById("config-year").value
 
       if (!window.currentSystemConfig) {
         const newSystem = {
@@ -505,7 +510,8 @@ document.addEventListener("DOMContentLoaded", () => {
           emulator: emulatorVal,
           parameter: paramVal,
           favorite: false,
-          image: imageVal
+          image: imageVal,
+          year : yearVal
         };
         dataObj.systems.push(newSystem);
         logMessage(`new system add: ${newSystem.name}`);
@@ -518,7 +524,8 @@ document.addEventListener("DOMContentLoaded", () => {
           desc: descVal,
           emulator: emulatorVal,
           parameter: paramVal,
-          image : imageVal
+          image : imageVal,
+          year : yearVal
         });
 
         const idx = dataObj.systems.findIndex((s) => s.id === sys.id);
@@ -529,7 +536,8 @@ document.addEventListener("DOMContentLoaded", () => {
             desc: descVal,
             emulator: emulatorVal,
             parameter: paramVal,
-            image : imageVal
+            image : imageVal,
+            year : yearVal
           });
 
           logMessage(`System updated: ${dataObj.systems[idx].name}`);
