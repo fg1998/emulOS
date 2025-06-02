@@ -1,0 +1,2 @@
+https://github.com/atari800/atari800/releases/download/ATARI800_5_2_0/atari800_5.2.0_arm64.deb
+dpkg-deb -x atari800_5.2.0_arm64.deb /home/emulos/emulators/atari800

@@ -133,6 +133,14 @@
       "desc": "Atari ST/STE/TT/Falcon emulator",
       "param": "",
       "instructions": "F12 - menu   [ALT] + Q - Exit"
+    },
+    {
+      "name": "atari8bit",
+      "key": "atari8bit",
+      "path": "${emulatorpath}/atari800/usr/bin/atari800",
+      "desc": "Atari ST/STE/TT/Falcon emulator",
+      "param": "",
+      "instructions": "F12 - menu   [ALT] + Q - Exit"
     }
   ],
   "systems": [
@@ -612,8 +620,8 @@
       "brand": "Atari",
       "name": "Atari 800",
       "desc": "Atari 800 offered a 1.79 MHz MOS 6502, expandable 8–48 KB RAM, and 320×192 high-resolution graphics",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "atari8bit",
+      "parameter": "-config ${configpath}/atari800.cfg",
       "favorite": false,
       "image": "atari800.png",
       "year": "1979"
@@ -621,10 +629,10 @@
     {
       "id": "1746204609974",
       "brand": "Atari",
-      "name": "Atari 800XL",
+      "name": "Atari 1200XL",
       "desc": "Atari 800XL featured a 1.79 MHz MOS 6502C CPU, 64 KB RAM, and 320×192 graphics.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "atari8bit",
+      "parameter": "-config ${configpath}/atari1200.cfg",
       "favorite": false,
       "image": "atari800xl.png",
       "year": "1983"
@@ -648,13 +656,13 @@
       "emulator": "hatari",
       "parameter": "-c ${configpath}/1MB_STE_TOS_206",
       "favorite": false,
-      "image": "atari520st.png",
+      "image": "atariste.png",
       "year": "1989"
     },
     {
       "id": "1746205326971",
       "brand": "Atari",
-      "name": "Falcon 030",
+      "name": "Falcon 030 HD",
       "desc": "Introduced in 1992, Atari’s Falcon 030 ran a Motorola 68030 at 16 MHz with 1 MB RAM (expandable), onboard DSP, MIDI ports, and SVGA graphics.",
       "emulator": "hatari",
       "parameter": "-c ${configpath}/Falcon030",
