@@ -648,7 +648,7 @@
       "emulator": "hatari",
       "parameter": "-c ${configpath}/1MB_STE_TOS_206",
       "favorite": false,
-      "image": "atari520st.png",
+      "image": "atariste.png",
       "year": "1989"
     },
     {

@@ -657,7 +657,7 @@
       "name": "Falcon 030",
       "desc": "Introduced in 1992, Atari’s Falcon 030 ran a Motorola 68030 at 16 MHz with 1 MB RAM (expandable), onboard DSP, MIDI ports, and SVGA graphics.",
       "emulator": "hatari",
-      "parameter": "-c ${configpath}/Falcon_030",
+      "parameter": "-c ${configpath}/Falcon030",
       "favorite": false,
       "image": "atarifalcon.png",
       "year": "1992"
