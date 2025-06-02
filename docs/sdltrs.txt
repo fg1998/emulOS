@@ -1,0 +1,9 @@
+git clone https://gitlab.com/jengun/sdltrs.git
+sudo apt install libsdl2-dev libreadline-dev -y
+./autogen.sh
+./configure --prefix="/home/emulos/emulators/sdltrs"
+make
+make install
+
+#level1 and level2
+#https://www.filfre.net/misc/trs_roms.zip

@@ -115,8 +115,24 @@
       "key": "openMSX",
       "path": "${emulatorpath}/openMSX/bin/openmsx",
       "desc": "MSX Emulator",
-      "param": "-command 'set fullscreen on'",
+      "param": "",
       "instructions": "Alt + [F4] - Exit"
+    },
+    {
+      "name": "sdltrs",
+      "key": "sdltrs",
+      "path": "${emulatorpath}/sdltrs/bin/sdltrs",
+      "desc": "TRS-80 Emulator",
+      "param": "-fullscreen",
+      "instructions": "F7 - menu"
+    },
+    {
+      "name": "hatari",
+      "key": "hatari",
+      "path": "${emulatorpath}/hatari/usr/bin/hatari",
+      "desc": "Atari ST/STE/TT/Falcon emulator",
+      "param": "",
+      "instructions": "F12 - menu   [ALT] + Q - Exit"
     }
   ],
   "systems": [
@@ -237,7 +253,7 @@
       "desc": "Philips MSX 1.0",
       "emulator": "openMSX",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen",
+      "parameter": "-machine Philips_VG_8000",
       "image": "vg8000.png",
       "year": "1983"
     },
@@ -267,10 +283,43 @@
       "id": "16",
       "brand": "msx",
       "name": "Boosted MSX2",
-      "desc": "GFX9000, Moonsound, FMPac, SCC+",
+      "desc": "2048Kb, V9958, SCC+, FMPAC, MSX Audio, MoonSound, GFX9000, 512Kb RAM, Basic Compiler",
       "emulator": "openMSX",
       "favorite": false,
-      "parameter": "Boosted_MSX2_EN",
+      "parameter": "-machine Boosted_MSX2_EN",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "1633441",
+      "brand": "msx",
+      "name": "Boosted MSX2+ JP",
+      "desc": "Kanji ROM, MSX-MUSIC, 2048 Kb, V9958, SCC+, MSX Audio, MoonSound, GFX9000, 512Kb RAM, Basic Compiler ",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSX2+_JP",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "166664322",
+      "brand": "msx",
+      "name": "Boosted Turbo-R",
+      "desc": "R800, Kanji ROM, MSX-Music, PCM, MSX-MIDI, 2048 kb Mapper, V9958, SCC+, MSX Audio, MoonSound, GFX9000, %12Kb MegaRAM, Basic compiler, IDE Interface with 100Mb HD and CD-ROM",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSXturboR_with_IDE",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "166664332",
+      "brand": "msx",
+      "name": "Nextor IDE Expert 3",
+      "desc": "Custom MSX2+ with Nextor IDE and hard Disk",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine CIEL_Expert-Turbo -exta DDX_3.0 -extb nextor -hda ~/emulators/bios/MSXhd.dsk",
       "image": "boostedMSX.png",
       "year": "2024"
     },
@@ -530,8 +579,8 @@
       "brand": "trs",
       "name": "TRS-80 Model III",
       "desc": "Released in 1980, used a Zilog Z80A at 2.03 MHz with 16–48 KB RAM and cassette storage.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "sdltrs",
+      "parameter": "/home/emulos/emulOS/config/trs80model3.t8c",
       "favorite": false,
       "image": "trs80model3.png",
       "year": "1980"
@@ -552,8 +601,8 @@
       "brand": "trs",
       "name": "Microdigital CP-500",
       "desc": "Introduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "sdltrs",
+      "parameter": "/home/emulos/emulOS/config/cp500.t8c",
       "favorite": false,
       "image": "cp500.png",
       "year": "1982"
@@ -583,21 +632,32 @@
     {
       "id": "1746204798260",
       "brand": "Atari",
-      "name": "Atari ST",
-      "desc": "Atari 520ST ran a Motorola 68000 CPU at 8 MHz with 512 KiB RAM, 320×200 color graphics; floppy-disk storage.",
-      "emulator": "fuse",
-      "parameter": "",
+      "name": "Atari 520ST TOS 1.04",
+      "desc": "Atari 520ST ran a Motorola 68000 CPU at 8 MHz with 1024 KiB RAM, 320×200 color graphics; floppy-disk storage.",
+      "emulator": "hatari",
+      "parameter": "-c ${configpath}/520_ST_TOS_104",
       "favorite": false,
       "image": "atari520st.png",
-      "year": "195"
+      "year": "1985"
+    },
+    {
+      "id": "17996304798260",
+      "brand": "Atari",
+      "name": "Atari STE 1Mb TOS 2.06",
+      "desc": "1989 improved version of Atari ST, with better graphics and multimedia hardware and operating system",
+      "emulator": "hatari",
+      "parameter": "-c ${configpath}/1MB_STE_TOS_206",
+      "favorite": false,
+      "image": "atari520st.png",
+      "year": "1989"
     },
     {
       "id": "1746205326971",
       "brand": "Atari",
       "name": "Falcon 030",
       "desc": "Introduced in 1992, Atari’s Falcon 030 ran a Motorola 68030 at 16 MHz with 1 MB RAM (expandable), onboard DSP, MIDI ports, and SVGA graphics.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "hatari",
+      "parameter": "-c ${configpath}/Falcon_030",
       "favorite": false,
       "image": "atarifalcon.png",
       "year": "1992"

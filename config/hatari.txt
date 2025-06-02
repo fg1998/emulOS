@@ -1,0 +1,6 @@
+sudo apt install snapd
+sudo snap download hatari-emulator
+sudo unsquashfs -d /home/emulos/emulators/hatari ./hatari-emulator_87.snap
+
+##Os explanations https://avtandil.narod.ru/tose.html
+##disk images https://www.modula.org.uk/atari-st-disks-index
