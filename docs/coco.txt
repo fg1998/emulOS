@@ -1,0 +1,114 @@
+git clone http://www.6809.org.uk/git/xroar.git
+git checkout fixes-1.8
+sudo apt install libsdl2-dev automake libasound2-dev libsndfile1-dev texinfo zlib1g-dev libpulse-dev -y
+./autogen.sh
+#./configure --prefix="$md_inst" "${params[@]}"
+./configure --prefix="/home/emulos/emulators/xroar" 
+
+
+
+This archive contains a complete set of working BASIC and DOS ROMs for CoCo and Dragon emulation under XROAR.
+
+These are fully working raw ROM dumps (NO FILE HEADER) with a .rom file extension.
+
+
+Uploaded to The Dragon Archive (http://archive.worldofdragon.org/) by Steve Evans (Zephyr) on the 26th November, 2012. 
+
+http://archive.worldofdragon.org/phpBB3/viewtopic.php?f=5&t=52
+
+
+XROAR Home Page http://www.6809.org.uk/dragon/xroar.shtml
+
+
+
+Example of some basic XROAR v0.27 command line parameters:
+
+
+Examples with DOS emulation disabled.
+-------------------------------------
+
+Dragon 32
+xroar -vo sdl -machine dragon32 -extbas d32.rom -nodos -kbd-translate
+
+Dragon 32 (64K RAM)
+xroar -vo sdl -machine dragon32 -extbas d32.rom -nodos -ram 64 -kbd-translate
+
+Dragon 64
+xroar -vo sdl -machine dragon64 -extbas d64rom1.rom -altbas d64rom2.rom -nodos -kbd-translate
+
+Dragon 64 (Later Motherboards)
+xroar -vo sdl -machine dragon64 -extbas d64tano.rom -altbas d64tano2.rom -nodos -kbd-translate
+
+Dragon 64 by Tano
+xroar -vo sdl -machine tano -extbas d64tano.rom -altbas d64tano2.rom -nodos -kbd-translate
+
+Dragon 200
+xroar -vo sdl -machine dragon64 -extbas d200rom1.rom -altbas d200rom2.rom -nodos -kbd-translate
+
+CoCo (Earliest model with Color BASIC v1.0 and 4K RAM)
+xroar -vo sdl -machine cocous -bas bas10.rom -noextbas -nodos -ram 4 -no-tape-fast -kbd-translate
+
+CoCo (Slightly later model with extended BASIC v1.0 and 32K RAM)
+xroar -vo sdl -machine cocous -bas bas11.rom -extbas extbas10.rom -nodos -ram 32 -kbd-translate
+
+CoCo 2 (Extended BASIC v1.1 and 64K RAM)
+xroar -vo sdl -machine cocous -bas bas12.rom -extbas extbas11.rom -nodos -ram 64 -kbd-translate
+
+CoCo 2b (Extended BASIC v1.1 and 64K RAM)
+xroar -vo sdl -machine cocous -bas bas13.rom -extbas extbas11.rom -nodos -ram 64 -kbd-translate
+
+CoCo 2b (Latest model with extended BASIC v1.1 and 64K RAM)
+xroar -vo sdl -machine cocous -bas bas14.rom -extbas extbas11.rom -nodos -ram 64 -kbd-translate
+
+Color 64
+xroar -vo sdl -machine cocous -bas color64bas.rom -extbas color64extbas.rom -nodos -ram 64 -kbd-translate
+
+Prologica CP-400 (64K RAM)
+xroar -vo sdl -machine cocous -bas cp400bas.rom -extbas cp400extbas.rom -nodos -ram 64 -kbd-translate
+
+
+Examples with DOS emulation enabled.
+------------------------------------
+
+Dragon 32
+xroar -vo sdl -machine dragon32 -extbas d32.rom -dos ddos11c.rom -kbd-translate
+
+Dragon 32 (64K RAM)
+xroar -vo sdl -machine dragon32 -extbas d32.rom -dos ddos11c.rom -ram 64 -kbd-translate
+
+Dragon 64
+xroar -vo sdl -machine dragon64 -extbas d64rom1.rom -altbas d64rom2.rom -dos ddos11c.rom -kbd-translate
+
+Dragon 64 (Later Motherboards)
+xroar -vo sdl -machine dragon64 -extbas d64tano.rom -altbas d64tano2.rom -dos ddos11c.rom -kbd-translate
+
+Dragon 64 by Tano
+xroar -vo sdl -machine tano -extbas d64tano.rom -altbas d64tano2.rom -dos ddos11c.rom -kbd-translate
+
+Dragon 200
+xroar -vo sdl -machine dragon64 -extbas d200rom1.rom -altbas d200rom2.rom -dos ddos42.rom -kbd-translate
+
+CoCo (Extended BASIC v1.0 and 32K RAM)
+xroar -vo sdl -machine cocous -bas bas11.rom -extbas extbas10.rom -dos disk12.rom -ram 32 -kbd-translate
+
+CoCo 2 (Extended BASIC v1.1 and 64K RAM)
+xroar -vo sdl -machine cocous -bas bas12.rom -extbas extbas11.rom -dos disk12.rom -ram 64 -kbd-translate
+
+CoCo 2b (Extended BASIC v1.1 and 64K RAM)
+xroar -vo sdl -machine cocous -bas bas13.rom -extbas extbas11.rom -dos disk12.rom -ram 64 -kbd-translate
+
+CoCo 2b (Latest model with extended BASIC v1.1 and 64K RAM)
+xroar -vo sdl -machine cocous -bas bas14.rom -extbas extbas11.rom -dos disk12.rom -ram 64 -kbd-translate
+
+Color 64
+xroar -vo sdl -machine cocous -bas color64bas.rom -extbas color64extbas.rom -cart rsdos -dos disk10.rom -ram 64 -kbd-translate
+
+Prologica CP-400 (64K RAM)
+xroar -vo sdl -machine cocous -bas cp400bas.rom -extbas cp400extbas.rom -cart rsdos -dos cp400dsk.rom -ram 64 -kbd-translate
+
+
+NOTES: 
+
+1. Pressing Ctrl+F toggles between full screen and windowed mode.
+
+2. The early CoCo ROMs (bas10, bas11 and extbas10) have bugs.

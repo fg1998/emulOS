@@ -141,6 +141,14 @@
       "desc": "Atari ST/STE/TT/Falcon emulator",
       "param": "",
       "instructions": "F1 - menu"
+    },
+    {
+      "name": "Coco",
+      "key": "coco",
+      "path": "${emulatorpath}/xroar/bin/xroar",
+      "desc": "Tandy Color Computer/Dragon emulator",
+      "param": "-fs -rompath ${biospath}/coco/",
+      "instructions": "F1 - menu"
     }
   ],
   "systems": [
@@ -598,8 +606,8 @@
       "brand": "trs",
       "name": "TRS Color Computer 2",
       "desc": "The TRS-80 Color Computer 2 featured a Motorola 6809E at 0.895 MHz, 16–64 KB RAM, and 256×192 graphics.",
-      "emulator": "fuse",
-      "parameter": "",
+      "emulator": "coco",
+      "parameter": "-machine cocous -bas bas14.rom -extbas extbas11.rom -nodos -ram 64 -kbd-translate",
       "favorite": false,
       "image": "trscolor2.png",
       "year": "1983"
@@ -699,6 +707,46 @@
       "parameter": "",
       "favorite": false,
       "image": "ibmpc.png"
+    },
+    {
+      "id": "1748888276711",
+      "brand": "trs",
+      "name": "TRS Color Computer 1.0 32Kb",
+      "desc": "",
+      "emulator": "coco",
+      "parameter": "-machine cocous -bas bas11.rom -extbas extbas10.rom -nodos -ram 32 -kbd-translate",
+      "favorite": false,
+      "image": "coco.png"
+    },
+    {
+      "id": "1748889132754",
+      "brand": "trs",
+      "name": "Prologica CP-400 DOS",
+      "desc": "",
+      "emulator": "coco",
+      "parameter": "-machine cocous -bas cp400bas.rom -extbas cp400extbas.rom -nodos -ram 64 -kbd-translate",
+      "favorite": false,
+      "image": "cp400.png"
+    },
+    {
+      "id": "1748889353040",
+      "brand": "trs",
+      "name": "Dragon 32",
+      "desc": "",
+      "emulator": "coco",
+      "parameter": "-machine dragon32 -extbas d32.rom -nodos -ram 64 -kbd-translate",
+      "favorite": false,
+      "image": "dragon32.png"
+    },
+    {
+      "id": "1748889389220",
+      "brand": "trs",
+      "name": "Dragon 64",
+      "desc": "",
+      "emulator": "coco",
+      "parameter": "-machine dragon64 -extbas d64rom1.rom -altbas d64rom2.rom -nodos -kbd-translate",
+      "favorite": false,
+      "image": "dragon64.png"
     }
   ]
 }
