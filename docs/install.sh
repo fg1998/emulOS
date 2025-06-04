@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 set -x
 sudo apt update -y
 
@@ -7,18 +8,42 @@ sudo apt update -y
 #git clone https://github.com/fg1998/emulOS.git
 #sudo apt-get install curl -y
 
-
-#install X
 sudo apt install --no-install-recommends \
   xserver-xorg \
   xinit \
   openbox \
-  matchbox-window-manager -y
+  xterm \
+  fonts-dejavu-core \
+  gpicview \
+  x11-utils \
+  x11-xserver-utils \
+  xclip \
+  gpm \
+  -y
 
-#xterm
-sudo apt install xterm -y
+  #!/bin/sh
+
+#!/bin/bash
+
+cat > ~/.xinitrc << 'EOF'
+#!/bin/sh
+
+# Ajuste de DPI para o Pi400, melhora o xterm e fontes
+xrdb -merge <<EOD
+Xft.dpi: 96
+XTerm*faceName: DejaVu Sans Mono
+XTerm*faceSize: 12
+EOD
+
+# Abre o terminal e o gerenciador de janelas
+xterm &
+exec openbox
+EOF
+
+chmod +x ~/.xinitrc
 
 sudo apt-get install curl -y
+
 
 #NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -34,7 +59,15 @@ nvm install --lts
 #sudo apt install libsdl1.2-dev libpng-dev zlib1g-dev libbz2-dev libaudiofile-dev bison flex devscripts x11proto-core-dev libdirectfb-dev libraspberrypi-dev -y
 
 #gdown
+sudo apt install python3 python3-pip -yg
 python3 -m pip install --break-system-packages --user gdown
+
+# Garante que ~/.local/bin esteja no PATH
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+  export PATH=$PATH:$HOME/.local/bin
+fi
+
 
 #Amiberry
 sudo apt install build-essential git cmake libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libflac-dev libmpg123-dev libpng-dev libmpeg2-4-dev libserialport-dev libportmidi-dev libenet-dev -y
@@ -43,7 +76,7 @@ sudo apt install build-essential git cmake libsdl2-dev libsdl2-ttf-dev libsdl2-i
 sudo apt install libsdl2-dev automake libasound2-dev libsndfile1-dev texinfo zlib1g-dev libpulse-dev -y
 
 #dosbox
-sudo apt install libsdl-sound1.2 libsdl-net1.2
+sudo apt install libsdl-sound1.2 libsdl-net1.2 -y
 
 #linapple
 sudo apt install libzip-dev libsdl1.2-dev libsdl-image1.2-dev libcurl4-openssl-dev libzip-dev libsdl1.2-dev libsdl-image1.2-dev libcurl4-openssl-dev zlib1g-dev imagemagick -y
@@ -62,6 +95,9 @@ sudo apt install libsdl2-dev libsdl2-image-dev libmpg123-dev libpng-dev zlib1g-d
 
 #ZEsarUX
 sudo apt-get install libssl-dev libpthread-stubs0-dev libasound2-dev libsdl2-dev -y
+
+
+gdown -id 1Ooj-wX8HZBU3yDXbs338Wya9_fVqO_2w
 
 cd emulOS
 
