@@ -161,7 +161,7 @@ function renderSidebar() {
 }
 
 const favToggle = document.querySelector(".favorites-toggle");
-favToggle.innerHTML = '<i class="fa fa-star" style="color: gold; margin-right: 8px;"></i> Favoritos';
+favToggle.innerHTML = '<i class="fa fa-star" style="color: gold; margin-right: 8px;"></i> Faves';
 favToggle.onclick = () => {
   currentBrand = null;
   showFavorites = true;

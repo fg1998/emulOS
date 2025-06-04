@@ -778,7 +778,7 @@
       "emulator": "dosbox",
       "parameter": "-conf ${configpath}/win311.conf",
       "favorite": false,
-      "image": "ibmpc.png",
+      "image": "windows3.png",
       "year": "1990"
     },
     {
@@ -789,7 +789,7 @@
       "emulator": "dosbox",
       "parameter": "-conf ${configpath}/win1.conf",
       "favorite": false,
-      "image": "ibmpc.png",
+      "image": "windows1.png",
       "year": "1985"
     },
     {
@@ -800,7 +800,7 @@
       "emulator": "dosbox",
       "parameter": "-conf ${configpath}/win2.conf",
       "favorite": false,
-      "image": "ibmpc.png",
+      "image": "windows2.png",
       "year": "1987"
     },
     {
@@ -811,7 +811,7 @@
       "emulator": "dosbox-x",
       "parameter": "-conf ${configpath}/win95.conf",
       "favorite": false,
-      "image": "ibmpc.png",
+      "image": "windows95.png",
       "year": "1995"
     }
   ]
