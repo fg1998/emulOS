@@ -1,0 +1,8 @@
+#apt download dosbox
+#dpkg-deb -x dosbox_0.74-3-4+b1_arm64.deb /home/emulos/emulators/dosbox
+#sudo apt install libsdl-sound1.2 libsdl-net1.2
+
+https://winworldpc.com/product/windows-10/104
+https://dosbox-x.com/wiki/Guide%3AInstalling-Windows-1.0x
+
+Windows95 Key 34698-OEM-0039682-72135

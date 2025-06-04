@@ -36,6 +36,10 @@
     {
       "name": "misc",
       "desc": "Misc"
+    },
+    {
+      "name": "ibmpc",
+      "desc": "IBM PC"
     }
   ],
   "emulators": [
@@ -148,6 +152,14 @@
       "path": "${emulatorpath}/xroar/bin/xroar",
       "desc": "Tandy Color Computer/Dragon emulator",
       "param": "-fs -rompath ${biospath}/coco/",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "dosbox",
+      "key": "dosbox",
+      "path": "${emulatorpath}/dosbox/usr/bin/dosbox",
+      "desc": "IBM PC Emulator",
+      "param": "",
       "instructions": "F1 - menu"
     }
   ],
@@ -745,11 +757,45 @@
       "id": "1748889389220",
       "brand": "trs",
       "name": "Dragon 64",
-      "desc": "",
+      "desc": "Dragon 64, enhanced British CoCo-compatible system. Motorola 6809 CPU, 64KB RAM, RS-232 port, identical software compatibility with Dragon 32.",
       "emulator": "coco",
       "parameter": "-machine dragon64 -extbas d64rom1.rom -altbas d64rom2.rom -nodos -kbd-translate",
       "favorite": false,
-      "image": "dragon64.png"
+      "image": "dragon64.png",
+      "year": "1983"
+    },
+    {
+      "id": "174888944",
+      "brand": "ibmpc",
+      "name": "IBM-PC windows 3.1",
+      "desc": "win3.11",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win311.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1990"
+    },
+    {
+      "id": "1748981763271",
+      "brand": "ibmpc",
+      "name": "IBM-PC Windows 1.04",
+      "desc": "First GUI for IBM PCs, offering tiled windows, mouse support and basic applications like notepad, calculator and paint",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win1.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1985"
+    },
+    {
+      "id": "1748982181086",
+      "brand": "ibmpc",
+      "name": "IBM-PC VGA windows 2.0",
+      "desc": "Introduced overlapping windows, improved memory management, desktop icons and better application support, including Excel and Word integration",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win2.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1987"
     }
   ]
 }

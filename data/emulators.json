@@ -36,6 +36,10 @@
     {
       "name": "misc",
       "desc": "Misc"
+    },
+    {
+      "name": "ibmpc",
+      "desc": "IBM PC"
     }
   ],
   "emulators": [
@@ -148,6 +152,30 @@
       "path": "${emulatorpath}/xroar/bin/xroar",
       "desc": "Tandy Color Computer/Dragon emulator",
       "param": "-fs -rompath ${biospath}/coco/",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "dosbox",
+      "key": "dosbox",
+      "path": "${emulatorpath}/dosbox/usr/bin/dosbox",
+      "desc": "IBM PC Emulator",
+      "param": "",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "dosbox-x",
+      "key": "dosbox-x",
+      "path": "${emulatorpath}/dosbox-x/dosbox-x",
+      "desc": "IBM PC Emulator (dosbox-x)",
+      "param": "",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "previous",
+      "key": "previos",
+      "path": "${emulatorpath}/previous/previous",
+      "desc": "NeXT Computer Emulator",
+      "param": "",
       "instructions": "F1 - menu"
     }
   ],
@@ -699,16 +727,6 @@
       "image": "bbc.png"
     },
     {
-      "id": "1748453332239",
-      "brand": "misc",
-      "name": "IBM PC",
-      "desc": "Launched in 1981, revolutionized personal computing with open architecture, Intel CPU, MS-DOS, and widespread business and home use.",
-      "emulator": "fuse",
-      "parameter": "",
-      "favorite": false,
-      "image": "ibmpc.png"
-    },
-    {
       "id": "1748888276711",
       "brand": "trs",
       "name": "TRS Color Computer 1.0 32Kb",
@@ -751,6 +769,50 @@
       "favorite": false,
       "image": "dragon64.png",
       "year": "1983"
+    },
+    {
+      "id": "174888944",
+      "brand": "ibmpc",
+      "name": "IBM-PC windows 3.1",
+      "desc": "Major redesign with Program Manager, File Manager, 16 color VGA support, enhanced multitasking and broad software developer adoption",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win311.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1990"
+    },
+    {
+      "id": "1748981763271",
+      "brand": "ibmpc",
+      "name": "IBM-PC Windows 1.04",
+      "desc": "First GUI for IBM PCs, offering tiled windows, mouse support and basic applications like notepad, calculator and paint",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win1.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1985"
+    },
+    {
+      "id": "1748982181086",
+      "brand": "ibmpc",
+      "name": "IBM-PC VGA windows 2.0",
+      "desc": "Introduced overlapping windows, improved memory management, desktop icons and better application support, including Excel and Word integration",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win2.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1987"
+    },
+    {
+      "id": "1748982181086",
+      "brand": "ibmpc",
+      "name": "IBM-PC VGA Windows 95 OSR2",
+      "desc": "Windows 95 OSR2 improved stability added FAT32 support, better hardware drives, USB and networkin for home users",
+      "emulator": "dosbox-x",
+      "parameter": "-conf ${configpath}/win95.conf",
+      "favorite": false,
+      "image": "ibmpc.png",
+      "year": "1995"
     }
   ]
 }
