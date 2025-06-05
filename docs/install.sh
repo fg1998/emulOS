@@ -78,6 +78,10 @@ sudo apt install libsdl2-dev automake libasound2-dev libsndfile1-dev texinfo zli
 #dosbox
 sudo apt install libsdl-sound1.2 libsdl-net1.2 -y
 
+#dosbox-x
+sudo apt install libavformat59 libavcodec59 libavutil57 libswscale6 libslirp0 libfluidsynth3 -y
+
+
 #linapple
 sudo apt install libzip-dev libsdl1.2-dev libsdl-image1.2-dev libcurl4-openssl-dev libzip-dev libsdl1.2-dev libsdl-image1.2-dev libcurl4-openssl-dev zlib1g-dev imagemagick -y
 
@@ -118,6 +122,13 @@ sudo apt install \
   libgbm1 \
   libxkbcommon0 \
   libxkbcommon-x11-0 -y
+
+  sudo apt install alsa-utils alsa-oss libasound2 -y
+
+  sudo apt install systemd systemd-sysv pulseaudio -y
+  systemctl --user start pulseaudio
+
+
 
 cd emulOS
 
