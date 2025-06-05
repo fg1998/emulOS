@@ -1,10 +1,12 @@
 #!/bin/bash
 
 # =============================================
-# EmulOS Wi-Fi Setup - Final Production Edition
+# EmulOS Wi-Fi Setup - Headless Raspberry Pi OS Compatible
 # =============================================
 
-DEPENDENCIES=("dialog" "iw" "nmtui" "rfkill")
+WPA_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
+INTERFACE="wlan0"
+DEPENDENCIES=("dialog" "iwlist" "wpa_cli")
 
 # Check dependencies
 check_dependencies() {
@@ -17,100 +19,111 @@ check_dependencies() {
     done
 }
 
-# Get current Wi-Fi region
-get_current_region() {
-    iw reg get | grep country | awk '{print $2}' | cut -d':' -f1
-}
+# Allow root only
+if [[ $EUID -ne 0 ]]; then
+    echo "Please run this script as root: sudo $0"
+    exit 1
+fi
 
-# Restart Wi-Fi interface after region change
-restart_wifi() {
-    sudo rfkill block wifi
-    sleep 1
-    sudo rfkill unblock wifi
-    sleep 1
-}
-
-# Save region permanently
-save_region_permanently() {
-    sudo sed -i '/^REGDOMAIN=/d' /etc/default/crda 2>/dev/null
-    echo "REGDOMAIN=$1" | sudo tee -a /etc/default/crda >/dev/null
-}
-
-# Wi-Fi region selection menu
-choose_region() {
-    REGION=$(dialog --stdout --menu "Select your Wi-Fi Region" 22 60 20 \
+# Region selection
+choose_country() {
+    COUNTRY=$(dialog --stdout --menu "Select your Wi-Fi country code" 20 50 20 \
         "US" "United States" \
-        "CA" "Canada" \
         "BR" "Brazil" \
-        "AR" "Argentina" \
-        "MX" "Mexico" \
+        "CA" "Canada" \
         "GB" "United Kingdom" \
         "DE" "Germany" \
         "FR" "France" \
         "ES" "Spain" \
         "IT" "Italy" \
-        "RU" "Russia" \
-        "CN" "China" \
+        "IN" "India" \
         "JP" "Japan" \
         "KR" "South Korea" \
-        "IN" "India" \
+        "CN" "China" \
+        "RU" "Russia" \
         "AU" "Australia" \
-        "ZA" "South Africa" \
         "NZ" "New Zealand" \
-        "EU" "Europe (General)")
+        "ZA" "South Africa" \
+        "AR" "Argentina" \
+        "EU" "Europe")
 
-    if [ -n "$REGION" ]; then
-        sudo iw reg set "$REGION"
-        restart_wifi
-
-        dialog --yesno "Do you want to save this region permanently for future boots?" 8 50
-        if [ $? -eq 0 ]; then
-            save_region_permanently "$REGION"
-            dialog --msgbox "Region saved permanently!" 6 40
-        fi
-
-        sleep 1
-    else
-        dialog --msgbox "No region selected. Operation canceled." 8 50
+    if [ -z "$COUNTRY" ]; then
+        dialog --msgbox "No country selected. Exiting." 6 40
+        clear
+        exit 1
     fi
 }
 
-# Launch nmtui
-start_nmtui() {
-    sudo nmtui
-}
-
-# Header (RetroPie style)
-show_header() {
-    dialog --title "Wi-Fi Setup" --msgbox "Welcome to the Wi-Fi Setup Assistant\nEmulOS Production Edition" 8 50
-}
-
-# Main Menu
-main_menu() {
-    while true; do
-        CURRENT_REGION=$(get_current_region)
-        if [ -z "$CURRENT_REGION" ] || [ "$CURRENT_REGION" == "00" ]; then
-            REGION_STATUS="Not configured"
-        else
-            REGION_STATUS="$CURRENT_REGION"
+# Scan available networks
+scan_networks() {
+    dialog --infobox "Scanning for Wi-Fi networks..." 3 40
+    sleep 2
+    SSIDS=$(iwlist $INTERFACE scan | grep ESSID | cut -d '"' -f2 | sort | uniq)
+    
+    # Create menu list
+    MENU_ITEMS=()
+    while IFS= read -r ssid; do
+        if [ -n "$ssid" ]; then
+            MENU_ITEMS+=("$ssid" "")
         fi
+    done <<< "$SSIDS"
 
-        OPTION=$(dialog --stdout --menu "Current Wi-Fi Region: $REGION_STATUS" 15 60 6 \
-            1 "Set Wi-Fi Region" \
-            2 "Configure Wi-Fi (nmtui)" \
-            3 "Exit")
+    if [ ${#MENU_ITEMS[@]} -eq 0 ]; then
+        dialog --msgbox "No Wi-Fi networks found. Exiting." 6 40
+        clear
+        exit 1
+    fi
 
-        case $OPTION in
-            1) choose_region ;;
-            2) start_nmtui ;;
-            3) clear; exit 0 ;;
-            *) break ;;
-        esac
-    done
+    SSID=$(dialog --stdout --menu "Select your Wi-Fi network" 20 60 15 "${MENU_ITEMS[@]}")
+    
+    if [ -z "$SSID" ]; then
+        dialog --msgbox "No network selected. Exiting." 6 40
+        clear
+        exit 1
+    fi
+}
+
+# Ask for Wi-Fi password
+ask_password() {
+    PSK=$(dialog --stdout --insecure --passwordbox "Enter Wi-Fi password for $SSID:" 10 50)
+    if [ -z "$PSK" ]; then
+        dialog --msgbox "No password entered. Exiting." 6 40
+        clear
+        exit 1
+    fi
+}
+
+# Write configuration
+write_config() {
+    cat > "$WPA_CONF" <<EOF
+country=$COUNTRY
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="$SSID"
+    psk="$PSK"
+}
+EOF
+}
+
+# Restart Wi-Fi
+restart_wifi() {
+    wpa_cli -i $INTERFACE reconfigure
+    sleep 3
 }
 
 # MAIN
 clear
 check_dependencies
-show_header
-main_menu
+
+choose_country
+scan_networks
+ask_password
+write_config
+
+restart_wifi
+
+dialog --msgbox "Wi-Fi configured successfully!" 6 40
+clear
+exit 0
