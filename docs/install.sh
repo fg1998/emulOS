@@ -98,6 +98,26 @@ sudo apt-get install libssl-dev libpthread-stubs0-dev libasound2-dev libsdl2-dev
 
 
 gdown -id 1Ooj-wX8HZBU3yDXbs338Wya9_fVqO_2w
+#https://drive.google.com/file/d/1Ooj-wX8HZBU3yDXbs338Wya9_fVqO_2w/view?usp=share_link
+
+sudo tar -xvzf /home/emulos/emulators.tar.gz -C / --strip-components=1
+
+
+sudo apt install \
+  libatk-bridge2.0-0 \
+  libgtk-3-0 \
+  libnss3 \
+  libxss1 \
+  libasound2 \
+  libdrm2 \
+  libxrandr2 \
+  libxcomposite1 \
+  libxdamage1 \
+  libxfixes3 \
+  libxcb-dri3-0 \
+  libgbm1 \
+  libxkbcommon0 \
+  libxkbcommon-x11-0 -y
 
 cd emulOS
 
