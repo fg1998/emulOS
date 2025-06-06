@@ -1,2 +1,0 @@
-python3 -m pip install --break-system-packages --user gdown
-/home/emulos/.local/bin/gdown --id <id_do_arquivo>

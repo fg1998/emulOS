@@ -14,10 +14,10 @@ error_handler() {
 trap error_handler ERR
 
 # Atualiza o sistema
-sudo apt update -y
+sudo apt-get update -y
 
 # Instala o mínimo necessário do X e openbox
-sudo apt install --no-install-recommends \
+sudo apt-get install --no-install-recommends \
   xserver-xorg \
   xinit \
   openbox \
@@ -50,7 +50,7 @@ EOF
 chmod +x ~/.xinitrc
 
 # Python e gdown para downloads
-sudo apt install python3 python3-pip -y
+sudo apt-get install python3 python3-pip -y
 python3 -m pip install --break-system-packages --user gdown
 
 # Ajusta o PATH caso ~/.local/bin não esteja
@@ -66,7 +66,7 @@ gdown -id 1Ooj-wX8HZBU3yDXbs338Wya9_fVqO_2w
 sudo tar -xvzf /home/emulos/emulators.tar.gz -C / --strip-components=1
 
 # Instala bibliotecas runtime necessárias para os binários rodarem (Electron + emuladores)
-sudo apt install \
+sudo apt-get install \
   libatk-bridge2.0-0 \
   libgtk-3-0 \
   libnss3 \

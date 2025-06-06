@@ -778,7 +778,7 @@
       "emulator": "dosbox",
       "parameter": "-conf ${configpath}/win311.conf",
       "favorite": false,
-      "image": "windows5.png",
+      "image": "windows3.png",
       "year": "1990"
     },
     {

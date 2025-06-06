@@ -643,7 +643,7 @@
     {
       "id": "1746203681426",
       "brand": "trs",
-      "name": "Microdigital CP-500",
+      "name": "Prologica CP-500",
       "desc": "Introduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
       "emulator": "sdltrs",
       "parameter": "/home/emulos/emulOS/config/cp500.t8c",

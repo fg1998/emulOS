@@ -32,15 +32,19 @@ check_dependencies
 # Submenu functions
 
 run_configure_wifi() {
-    ./configwifi.sh
+    ./configure_wifi.sh
 }
 
-run_configure_emulators() {
-    ./configemulators.sh
+run_install_dependencies() {
+    ./install_dependencies.sh
 }
 
-run_configure_bios() {
-    ./configbios.sh
+run_download_emulators() {
+    ./download_emulators.sh
+}
+
+run_download_bios() {
+    ./download_bios.sh
 }
 
 # Main menu
@@ -48,15 +52,17 @@ main_menu() {
     while true; do
         OPTION=$(dialog --stdout --menu "EmulOS Installation Menu" 15 60 5 \
             1 "Configure Wifi" \
-            2 "Install Emulators (Binary)" \
-            3 "Download BIOS and ROMs" \
-            4 "Exit")
+            2 "Install dependencies" \
+            3 "Download Emulators (Binary)" \
+            4 "Download BIOS and ROMs" \
+            5 "Exit")
 
         case $OPTION in
             1) run_configure_wifi ;;
-            2) run_configure_emulators ;;
-            3) run_configure_bios ;;
-            4) clear; exit 0 ;;
+            2) run_install_dependencies ;;
+            3) run_download_emulators ;;
+            4) run_donload_bios ;;
+            5) clear; exit 0 ;;
             *) clear; exit 0 ;;
         esac
     done
