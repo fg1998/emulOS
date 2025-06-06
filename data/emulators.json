@@ -748,14 +748,15 @@
       "year": "1981"
     },
     {
-      "id": "1748452940331",
+      "id": "52940331",
       "brand": "misc",
-      "name": "BBC Micro",
-      "desc": "980s British computer by Acorn, used in education, featured BASIC, expandable hardware, and solid build quality.",
-      "emulator": "fuse",
-      "parameter": "",
+      "name": "Jupiter Ace",
+      "desc": "Jupiter Ace was a British 8-bit home computer, running FORTH instead of BASIC, using Z80 CPU",
+      "emulator": "zesarux",
+      "parameter": "--machine ace",
       "favorite": false,
-      "image": "bbc.png"
+      "image": "jupiterace.png",
+      "year": "1982"
     },
     {
       "id": "1748888276711",
