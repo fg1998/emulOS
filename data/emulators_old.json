@@ -177,6 +177,14 @@
       "desc": "NeXT Computer Emulator",
       "param": "",
       "instructions": "F1 - menu"
+    },
+    {
+      "name": "ti99sim",
+      "key": "ti99sim",
+      "path": "${emulatorpath}/ti99sim/bin/ti99sim-sdl",
+      "desc": "Texas TI-99 emulator",
+      "param": "",
+      "instructions": "ALT + F4 - Exit"
     }
   ],
   "systems": [
@@ -460,7 +468,7 @@
       "year": "2017"
     },
     {
-      "id": "1746191781908",
+      "id": "1723991781908",
       "brand": "amstradcpc",
       "name": "CPC 464",
       "desc": "The Amstrad CPC 464 launched in 1984 with integrated cassette drive, 64 KB RAM, vibrant graphics, BASIC, and affordable home computing",
@@ -471,7 +479,18 @@
       "year": "1984"
     },
     {
-      "id": "1746192015135",
+      "id": "1226196",
+      "brand": "amstradcpc",
+      "name": "PCW 8256",
+      "desc": "Launched in 1985, 256Kb RAM, disk drive and included printer, targeting office market with word-processor integrated",
+      "emulator": "zesarux",
+      "parameter": "--machine PCW8256 --fullscreen",
+      "favorite": true,
+      "image": "pcw8256.png",
+      "year": "1984"
+    },
+    {
+      "id": "1846192015135",
       "brand": "amstradcpc",
       "name": "CPC 664",
       "desc": "Launched in 1985 offered 64 KB RAM, built-in 3-inch floppy drive, sleek design, vivid graphics, and BASIC.",
@@ -482,7 +501,7 @@
       "year": "1985"
     },
     {
-      "id": "1746192157583",
+      "id": "2146192157583",
       "brand": "amstradcpc",
       "name": "CPC 6128",
       "desc": "The Amstrad CPC 6128 released in 1985 featured 128 KB RAM, built-in 3-inch floppy disk, advanced BASIC, and vibrant display modes.",
@@ -643,7 +662,7 @@
     {
       "id": "1746203681426",
       "brand": "trs",
-      "name": "Microdigital CP-500",
+      "name": "Prologica CP-500",
       "desc": "Introduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
       "emulator": "sdltrs",
       "parameter": "/home/emulos/emulOS/config/cp500.t8c",
@@ -711,10 +730,22 @@
       "brand": "misc",
       "name": "Texas TI-99/4A",
       "desc": "Texas Instruments TI-99/4A: early 1980s home computer with 16-bit CPU, color graphics, speech, and cartridge-based software.",
-      "emulator": "amiga",
-      "parameter": "",
+      "emulator": "ti99sim",
+      "parameter": "-f --console=${biospath}/ti99/TI-994A.ctg",
       "favorite": false,
-      "image": "ti99.png"
+      "image": "ti99.png",
+      "year": "1981"
+    },
+    {
+      "id": "176643744401",
+      "brand": "misc",
+      "name": "Spectravideo SV-318",
+      "desc": "Spectravideo 318 is an early 8-bit home computer, not MSX compatible, with z80 CPU and BASIC interpreter from Microsoft",
+      "emulator": "zesarux",
+      "parameter": "--machine svi318",
+      "favorite": false,
+      "image": "ti99.png",
+      "year": "1981"
     },
     {
       "id": "1748452940331",
