@@ -61,7 +61,7 @@ main_menu() {
             1) run_configure_wifi ;;
             2) run_install_dependencies ;;
             3) run_download_emulators ;;
-            4) run_donload_bios ;;
+            4) run_download_bios ;;
             5) clear; exit 0 ;;
             *) clear; exit 0 ;;
         esac

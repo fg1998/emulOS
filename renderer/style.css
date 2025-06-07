@@ -61,6 +61,20 @@ textarea {
 .favorites-toggle:hover {
   background-color: #333;
 }
+
+#brand-list div,
+.all-toggle {
+  margin: 10px 0;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+#brand-list div:hover,
+.all-toggle:hover {
+  background-color: #333;
+}
+
+
 #main {
   flex: 1;
   padding: 1rem;

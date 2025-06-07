@@ -168,6 +168,14 @@ favToggle.onclick = () => {
   renderSystems();
 };
 
+const allToggle = document.querySelector('.all-toggle');
+allToggle.innerHTML ='<i class="fa fa-bars" style="margin-right: 8px;"></i> All Systems';
+allToggle.onclick = () => {
+  currentBrand = null;
+  showAll = true;
+  renderSystems();
+}
+
 function toggleFavorite(systemName) {
   const system = data.systems.find((s) => s.name === systemName);
 
