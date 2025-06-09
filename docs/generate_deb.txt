@@ -1,0 +1,29 @@
+#nmtui
+#xterm
+#To package
+#fakeroot
+#dpkg
+
+sudo apt install build-essential fakeroot dpkg-dev
+sudo apt install ruby ruby-dev build-essential
+sudo gem install --no-document fpm
+export USE_SYSTEM_FPM=true
+
+
+
+npx electron-builder --linux deb --armv7l
+##FPM error, but dont worry. Lets create .deb
+
+
+fpm -s dir -t deb \
+  -n emulos \
+  -v 0.0.1 \
+  -a armhf \
+  --description "EmulOS - Computer (not console) emulator Front End" \
+  --maintainer "Fernando Garcia <fg1998@gmail.com>" \
+  --deb-no-default-config-files \
+  -C release/linux-armv7l-unpacked \
+  -p release/emulos_0.0.1_armhf.deb .
+
+
+

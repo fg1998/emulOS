@@ -1,8 +1,0 @@
-nmtui
-xterm
-
-
-
-To package
-fakeroot
-dpkg

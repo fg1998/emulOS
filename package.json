@@ -1,60 +1,63 @@
 {
-"name": "emulos-app",
-"productName": "EmulOS",
-"version": "0.0.1",
-"description": "Front-end de emulaï¿½ï¿½o de computadores antigos",
-"main": "main.js",
-"scripts": {
-  "start": "electron .",
-  "dist": "electron-builder --publish always",
-  "dist:deb": "electron-builder --linux deb --arm64 --publish never"
-},
-"dependencies": {
-  "electron-updater": "^4.6.5",
-  "node-wifi": "^2.0.16",
-  "systeminformation": "^5.25.11",
-  "wifi-control": "^2.0.1"
-},
-"devDependencies": {
-  "electron": "^29.4.6",
-  "electron-builder": "^23.6.0"
-},
-"build": {
-  "appId": "com.fg1998.emulos",
+  "name": "emulos-app",
   "productName": "EmulOS",
-  "files": [
-    "main.js",
-    "preload.js",
-    "renderer/**/*",
-    "data/**/*",
-    "docs/**/*",
-    "node_modules/**/*"
-  ],
-  "directories": {
-    "output": "release"
+  "version": "0.0.1",
+  "description": "Front-end de emulação de computadores antigos",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --publish always",
+    "dist:deb": "electron-builder --linux deb --armv7l --publish never"
   },
-  "linux": {
-    "target": [
-      "deb"
+  "dependencies": {
+    "electron-updater": "^4.6.5",
+    "node-wifi": "^2.0.16",
+    "systeminformation": "^5.25.11",
+    "wifi-control": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron": "^29.4.6",
+    "electron-builder": "^24.12.0"
+  },
+  "build": {
+    "appId": "com.fg1998.emulos",
+    "productName": "EmulOS",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "data/**/*",
+      "docs/**/*",
+      "config/**/*",
+      "node_modules/**/*"
     ],
-    "icon": "renderer/assets/emulos_logo.png"
-  },
-  "deb": {
-    "artifactName": "${name}_${version}_${arch}.deb",
-    "maintainer": "Fernando Garcia <fg1998@gmail.com>",
-    "depends": [
-      "gconf2",
-      "libappindicator1",
-      "libxtst6"
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Utility",
+      "icon": "renderer/assets/emulos_logo.png"
+    },
+    "deb": {
+      "artifactName": "${name}_${version}_${arch}.deb",
+      "maintainer": "Fernando Garcia <fg1998@gmail.com>",
+      "depends": [
+        "libappindicator1",
+        "libxtst6"
+      ],
+      "fpm": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "fg1998",
+        "repo": "emulos",
+        "releaseType": "release"
+      }
     ]
-  },
-  "publish": [
-    {
-      "provider": "github",
-      "owner": "fg1998",
-      "repo": "emulos",
-      "releaseType": "release"
-    }
-  ]
-}
+  }
 }
