@@ -59,6 +59,14 @@
       "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
     },
     {
+      "name": "ZEsarUX-configfile",
+      "key": "zesarux-configfile",
+      "path": "${emulatorpath}/zesarux/bin/zesarux",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "",
+      "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
+    },
+    {
       "name": "Vice X64",
       "key": "commodore64",
       "path": "${emulatorpath}/vice/bin/x64",
@@ -462,7 +470,7 @@
       "name": "ZX Spectrum NEXT",
       "desc": "The ZX Spectrum Next is an FPGA-based developed by Victor Truco and launched in 2017 offering Z80 at 28 MHz, 2 MB RAM, HDMI, SD storage.",
       "emulator": "zesarux",
-      "parameter": "--machine tbblue",
+      "parameter": "--configfile ${configpath}/spectrumnext.config",
       "favorite": false,
       "image": "next.png",
       "year": "2017"
@@ -755,7 +763,7 @@
       "emulator": "zesarux",
       "parameter": "--machine ace",
       "favorite": false,
-      "image": "ace.png",
+      "image": "jupiterace.png",
       "year": "1982"
     },
     {
