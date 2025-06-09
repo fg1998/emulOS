@@ -27,7 +27,7 @@ mkdir -p "$USER_HOME/emulators"
 dialog --msgbox "This script will install the emulator binaries used by EmulOS.\n\nYou will be prompted to enter the command to download the package. The default value is pre-filled, but you can modify it if needed.\n\nPress OK to continue." 15 60
 
 # Defalt Command
-DEFAULT_COMMAND="curl -L https://archive.org/download/emulators-08062025/emulators.tar.gz -o \"$USER_HOME/emulators.tar.gz\""
+DEFAULT_COMMAND="curl -L https://archive.org/download/emulators-09062025/emulators.tar.gz -o \"$USER_HOME/emulators.tar.gz\""
 
 # Uer input command
 COMMAND=$(dialog --inputbox "Enter the command to download the emulator binaries:" 10 100 "$DEFAULT_COMMAND" 3>&1 1>&2 2>&3 3>&-)

@@ -34,7 +34,7 @@ When you're ready, you can download these files (if available) by entering a WGE
 
 
 # Defalt Command
-DEFAULT_COMMAND="curl -L https://archive.org/download/bios-08062025.tar.gz -o \"$USER_HOME/bios.tar.gz\""
+DEFAULT_COMMAND="curl -L https://archive.org/download/bios-09062025.tar.gz -o \"$USER_HOME/bios.tar.gz\""
 
 # Uer input command
 COMMAND=$(dialog --inputbox "Enter the download command (WGET, CURL or similar):" 10 100 "$DEFAULT_COMMAND" 3>&1 1>&2 2>&3 3>&-)
