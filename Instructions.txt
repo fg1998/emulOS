@@ -1,0 +1,5 @@
+sudo apt install git
+git clone https://github.com/fg1998/emulos.git
+cd emulos
+sudo ./install.sh
+
