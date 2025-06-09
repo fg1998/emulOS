@@ -47,6 +47,10 @@ run_download_bios() {
     ./download_bios.sh
 }
 
+run_download_emulos() {
+    ./download_emulos.sh"
+}
+
 # Main menu
 main_menu() {
     while true; do
@@ -55,14 +59,16 @@ main_menu() {
             2 "Install dependencies" \
             3 "Download Emulators (Binary)" \
             4 "Download BIOS and ROMs" \
-            5 "Exit")
+            5 "Download emulOS Front end"
+            6 "Exit")
 
         case $OPTION in
             1) run_configure_wifi ;;
             2) run_install_dependencies ;;
             3) run_download_emulators ;;
             4) run_download_bios ;;
-            5) clear; exit 0 ;;
+            5) run_download_emulos ;;
+            6) clear; exit 0 ;;
             *) clear; exit 0 ;;
         esac
     done
