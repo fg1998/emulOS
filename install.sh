@@ -51,7 +51,7 @@ run_download_bios() {
 }
 
 run_download_emulos() {
-    ./download_emulos.sh"
+./download_emulos.sh
 }
 
 # Main menu
@@ -287,13 +287,7 @@ USER_HOME=$(eval echo ~$(logname))
 mkdir -p "$USER_HOME/emulators"
 
 # Initial message
-dialog --title "Download BIOS and ROMS" --msgbox "The bios folder contains files needed for some emulators to work properly. These include ROMs, operating systems, disk images, and hard drive images. Without them, some systems may not run correctly or may not start at all.
-
-Many of these files are available online because they are either public domain, shared by original rights holders, or from companies that no longer exist. However, some files may still be under copyright, or their legal status may be uncertain. In some cases, you may need to own the original hardware or a legal copy of the BIOS or system you want to emulate.
-
-EmulOS does not include any of these files by default. You’ll need to download them yourself or create dumps from your own hardware if possible.
-
-When you're ready, you can download these files (if available) by entering a WGET, CURL, or similar command in the text box next dialog." 20 90
+dialog --title "Download BIOS and ROMS" --msgbox "dialog --title \"Download BIOS and ROMS\" --msgbox \"The bios folder contains files needed for some emulators to work properly. These include ROMs, operating systems, disk images, and hard drive images. Without them, some systems may not run correctly or may not start at all.  Many of these files are available online because they are either public domain, shared by original rights holders, or from companies that no longer exist. However, some files may still be under copyright, or their legal status may be uncertain. In some cases, you may need to own the original hardware or a legal copy of the BIOS or system you want to emulate.  EmulOS does not include any of these files by default. You’ll need to download them yourself or create dumps from your own hardware if possible.  When you're ready, you can download these files (if available) by entering a WGET, CURL, or similar command in the text box next dialog.\" 20 90" 20 90
 
 
 # Defalt Command
