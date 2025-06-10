@@ -1,129 +1,162 @@
 #!/bin/bash
 
-# =============================================
-# EmulOS Wi-Fi Setup - Headless Raspberry Pi OS Compatible
-# =============================================
+# --- Initial Checks ---
+echo "DEBUG: Running initial checks..."
+if [ "$(id -u)" -ne 0 ]; then
+  echo "ERROR: This script needs to be run with root privileges." >&2
+  echo "Please run with 'sudo ./your-script.sh'" >&2
+  exit 1
+fi
 
-WPA_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
-INTERFACE="wlan0"
-DEPENDENCIES=("dialog" "iwlist" "wpa_cli")
+for cmd in dialog raspi-config nmcli; do
+  if ! command -v "$cmd" &> /dev/null; then
+    echo "ERROR: The tool '$cmd' was not found." >&2
+    if [ "$cmd" == "nmcli" ]; then
+        echo "NetworkManager might not be installed. Try 'sudo apt update && sudo apt install network-manager'" >&2
+    elif [ "$cmd" == "dialog" ]; then
+        echo "The 'dialog' tool is not installed. Try 'sudo apt update && sudo apt install dialog'" >&2
+    elif [ "$cmd" == "raspi-config" ]; then
+        echo "The 'raspi-config' tool is not found. Ensure you are on Raspberry Pi OS." >&2
+    fi
+    exit 1
+  fi
+done
+echo "DEBUG: All required commands found."
 
-# Check dependencies
-check_dependencies() {
-    for prog in "${DEPENDENCIES[@]}"; do
-        if ! command -v "$prog" &> /dev/null; then
-            echo "Error: '$prog' is not installed."
-            echo "Please install it using: sudo apt install $prog"
-            exit 1
-        fi
-    done
-}
 
-# Allow root only
-if [[ $EUID -ne 0 ]]; then
-    echo "Please run this script as root: sudo $0"
+# --- 1. Country Configuration ---
+
+ISO3166_FILE="/usr/share/zoneinfo/iso3166.tab"
+
+if [ ! -f "$ISO3166_FILE" ]; then
+    dialog --title "Critical Error" --msgbox "Country file not found: '$ISO3166_FILE'." 8 50
     exit 1
 fi
 
-# Region selection
-choose_country() {
-    COUNTRY=$(dialog --stdout --menu "Select your Wi-Fi country code" 20 50 20 \
-        "US" "United States" \
-        "BR" "Brazil" \
-        "CA" "Canada" \
-        "GB" "United Kingdom" \
-        "DE" "Germany" \
-        "FR" "France" \
-        "ES" "Spain" \
-        "IT" "Italy" \
-        "IN" "India" \
-        "JP" "Japan" \
-        "KR" "South Korea" \
-        "CN" "China" \
-        "RU" "Russia" \
-        "AU" "Australia" \
-        "NZ" "New Zealand" \
-        "ZA" "South Africa" \
-        "AR" "Argentina" \
-        "EU" "Europe")
+# Geração da lista de países
+COUNTRY_LIST=$(awk -F'\t' '!/^#/ {print $1, "\""$2"\""}' "$ISO3166_FILE" 2>&1)
+AWK_STATUS=$?
 
-    if [ -z "$COUNTRY" ]; then
-        dialog --msgbox "No country selected. Exiting." 6 40
-        clear
-        exit 1
-    fi
-}
 
-# Scan available networks
-scan_networks() {
-    dialog --infobox "Scanning for Wi-Fi networks..." 3 40
-    sleep 2
-    SSIDS=$(iwlist $INTERFACE scan | grep ESSID | cut -d '"' -f2 | sort | uniq)
-    
-    # Create menu list
-    MENU_ITEMS=()
-    while IFS= read -r ssid; do
-        if [ -n "$ssid" ]; then
-            MENU_ITEMS+=("$ssid" "")
-        fi
-    done <<< "$SSIDS"
+if [ $AWK_STATUS -ne 0 ]; then
+    dialog --title "Error" --msgbox "Failed to generate country list (awk error). Output: $COUNTRY_LIST" 12 70
+    exit 1
+fi
 
-    if [ ${#MENU_ITEMS[@]} -eq 0 ]; then
-        dialog --msgbox "No Wi-Fi networks found. Exiting." 6 40
-        clear
-        exit 1
-    fi
+if [ -z "$(echo "$COUNTRY_LIST" | tr -d ' ')" ]; then
+    echo "DEBUG: COUNTRY_LIST is empty after awk processing. This is a problem."
+    dialog --title "Error" --msgbox "Failed to generate country list. It appears empty. Check '$ISO3166_FILE'." 8 60
+    exit 1
+fi
 
-    SSID=$(dialog --stdout --menu "Select your Wi-Fi network" 20 60 15 "${MENU_ITEMS[@]}")
-    
-    if [ -z "$SSID" ]; then
-        dialog --msgbox "No network selected. Exiting." 6 40
-        clear
-        exit 1
-    fi
-}
+echo "DEBUG: COUNTRY_LIST content (first 200 chars for dialog): ${COUNTRY_LIST:0:200}"
 
-# Ask for Wi-Fi password
-ask_password() {
-    PSK=$(dialog --stdout --insecure --passwordbox "Enter Wi-Fi password for $SSID:" 10 50)
-    if [ -z "$PSK" ]; then
-        dialog --msgbox "No password entered. Exiting." 6 40
-        clear
-        exit 1
-    fi
-}
+dialog --title "EmulOS Wi-Fi Network Configurator" \
+       --msgbox "\nFirst, let's configure the Wi-Fi regulatory domain by selecting your country." 8 70
 
-# Write configuration
-write_config() {
-    cat > "$WPA_CONF" <<EOF
-country=$COUNTRY
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
+DIALOG_COMMAND="dialog --title \"Country Selection\" --menu \"\nPlease select your country from the list.\" 20 70 15 ${COUNTRY_LIST} 2>&1 >/dev/tty"
+echo "$DIALOG_COMMAND" | head -n 5
 
-network={
-    ssid="$SSID"
-    psk="$PSK"
-}
-EOF
-}
+SELECTED_COUNTRY=$(eval $DIALOG_COMMAND)
 
-# Restart Wi-Fi
-restart_wifi() {
-    wpa_cli -i $INTERFACE reconfigure
-    sleep 3
-}
+EXIT_STATUS_DIALOG=$?
 
-# MAIN
+
+if [ $EXIT_STATUS_DIALOG -ne 0 ] || [ -z "$SELECTED_COUNTRY" ]; then
+    clear
+    echo "Operation cancelled or no country selected from dialog."
+    exit 0
+fi
+
+dialog --infobox "\nConfiguring Wi-Fi country to '${SELECTED_COUNTRY}'..." 5 50
+raspi-config nonint do_wifi_country "$SELECTED_COUNTRY" > /dev/null 2>&1
+sleep 1
+
+# --- 2. Scan and Select Wi-Fi Network ---
+
+dialog --title "EmulOS Wi-Fi Network Configurator" \
+       --infobox "\nScanning for available Wi-Fi networks... Please wait." 5 60
+sleep 2 # Give time for the radio interface to initialize with the new country
+
+RAW_NMCLI_OUTPUT=$(nmcli --terse --fields SSID,SECURITY,SIGNAL dev wifi list --rescan yes 2>&1)
+NMCLI_RAW_STATUS=$?
+
+echo "$RAW_NMCLI_OUTPUT"
+
+if [ $NMCLI_RAW_STATUS -ne 0 ]; then
+    dialog --title "Error" --msgbox "nmcli command failed. Output: $RAW_NMCLI_OUTPUT" 12 70
+    clear
+    exit 1
+fi
+
+WIFI_LIST=$(echo "$RAW_NMCLI_OUTPUT" | awk -F: '
+  $1 && $2 {
+    gsub(/"/, "", $1);
+    gsub(/"/, "", $2);
+    printf "\"%s\" \"%s | Signal: %s%%\" ", $1, $2, $3
+  }
+' 2>&1)
+AWK_WIFI_STATUS=$?
+
+
+if [ $AWK_WIFI_STATUS -ne 0 ]; then
+    dialog --title "Error" --msgbox "Failed to format Wi-Fi list (awk error). Output: $WIFI_LIST" 12 70
+    clear
+    exit 1
+fi
+
+if [ -z "$(echo "$WIFI_LIST" | tr -d ' ')" ]; then
+    dialog --title "Error" --msgbox "\nNo Wi-Fi networks found! Check if your antenna is connected and if you are within range of a network." 8 60
+    clear
+    exit 1
+fi
+
+DIALOG_WIFI_COMMAND="dialog --title \"\nWi-Fi Network Selection\" --menu \"Select the network you want to connect to.\" 20 70 15 ${WIFI_LIST} 2>&1 >/dev/tty"
+
+SELECTED_SSID=$(eval $DIALOG_WIFI_COMMAND)
+
+EXIT_STATUS_DIALOG_SSID=$?
+
+
+if [ $EXIT_STATUS_DIALOG_SSID -ne 0 ] || [ -z "$SELECTED_SSID" ]; then
+    clear
+    echo "Operation cancelled from SSID selection."
+    exit 0
+fi
+
+# --- 3. Enter Password and Connect ---
+
+#dialog --title "Wi-Fi Network Configurator (Step 3 of 3)" \
+#       --msgbox "You selected the network: ${SELECTED_SSID}.\n\nPlease enter the password." 8 70
+
+WIFI_PASSWORD=$(dialog --title "Network Password" \
+                       --inputbox "\nPlease enter the password for network '${SELECTED_SSID}':" \
+                       10 70 \
+                       2>&1 >/dev/tty)
+
+EXIT_STATUS_DIALOG_PASS=$?
+
+
+if [ $EXIT_STATUS_DIALOG_PASS -ne 0 ]; then
+    clear && echo "Operation cancelled." && exit 0
+fi
+
+dialog --title "Connecting..." --infobox "\nAttempting to connect to network '${SELECTED_SSID}'..." 5 60
+
+# Attempt to connect and capture the result
+CONNECTION_RESULT=$(nmcli dev wifi connect "$SELECTED_SSID" password "$WIFI_PASSWORD" 2>&1)
+CONNECTION_STATUS=$?
+
+# --- Finalization ---
+if [ $CONNECTION_STATUS -eq 0 ]; then
+    dialog --title "Success!" --msgbox "\nSuccessfully connected to network '${SELECTED_SSID}'!" 8 60
+else
+    dialog --title "Connection Failed" \
+           --msgbox "\nCould not connect.\n\nPlease verify the password and try again.\n\nError reported: ${CONNECTION_RESULT}" 12 70
+fi
+
 clear
-check_dependencies
-
-choose_country
-scan_networks
-ask_password
-write_config
-
-restart_wifi
-
-dialog --msgbox "Wi-Fi configured successfully!" 6 40
-clear
-exit 0
+echo "Network configuration process finished."
+# Check connection status
+#ip addr show wlan0
+echo "To test the connection: ping -c 4 8.8.8.8"
