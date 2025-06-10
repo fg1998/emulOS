@@ -34,7 +34,7 @@ When you're ready, you can download these files (if available) by entering a WGE
 
 
 # Defalt Command
-DEFAULT_COMMAND="curl -L https://archive.org/download/bios-09062025.tar.gz -o \"$USER_HOME/bios.tar.gz\""
+DEFAULT_COMMAND="curl -L https://archive.org/download/bios-20250610/bios.tar.gz -o \"$USER_HOME/bios.tar.gz\""
 
 # Uer input command
 COMMAND=$(dialog --inputbox "Enter the download command (WGET, CURL or similar):" 10 100 "$DEFAULT_COMMAND" 3>&1 1>&2 2>&3 3>&-)
@@ -69,12 +69,12 @@ echo "Extracting files..."
 
 echo "$DOWNLOADED_FILE"
 echo "$USER_HOME/emulators"
-tar -xzvf "$DOWNLOADED_FILE" -C "$USER_HOME"
+tar -xzvf "$DOWNLOADED_FILE" -C "/$USER_HOME"
 
 echo "Cleaning up..."
 rm -f "$DOWNLOADED_FILE"
 
-chmod -R a+rw "$USER_HOME/emulators"
+find emulators/bios/ -exec chmod a+rw {} \; -exec sh -c 'test -d "$1" || test -x "$1"' sh {} \; -exec chmod a+x {} \;
 
 # Final message
 dialog --msgbox "Emulator binaries have been successfully installed!" 10 50
