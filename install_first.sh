@@ -48,7 +48,7 @@ run_download_bios() {
 }
 
 run_download_emulos() {
-    ./download_emulos.sh"
+    ./download_emulos.sh
 }
 
 # Main menu
