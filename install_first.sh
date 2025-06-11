@@ -59,7 +59,7 @@ main_menu() {
             2 "Install dependencies" \
             3 "Download Emulators (Binary)" \
             4 "Download BIOS and ROMs" \
-            5 "Download emulOS Front end"
+            5 "Download emulOS Front end" \
             6 "Exit")
 
         case $OPTION in

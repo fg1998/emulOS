@@ -24,6 +24,8 @@ SCRIPT_URLS=(
     "https://raw.githubusercontent.com/fg1998/emulOS/main/configure_wifi.sh"
     "https://raw.githubusercontent.com/fg1998/emulOS/main/download_emulators.sh"
     "https://raw.githubusercontent.com/fg1998/emulOS/main/download_bios.sh"
+    "https://raw.githubusercontent.com/fg1998/emulOS/main/install_dependencies.sh"
+    "https://raw.githubusercontent.com/fg1998/emulOS/main/download_emulos.sh"
 )
 
 echo "Creating download directory in $SUDO_USER's home: $DOWNLOAD_DIR"

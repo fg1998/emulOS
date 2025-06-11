@@ -1,6 +1,6 @@
 {
-  "name": "emulos-app",
-  "productName": "EmulOS",
+  "name": "emulos",
+  "productName": "emulos",
   "version": "0.0.1",
   "description": "Front-end de emulação de computadores antigos",
   "main": "main.js",
@@ -49,6 +49,7 @@
         "libappindicator1",
         "libxtst6"
       ],
+      "afterInstall" : "fix-install-path.sh",
       "fpm": false
     },
     "publish": [
