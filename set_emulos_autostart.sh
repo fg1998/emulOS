@@ -1,8 +1,15 @@
 #!/bin/bash
 set -e
 
+# Detect real user and home
+TARGET_USER=$(logname)
+TARGET_HOME=$(eval echo "~$TARGET_USER")
+APP_PATH="$TARGET_HOME/emulos-app/emulos"
+XINITRC="$TARGET_HOME/.xinitrc"
+BASH_PROFILE="$TARGET_HOME/.bash_profile"
+
 # Dependencies
-DEPENDENCIES=("dialog")
+DEPENDENCIES=("dialog" "startx")
 
 for prog in "${DEPENDENCIES[@]}"; do
   if ! command -v "$prog" &> /dev/null; then
@@ -11,31 +18,36 @@ for prog in "${DEPENDENCIES[@]}"; do
   fi
 done
 
-APP_PATH="$HOME/emulos-app/emulos"
-XINITRC="$HOME/.xinitrc"
-
-# Check if EmulOS exists
+# Check if EmulOS binary exists
 if [ ! -f "$APP_PATH" ]; then
-  dialog --msgbox "Error: EmulOS not found at $APP_PATH. Please install it first." 8 60
+  dialog --title "Error" --msgbox "EmulOS binary not found at:\n\n$APP_PATH\n\nPlease install it first." 10 60
   exit 1
 fi
 
-# Warn user if X is not configured
-if ! command -v startx &> /dev/null; then
-  dialog --msgbox "Warning: 'startx' not found. X may not be properly installed." 8 60
-fi
-
-# Create .xinitrc with openbox and EmulOS if not present
+# Create or update .xinitrc
 if [ ! -f "$XINITRC" ]; then
   echo "#!/bin/bash" > "$XINITRC"
   echo "exec openbox-session &" >> "$XINITRC"
   echo "sleep 1" >> "$XINITRC"
   echo "exec \"$APP_PATH\"" >> "$XINITRC"
-  chmod +x "$XINITRC"
 else
-  # Update existing .xinitrc
+  # Prevent duplicate entries
   grep -q "$APP_PATH" "$XINITRC" || echo "exec \"$APP_PATH\"" >> "$XINITRC"
 fi
 
-# Success
-dialog --title "Autostart Enabled" --msgbox "EmulOS will now start automatically with X.\n\nTo launch, type:\n\nstartx" 10 60
+chmod +x "$XINITRC"
+chown "$TARGET_USER:$TARGET_USER" "$XINITRC"
+
+# Create or update .bash_profile to run startx
+if [ ! -f "$BASH_PROFILE" ]; then
+  echo "#!/bin/bash" > "$BASH_PROFILE"
+  echo '[ -z "$DISPLAY" ] && startx' >> "$BASH_PROFILE"
+else
+  grep -q "startx" "$BASH_PROFILE" || echo '[ -z "$DISPLAY" ] && startx' >> "$BASH_PROFILE"
+fi
+
+chmod +x "$BASH_PROFILE"
+chown "$TARGET_USER:$TARGET_USER" "$BASH_PROFILE"
+
+# Final message
+dialog --title "Autostart Configured" --msgbox "EmulOS is now configured to launch automatically at boot.\n\nX will start via 'startx' and load EmulOS with Openbox." 10 60
