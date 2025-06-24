@@ -33,10 +33,10 @@ fpm -s dir -t deb \
   --maintainer "Fernando Garcia <fg1998@gmail.com>" \
   --deb-no-default-config-files \
   -C release/linux-armv7l-unpacked \
-  -p release/emulos_0.0.1_armhf.deb .
+  -p release/emulos_0.0.1_armhf.deb \
   --depends "libatk-bridge2.0-0" \
   --depends "libgtk-3-0" \
   --depends "libnss3" \
   --depends "libxss1" \
-  --depends "libasound2" 
-
+  --depends "libasound2" \
+  .
