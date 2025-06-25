@@ -50,6 +50,9 @@ run_download_bios() {
 run_download_emulos() {
     ./download_emulos.sh
 }
+run_set_emulos_autostart() {
+    ./run_set_emulos_autostart.sh
+}
 
 # Main menu
 main_menu() {
@@ -60,7 +63,8 @@ main_menu() {
             3 "Download Emulators (Binary)" \
             4 "Download BIOS and ROMs" \
             5 "Download emulOS Front end" \
-            6 "Exit")
+            6 "Set emulOS to run on OS start" \
+            7 "Exit")
 
         case $OPTION in
             1) run_configure_wifi ;;
@@ -68,7 +72,8 @@ main_menu() {
             3) run_download_emulators ;;
             4) run_download_bios ;;
             5) run_download_emulos ;;
-            6) clear; exit 0 ;;
+            6) run_set_emulos_autostart ;;
+            7) clear; exit 0 ;;
             *) clear; exit 0 ;;
         esac
     done
