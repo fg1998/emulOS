@@ -52,7 +52,6 @@ sudo apt-get install --no-install-recommends \
   systemd-sysv \
   pulseaudio \
   libsdl2-2.0-0 \
-  libserialport \
   libportmidi0 \
   libmpeg2-4 \
   libnet1 \
@@ -60,12 +59,19 @@ sudo apt-get install --no-install-recommends \
   libsdl-sound1.2 \
   libsdl-net1.2 \
   libavformat59 \
+  libserialport0 \
+  libenet7 \
+  libsdl2-ttf-2.0-0 \
+  libsdl2-image-2.0-0 \
+  libswscale6 \
+  libncurses \
+  libslirp0 \
+  libfluidsynth3 \
+  libsdl-image1.2 \
+  libzip4 \
+  libtcl8.6 \
+  libglew2.2 \
   -y
-
-sudo apt-get install libavformat59
-
-
-
 
 
 
