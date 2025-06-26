@@ -30,6 +30,9 @@ sudo apt-get install --no-install-recommends \
   gpm \
   dialog \
   curl \
+  -y
+
+  sudo apt-get install \
   libatk-bridge2.0-0 \
   libgtk-3-0 \
   libnss3 \
@@ -53,7 +56,14 @@ sudo apt-get install --no-install-recommends \
   libportmidi0 \
   libmpeg2-4 \
   libnet1 \
+  libsdl1.2debian \
+  libsdl-sound1.2 \
+  libsdl-net1.2 \
+  libavformat59 \
   -y
+
+sudo apt-get install libavformat59
+
 
 
 
