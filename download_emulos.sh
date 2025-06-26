@@ -23,7 +23,7 @@ dialog --title "EmulOS Installer" --msgbox \
 
 # Get latest .deb release URL from GitHub
 dialog --infobox "Checking for the latest EmulOS release..." 5 60
-DEB_URL=$(curl -s https://api.github.com/repos/fg1998/emulOS/releases/latest | grep "browser_download_url" | grep "armhf.deb" | cut -d '"' -f 4)
+DEB_URL=$(curl -s https://api.github.com/repos/fg1998/emulOS/releases/latest | grep "browser_download_url" | grep "armhf-2.deb" | cut -d '"' -f 4)
 
 if [ -z "$DEB_URL" ]; then
   dialog --msgbox "Error: Could not find a .deb release on GitHub." 8 60
