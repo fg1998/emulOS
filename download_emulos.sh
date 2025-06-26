@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Detect original user and home
+REAL_USER="${SUDO_USER:-$USER}"
+REAL_HOME=$(eval echo "~$REAL_USER")
+APP_DIR="$REAL_HOME/emulos-app"
+
 # Dependencies
 DEPENDENCIES=("curl" "dialog" "dpkg-deb")
 
@@ -12,12 +17,9 @@ for prog in "${DEPENDENCIES[@]}"; do
   fi
 done
 
-# Target directory
-APP_DIR="$HOME/emulos-app"
-mkdir -p "$APP_DIR"
-
 # Initial dialog
-dialog --title "EmulOS Installer" --msgbox "This installer will download and install the latest version of EmulOS into the ~/emulos-app folder. Existing user data (like DATA folder and *.json files) will be preserved." 10 60
+dialog --title "EmulOS Installer" --msgbox \
+"This installer will download and install the latest version of EmulOS into the ~/emulos-app folder.\n\nExisting user data (like DATA folder and *.json files) will be preserved." 10 60
 
 # Get latest .deb release URL from GitHub
 dialog --infobox "Checking for the latest EmulOS release..." 5 60
@@ -28,7 +30,7 @@ if [ -z "$DEB_URL" ]; then
   exit 1
 fi
 
-# File name
+# File name and temp folder
 DEB_FILE="${DEB_URL##*/}"
 TMP_DIR="$(mktemp -d)"
 cd "$TMP_DIR"
@@ -37,9 +39,15 @@ cd "$TMP_DIR"
 dialog --infobox "Downloading $DEB_FILE..." 5 60
 curl -L "$DEB_URL" -o "$DEB_FILE"
 
-# Extract only data portion to preserve user content
+# Create app directory
+mkdir -p "$APP_DIR"
+
+# Install to user's home
 dialog --infobox "Installing EmulOS into $APP_DIR..." 5 60
 dpkg-deb -x "$DEB_FILE" "$APP_DIR"
+
+# Fix permissions
+chown -R "$REAL_USER:$REAL_USER" "$APP_DIR"
 
 # Clean up
 rm -f "$DEB_FILE"
@@ -47,4 +55,5 @@ cd /
 rm -rf "$TMP_DIR"
 
 # Final message
-dialog --title "Installation Complete" --msgbox "EmulOS was successfully installed to $APP_DIR.\n\nYou can now run it from there." 10 60
+dialog --title "Installation Complete" --msgbox \
+"EmulOS was successfully installed to:\n\n$APP_DIR\n\nYou can now run it from there." 10 60
