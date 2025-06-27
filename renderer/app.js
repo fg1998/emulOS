@@ -146,7 +146,9 @@ function renderSidebar() {
   brandList.innerHTML = "";
   data.brands.forEach((b) => {
     const div = document.createElement("div");
-    div.innerHTML = `<i class="fa fa-desktop" style="margin-right: 8px;"></i> ${b.desc}`;
+    //div.innerHTML = `<i class="fa fa-desktop" style="margin-right: 8px;"></i> ${b.desc}`;
+    console.log(b)
+    div.innerHTML = `<image src="assets/icons/${b.name}.png" class="system-icon" /><span class="system-name"> ${b.desc}</span>`;
     div.dataset.brand = b.name;
     div.onclick = () => {
       document.querySelectorAll("#brand-list div").forEach((d) => d.classList.remove("brand-selected"));

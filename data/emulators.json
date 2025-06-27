@@ -40,6 +40,10 @@
     {
       "name": "ibmpc",
       "desc": "IBM PC"
+    },
+    {
+      "name" : "utils",
+      "desc" : "System Tools"
     }
   ],
   "emulators": [
@@ -193,6 +197,14 @@
       "desc": "Texas TI-99 emulator",
       "param": "",
       "instructions": "ALT + F4 - Exit"
+    },
+    {
+      "name": "none",
+      "key": "none",
+      "path": "",
+      "desc": "null emulator for utils menu",
+      "param": "",
+      "instructions": ""
     }
   ],
   "systems": [
@@ -853,6 +865,17 @@
       "favorite": false,
       "image": "windows95.png",
       "year": "1995"
+    },
+    {
+      "id": "2376982086",
+      "brand": "utils",
+      "name": "xterm",
+      "desc": "XWindow Terminal Emulator",
+      "emulator": "none",
+      "parameter": "/opt/homebrew/bin/xterm",
+      "favorite": false,
+      "image": "windows95.png",
+      "year": "2025"
     }
   ]
 }

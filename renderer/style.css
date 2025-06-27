@@ -503,3 +503,14 @@ body {
   50% { opacity: 0; }
 }
 
+.system-icon {
+  width: 30px;
+  vertical-align: middle;
+}
+
+.system-name {
+  padding-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 30px; /* igual à altura da imagem para alinhamento vertical */
+}

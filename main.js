@@ -1,112 +1,98 @@
-const { app, BrowserWindow, ipcMain, screen } = require('electron');
-const path = require('path');
-const fs = require('fs').promises;
-const { stdout, stderr } = require('process');
-const { system } = require('systeminformation');
-const execFile = require('child_process').execFile
-
-
+const { app, BrowserWindow, ipcMain, screen } = require("electron");
+const path = require("path");
+const fs = require("fs").promises;
+const { stdout, stderr } = require("process");
+const { system } = require("systeminformation");
+const execFile = require("child_process").execFile;
 
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const win = new BrowserWindow({
     x: 0,
-    y:0 ,
+    y: 0,
     width: width,
     height: height,
-   //kiosk: true,
+    //kiosk: true,
     fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
-      contextIsolation: false
-    }
+      contextIsolation: false,
+    },
   });
 
-  win.loadFile('renderer/index.html');
-  //win.webContents.openDevTools(); // DevTools ativado
+  win.loadFile("renderer/index.html");
+  win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {
   createWindow();
-  app.on('activate', function () {
+  app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit();
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") app.quit();
 });
 
-
-ipcMain.on('wifiConfig', async(event, content) => {
-
-  event.reply('writeLog','Starting nmtui')
+ipcMain.on("wifiConfig", async (event, content) => {
+  event.reply("writeLog", "Starting nmtui");
   const command = "xterm";
   //const command = "/home/fg1998/emulators/zesarux/zesarux"
   const param = "-fullscreen -e sudo nmtui";
-  paramlist = param.split(' ')
+  paramlist = param.split(" ");
 
-  const extProcess = execFile(command, paramlist, (error, stdout, stderr)=> {
-    if(error)
-    {
-      console.log(error)
-      event.reply('logMessage', `Error: ${error.message}`)
-      return
+  const extProcess = execFile(command, paramlist, (error, stdout, stderr) => {
+    if (error) {
+      console.log(error);
+      event.reply("logMessage", `Error: ${error.message}`);
+      return;
     }
-    if (stdout) event.reply('wifiLog', `stdout: ${stdout.trim()}`);
-    if (stderr) event.reply('wifiLog', `stderr: ${stderr.trim()}`)
-  })
-})
+    if (stdout) event.reply("wifiLog", `stdout: ${stdout.trim()}`);
+    if (stderr) event.reply("wifiLog", `stderr: ${stderr.trim()}`);
+  });
+});
 
-ipcMain.on("run-system", (event, content)=> {
- 
-  event.reply('writeLog',`Starting ${content.name}`)
+ipcMain.on("run-system", (event, content) => {
+  event.reply("writeLog", `Starting ${content.name}`);
 
-  const emulatorPath = content.emulator.path.replace('${emulatorpath}', content.config.emulatorpath)
-  
-  
-  const epTEMP = content.emulator.param.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
-  const emulatorParam =  epTEMP ? epTEMP.split(' ') : [];     //content.emulator.param ? content.emulator.param.split(' ') : "";
+  let emulatorPath = content.emulator.path.replace("${emulatorpath}", content.config.emulatorpath);
 
-  
+  let epTEMP = content.emulator.param.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
+  let emulatorParam = epTEMP ? epTEMP.split(" ") : []; //content.emulator.param ? content.emulator.param.split(' ') : "";
+  let spTEMP = content.parameter.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
+  let systemParam = spTEMP ? spTEMP.split(" ") : [];
+  let totalParam = [...emulatorParam, ...systemParam];
 
-  const spTEMP = content.parameter.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
-  const systemParam = spTEMP ? spTEMP.split(' ') : [];
+  event.reply("writeLog", emulatorPath + " " + totalParam.join(" "));
 
+  //For system Tools - They are using 'none' as emulator
+  if(emulatorPath === "") {
+    emulatorPath = totalParam[0];
+    totalParam = []
+  }
 
-  
-  
- 
-  const totalParam = [...emulatorParam, ...systemParam]
-  
-  event.reply('writeLog', emulatorPath + " " + totalParam.join(' '));
-  console.log(emulatorPath, ...totalParam)
-  
   const extProcess = execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
-    if(error)
-      {
-        console.log('****', error)
-        event.reply('writeLog', `[red] Error: ${error.message}`)
-        return
-      }
-      if (stdout) event.reply('run-system', `stdout: ${stdout.trim()}`);
-      if (stderr) event.reply('run-system', `stderr: ${stderr.trim()}`)
-  }) 
-})
+    if (error) {
+      console.log("****", error);
+      event.reply("writeLog", `[red] Error: ${error.message}`);
+      return;
+    }
+    if (stdout) event.reply("run-system", `stdout: ${stdout.trim()}`);
+    if (stderr) event.reply("run-system", `stderr: ${stderr.trim()}`);
+  });
+});
 
-
-
-
-ipcMain.handle('toggle-favorite', (event, systemId) => {
-  const dataPath = path.join(__dirname, 'data', 'emulators.json');
+ipcMain.handle("toggle-favorite", (event, systemId) => {
+  const dataPath = path.join(__dirname, "data", "emulators.json");
   const data = JSON.parse(fs.readFileSync(dataPath));
   let updated = false;
 
-  data.forEach(brand => {
-    brand.emulators.forEach(emulator => {
-      emulator.systems.forEach(system => {
+  data.forEach((brand) => {
+    brand.emulators.forEach((emulator) => {
+      emulator.systems.forEach((system) => {
         if (system.id === systemId) {
           system.favorite = !system.favorite;
           updated = true;
