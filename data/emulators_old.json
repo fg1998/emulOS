@@ -40,6 +40,10 @@
     {
       "name": "ibmpc",
       "desc": "IBM PC"
+    },
+    {
+      "name": "utils",
+      "desc": "System Tools"
     }
   ],
   "emulators": [
@@ -193,6 +197,22 @@
       "desc": "Texas TI-99 emulator",
       "param": "",
       "instructions": "ALT + F4 - Exit"
+    },
+    {
+      "name": "none",
+      "key": "none",
+      "path": "",
+      "desc": "null emulator for utils menu",
+      "param": "",
+      "instructions": ""
+    },
+    {
+      "name": "terminal",
+      "key": "terminal",
+      "desc": "null emulator for utils menu",
+      "path": "/usr/bin/xterm",
+      "param": "",
+      "instructions": ""
     }
   ],
   "systems": [
@@ -469,7 +489,7 @@
       "brand": "sinclair",
       "name": "ZX Spectrum NEXT",
       "desc": "The ZX Spectrum Next is an FPGA-based developed by Victor Truco and launched in 2017 offering Z80 at 28 MHz, 2 MB RAM, HDMI, SD storage.",
-      "emulator": "zesarux",
+      "emulator": "zesarux-configfile",
       "parameter": "--configfile ${configpath}/spectrumnext.config",
       "favorite": false,
       "image": "next.png",
@@ -853,6 +873,39 @@
       "favorite": false,
       "image": "windows95.png",
       "year": "1995"
+    },
+    {
+      "id": "2376982086",
+      "brand": "utils",
+      "name": "xterm",
+      "desc": "XWindow Terminal Emulator",
+      "emulator": "terminal",
+      "parameter": "",
+      "favorite": false,
+      "image": "xterm.png",
+      "year": "2025"
+    },
+    {
+      "id": "2659332086",
+      "brand": "utils",
+      "name": "raspi-config",
+      "desc": "Raspberry pi config tools",
+      "emulator": "terminal",
+      "parameter": "-fullscreen -e sudo /usr/bin/raspi-config",
+      "favorite": false,
+      "image": "raspi-config.png",
+      "year": "2025"
+    },
+    {
+      "id": "277532086",
+      "brand": "utils",
+      "name": "emulOS Config",
+      "desc": "emulOS Distro config tools",
+      "emulator": "terminal",
+      "parameter": "-fullscreen -e sudo /home/emuos/emulOS/install_first.sh",
+      "favorite": false,
+      "image": "raspi-config.png",
+      "year": "2025"
     }
   ]
 }
