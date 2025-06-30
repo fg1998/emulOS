@@ -700,8 +700,8 @@ window.addEventListener('load', () => {
 
   setTimeout(() => {
     logMessage("Welcome to [white] ** EmulOS **");
-    logMessage("If you appreciate EmulOS, please consider supporting our development on Patreon")
-    logMessage("[yellow] Caso você seja um compatriota brasileiro, considere fazer uma doação via PIX para fg1998@gmail.com")
+    logMessage("If you appreciate EmulOS, please consider supporting our development on patreon.com/fg1998")
+    logMessage("[yellow] Caso você seja brasileiro, considere fazer uma doação via PIX para fg1998@gmail.com")
   }, 3000);
   
 });
