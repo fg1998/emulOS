@@ -1,8 +1,8 @@
 {
   "name": "emulos",
   "productName": "emulos",
-  "version": "0.0.1",
-  "description": "Front-end de emulação de computadores antigos",
+  "version": "0.0.2",
+  "description": "Computer (not console) emulator frontend",
   "main": "main.js",
   "author": "Fernando Garcia <fg1998@gmail.com>",
   "scripts": {
