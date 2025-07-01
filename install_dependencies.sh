@@ -39,20 +39,28 @@ sudo apt-get install --no-install-recommends \
   libxss1 \
   libasound2 \
   libdrm2 \
+  -y
+  
+  sudo apt-get install \ 
   libxrandr2 \
   libxcomposite1 \
   libxdamage1 \
   libxfixes3 \
   libxcb-dri3-0 \
   libgbm1 \
+  -y
+  
+  sudo apt-get install \
   libxkbcommon0 \
   libxkbcommon-x11-0 \
   alsa-utils alsa-oss \
   systemd \
   systemd-sysv \
-  pulseaudio \
   libsdl2-2.0-0 \
   libportmidi0 \
+  -y
+
+  sudo apt-get install \
   libmpeg2-4 \
   libnet1 \
   libsdl1.2debian \
@@ -65,13 +73,27 @@ sudo apt-get install --no-install-recommends \
   libsdl2-image-2.0-0 \
   libswscale6 \
   libncurses \
+  libncurses6 \
+
+
+  sudo apt-get install \
   libslirp0 \
   libfluidsynth3 \
   libsdl-image1.2 \
   libzip4 \
   libtcl8.6 \
   libglew2.2 \
+  libatk-bridge2.0-0 \
+  libgtk-3-0 \
+  libpulse0 \
   -y
+
+sudo apt-get install libsdl1.2debian \
+  libsdl-image1.2 \
+  libsdl2-image-2.0-0 \
+  pulseaudio \
+  -y
+
 
 
 

@@ -4,7 +4,7 @@ set -e
 # Detect real user and home
 TARGET_USER=$(logname)
 TARGET_HOME=$(eval echo "~$TARGET_USER")
-APP_PATH="$TARGET_HOME/emulos-app/emulos"
+APP_PATH="$TARGET_HOME/emulos-app/opt/EmulOS/emulos"
 XINITRC="$TARGET_HOME/.xinitrc"
 BASH_PROFILE="$TARGET_HOME/.bash_profile"
 
