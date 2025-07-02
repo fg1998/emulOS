@@ -41,7 +41,7 @@ sudo apt-get install --no-install-recommends \
   libdrm2 \
   -y
   
-  sudo apt-get install \ 
+  sudo apt-get install \
   libxrandr2 \
   libxcomposite1 \
   libxdamage1 \
@@ -72,8 +72,8 @@ sudo apt-get install --no-install-recommends \
   libsdl2-ttf-2.0-0 \
   libsdl2-image-2.0-0 \
   libswscale6 \
-  libncurses \
   libncurses6 \
+  -y
 
 
   sudo apt-get install \

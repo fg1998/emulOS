@@ -172,7 +172,7 @@
       "path": "${emulatorpath}/dosbox/usr/bin/dosbox",
       "desc": "IBM PC Emulator",
       "param": "",
-      "instructions": "F1 - menu"
+      "instructions": "CTRL + [F9] - exit"
     },
     {
       "name": "dosbox-x",
@@ -180,7 +180,7 @@
       "path": "${emulatorpath}/dosbox-x/dosbox-x",
       "desc": "IBM PC Emulator (dosbox-x)",
       "param": "",
-      "instructions": "F1 - menu"
+      "instructions": "CTRL + [F9] - exit"
     },
     {
       "name": "previous",

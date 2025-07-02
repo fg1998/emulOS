@@ -136,7 +136,7 @@ textarea {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px black;
-  width: 400px;
+  width: 700px;
   text-align: center;
 }
 .modal-content button {
@@ -152,6 +152,11 @@ textarea {
 
 .emulos-logo {
   width: 100px;
+}
+
+#about-modal a {
+  color:  white;
+  font-weight: 800;
 }
 
 .botao-redondo {
