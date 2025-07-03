@@ -1,6 +1,9 @@
 
 # EmulOS  
 
+# DOWNLOAD LINKS
+SD card image: (https://archive.org/details/emulOS_033_img)
+
 <br>
 EmulOS is an upcoming front-end for the Raspberry Pi, focusing on computer emulators rather than games.
 
@@ -11,6 +14,8 @@ The ROMs will not be displayed, only the systems and their variations. The goal 
 EmulOS is being developed with the Raspberry Pi 400 in mind, as its form factor is the one I find most appealing compared to computers from the 80s/90s.
 
 More than 50 systems are emulated, with their respective BIOS and operating systems, ready to run with a single click.
+
+
 
 
 ## Systems
