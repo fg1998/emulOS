@@ -8,8 +8,9 @@
 * [File Transfer – games, demos, programs, etc.](#file-transfer--games-demos-programs-etc)
 * [Emulators Used in this version](#emulators-used-in-this-version)
 * [Contributing and Thanks](#contributing-and-thanks)
-* [Acknowledgments](#acknowledgments)
 * [About BIOS files](#aboutbios)
+* [Acknowledgments](#acknowledgments)
+
 
 
 
@@ -188,6 +189,16 @@ Special thanks to
 * [Raspberry PI fundation](https://www.raspberrypi.com)
 * [ChatGPT](https://chatgpt.com)
 
+
+
+
+## About BIOS
+
+Please note: Emulators often require BIOS files, operating system images, or other assets to function properly. Many of these files are in the public domain or originate from companies that no longer exist. However, some may still belong to existing companies or are in a legal status that is unclear.
+
+If you opt for manual installation, you may choose to download only public domain BIOS files (even though the term "BIOS" here may also include other types of files used by older systems in emulOS), or files whose copyright status could not be clearly determined. Be aware that in most cases, you should only use full versions of these files if you own the rights or possess the original hardware.
+
+The ready-to-use .img file includes all BIOS, operating systems, and other necessary files to run emulOS. Download it only if you meet the same conditions described above regarding full file usage.
 
 ## License
 
