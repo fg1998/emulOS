@@ -1,24 +1,34 @@
 
 # EmulOS  
 
-# DOWNLOAD LINKS
-SD card image: (https://archive.org/details/emulOS_033_img)
+* [What is it and what is it for?](#what-is-it-and-what-is-it-for)
+* [Emulated Systems](#emulated-systems)
+* [Download .img file](#download-img-file)
+* [Manual Installation](#manual-installation)
+* [File Transfer – games, demos, programs, etc.](#file-transfer--games-demos-programs-etc)
+* [Emulators Used in this version](#emulators-used-in-this-version)
+* [Contributing and Thanks](#contributing-and-thanks)
+* [Acknowledgments](#acknowledgments)
+* [About BIOS files](#aboutbios)
 
-<br>
-EmulOS is an upcoming front-end for the Raspberry Pi, focusing on computer emulators rather than games.
 
-The ROMs will not be displayed, only the systems and their variations. The goal is to emulate as many systems as possible without worrying about the ROMs. More than just a front-end, EmulOS is a complete distro for the Raspberry Pi and a full desktop environment.
 
-![screenshot](https://github.com/fg1998/emulOS/blob/main/screenshot.png)
+## What is it and what is it for?
+
+EmulOS is a distro and a front-end for the Raspberry Pi, focusing on computer emulators rather than games.
+
+The goal is to emulate as many systems as possible without worrying about the ROMs, Bios or other boring stuff. More than just a front-end, EmulOS is a complete distro for the Raspberry Pi and a minimal desktop environment.
 
 EmulOS is being developed with the Raspberry Pi 400 in mind, as its form factor is the one I find most appealing compared to computers from the 80s/90s.
 
+![screenshot](https://github.com/fg1998/emulOS/blob/main/screenshot.png)
+
+
+
+## Emulated Systems
+
 More than 50 systems are emulated, with their respective BIOS and operating systems, ready to run with a single click.
 
-
-
-
-## Systems
 ### Sinclair
 * Sinclair ZX81
 * Sinclair ZX Spectrum
@@ -83,42 +93,23 @@ More than 50 systems are emulated, with their respective BIOS and operating syst
 * IBM-PC VGA with Windows 95 OSR2
 ### MISC
 * Texas TI-99/4A
-* BBC Micro
 
-## Emulators used in this version
-* ZEsarUX (Spectrum and Amstrad)
-* Vice (Commodore 8 bit)
-* Linapple (Apple 8 Bits)
-* MinivMac (Macintosh)
-* BasiliskII (Mac Performa)
-* openMSX (MSX)
-* SdlTRS (TRS-80)
-* hatari (Atari ST/Falcon)
-* Atari800 (atari 8 bit)
-* Xroar (Coco & Dragon)
-* DosBox (Windows 1, 2 and 3)
-* DosBox-x (Windows 95)
 
-## Key Features
 
-1. **As many computers as possible**  
-   Support for a wide range of computer systems, from 8-bit to modern retro machines.
 
-2. **Emphasis only on computers, not consoles**  
-   The focus is exclusively on computer emulation, not gaming consoles.
+## Download .img file
 
-3. **Direct boot into chosen systems**  
-   You can boot directly into the selected computer system, skipping menus.
+The ready-to-use `.img` file, suitable for writing to an SD card and running on a Raspberry Pi 4 series, is available at the link below.  
 
-4. **Complete desktop environment**  
-   EmulOS is a full desktop environment where you will spend all your time, not just an application launcher.
+SD card image: (https://archive.org/details/emulOS_033_img)
 
-5. **Self-updating**  
-   Automatic updates to keep your system up-to-date.
 
-## Getting Started
+Use your preferred SD card writing tool for Raspberry Pi according to your operating system (such as Balena Etcher, Win32 Disk Imager, etc.).
 
-To run EmulOS FrontEnd, follow these steps:
+
+
+
+## Manual Installation
 
 1. Clone this repository:
    ```bash
@@ -139,6 +130,64 @@ To run EmulOS FrontEnd, follow these steps:
    ```bash
    npm start
    ```
+
+
+
+## File Transfer – games, demos, programs, etc.
+
+To transfer your programs, games, and other files directly to your Raspberry Pi running EmulOS, you can use SSH.  
+Use your preferred file transfer tool to connect from your main PC to the Pi running EmulOS using the following credentials:
+
+**Username:** `emulos`  
+**Password:** `emulos`
+
+These are also the default login credentials for direct access to the Raspberry Pi in case you get stuck on the Raspberry Pi OS login screen.
+
+
+
+## Emulators used in this version
+* [ZEsarUX (Spectrum and Amstrad)](https://github.com/chernandezba/zesarux)
+* [Vice (Commodore 8 bit)](https://vice-emu.sourceforge.io)
+* [Linapple (Apple 8 Bits)](https://github.com/dabonetn/linapple-pie.git)
+* [MinivMac (Macintosh)](https://github.com/vanfanel/minivmac_sdl2.git)
+* [BasiliskII (Mac Performa)](https://github.com/cebix/macemu)
+* [openMSX (MSX)](https://github.com/openMSX/openMSX.git)
+* [SdlTRS (TRS-80)](https://gitlab.com/jengun/sdltrs.git)
+* [hatari (Atari ST/Falcon)](https://www.hatari-emu.org)
+* [Atari800 (atari 8 bit)](https://github.com/atari800/atari800/)
+* [Xroar (Coco & Dragon)](https://www.6809.org.uk/xroar/)
+* [DosBox (Windows 1, 2 and 3)](https://www.dosbox-staging.org)
+* [DosBox-x (Windows 95)](https://dosbox-x.com)
+
+
+
+## Contributing and Thanks
+
+Found something wrong or have a suggestion? Open an issue on this repo.  
+If you're feeling hands-on, feel free to submit a pull request with your improvements!
+
+If you'd like to support this project financially, you can visit my [Patreon page](https://www.patreon.com/c/fg1998) or check out the donation links of the emulator creators listed below.
+
+🇧🇷 Se você for brasileiro como eu e deseja fazer uma contribuição, pode enviar qualquer valor via pix para a chave fg1998@gmail.com
+
+
+Special thanks to
+
+* [Cesar Hernandez](https://github.com/chernandezba/zesarux)
+* [Vice team](https://vice-emu.sourceforge.io/index.html#developers)
+* [dabonetn](https://github.com/dabonetn)
+* [Manuel Alfayate Corchete](https://github.com/vanfanel)
+* [Christian Bauer](https://github.com/cebix)
+* [openMSX Team](https://openmsx.org)
+* [Jens Guenther](https://gitlab.com/jengun)
+* [Hatari Team](https://www.hatari-emu.org)
+* [Atari800 emulator team](https://github.com/atari800)
+* [6809 org](https://www.6809.org.uk/xroar/)
+* [DOSBox Staging team](https://www.dosbox-staging.org/about/)
+* [DOSBox-X Team](https://dosbox-x.com)
+* [Raspberry PI fundation](https://www.raspberrypi.com)
+* [ChatGPT](https://chatgpt.com)
+
 
 ## License
 
