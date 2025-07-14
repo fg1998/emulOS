@@ -14,6 +14,10 @@ ipcRenderer.on("writeLog", (event, message) => {
 
 
 
+
+
+
+
 // fila de mensagens
 const messageQueue = [];
 let typingInProgress = false;
@@ -415,6 +419,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+function configEmulos() {
+  window.currentSystemConfig = null;
+  const modal = document.getElementById("config-emulos-modal");    
+  const biosPath = document.getElementById("bios-path");
+  const emulatorPath = document.getElementById("emulator-path");
+  const configPath = document.getElementById("config-path");
+  const saveButton = document.getElementById("save-emulos-config");
+  const closeBtn = document.getElementById("close-emulos-config");
+
+  biosPath.value = data.config.biospath || "";
+  emulatorPath.value = data.config.emulatorpath || "";
+  configPath.value = data.config.configpath || "";
+  modal.classList.add("show");
+  modal.style.display = "flex"; 
+}
+
+
 function addEmulator() {
 
   window.currentSystemConfig = null;
@@ -493,6 +515,54 @@ function configSystem(sys) {
   modal.classList.add("show");
   modal.style.display = "flex";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const saveButton = document.getElementById("save-emulos-config");
+  const modal = document.getElementById("config-emulos-modal"); 
+  const openFolderBtn = document.getElementById("open-folder");
+  const closeBtn = document.getElementById("close-emulos-config");
+
+  if(openFolderBtn) {
+    openFolderBtn.addEventListener("click", async () => {
+      const targetInputId = event.currentTarget.getAttribute("data-target");
+      const inputField = document.getElementById(targetInputId);
+      const path = await ipcRenderer.invoke("open-folder-dialog", null);
+      if(path && inputField) {
+        inputField.value = path;
+      }
+    });
+  }
+
+
+  if (saveButton) {
+    saveButton.addEventListener("click", () => {
+      const biosPath = document.getElementById("bios-path").value;
+      const emulatorPath = document.getElementById("emulator-path").value;
+      const configPath = document.getElementById("config-path").value;
+
+      data.config.biospath = biosPath;
+      data.config.emulatorpath = emulatorPath;
+      data.config.configpath = configPath;
+
+      fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+      modal.classList.remove("show");
+      setTimeout(() => {
+        modal.style.display = "none";
+        renderSystems();
+      }, 500);
+    });
+  }  
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 500);
+    });
+  }
+});  
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-config");
@@ -599,7 +669,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const wifiBtn = document.getElementById("config-wifi");
   const addemulatorBtn = document.getElementById("add-emulator");
   const runBtn = document.getElementById('run-system')
- 
+  const configBtn = document.getElementById("config-system"); 
 
   if (powerBtn && powerModal) {
     powerBtn.addEventListener("click", () => {
@@ -615,6 +685,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 500);
     });
   }
+
+  if (configBtn) {
+    configBtn.addEventListener("click", () => {
+      configEmulos();
+    });
+  }
+
 
   if (addemulatorBtn) {
     addemulatorBtn.addEventListener("click", () => {

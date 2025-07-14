@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, screen } = require("electron");
+const { app, BrowserWindow, ipcMain, screen, dialog } = require("electron");
 const path = require("path");
 const fs = require("fs").promises;
 const { stdout, stderr } = require("process");
@@ -107,3 +107,22 @@ ipcMain.handle("toggle-favorite", (event, systemId) => {
 
   return updated;
 });
+
+ipcMain.handle("open-folder-dialog", async (event) => {
+  const win = BrowserWindow.getFocusedWindow(); // pega a janela atual
+  const result = await dialog.showOpenDialog(win, {
+    title: "Selecione uma pasta",
+    properties: ['openDirectory']
+  });
+
+  if (result.canceled || result.filePaths.length === 0) {
+    return null;
+  }
+
+  return result.filePaths[0];
+});
+
+
+
+
+

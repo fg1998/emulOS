@@ -286,7 +286,7 @@ textarea {
   gap: 10px;
 }
 
-#config-modal {
+#config-modal , #config-emulos-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -302,7 +302,7 @@ textarea {
   transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
 }
 
-#config-modal.show {
+#config-modal.show, #config-emulos-modal.show {
   opacity: 1;
   transform: scale(1);
   display: flex;
@@ -330,7 +330,7 @@ textarea {
 
 #config-form {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 10fr 50fr 1fr;
   row-gap: 15px;
   column-gap: 20px;
   align-items: center;

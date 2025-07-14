@@ -79,11 +79,44 @@
               <input type="text" id="config-image" />
             </div>
             <div id="config-modal-buttons">
-              <button id="close-config">Fechar</button>
-              <button id="save-config">Salvar</button>
+              <button id="close-config">Close</button>
+              <button id="save-config">Save</button>
             </div>
           </div>
         </div>
+
+
+
+
+        <div id="config-emulos-modal">
+          <div class="modal-content config">
+            <h3>emulOS Config</h3>
+            <div id="config-form">
+
+              <label for="bios-path">BIOS path:</label>
+              <input type="text" id="bios-path" />
+              <span id="open-folder" data-target="bios-path"><i class="fa fa-folder"></i></span>
+
+              <label for="emulator-path">Emulators Path:</label>
+              <input type="text" id="emulator-path"/>
+              <span id="open-folder" data-target="emulator-path"><i class="fa fa-folder"></i></span>
+
+              <label for="config-path">Config Files Path:</label>
+              <input type="text" id="config-path" />
+              <span id="open-folder" data-target="config-path"><i class="fa fa-folder"></i></span>
+
+            </div>
+            <div id="config-modal-buttons">
+              <button id="close-emulos-config">Close</button>
+              <button id="save-emulos-config">Save</button>
+              
+            </div>
+          </div>
+        </div>
+
+
+
+
         <div id="run-modal">
           <div class="modal-content run">
             <h4 id="run-desc">Descrição aqui</h4>
