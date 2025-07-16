@@ -521,19 +521,19 @@ function configSystem(sys) {
 document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-emulos-config");
   const modal = document.getElementById("config-emulos-modal"); 
-  const openFolderBtn = document.getElementById("open-folder");
+  const openFolderBtns = document.querySelectorAll(".open-folder");
   const closeBtn = document.getElementById("close-emulos-config");
 
-  if(openFolderBtn) {
-    openFolderBtn.addEventListener("click", async () => {
-      const targetInputId = event.currentTarget.getAttribute("data-target");
+  openFolderBtns.forEach((btn) => {
+    btn.addEventListener("click", async (event) => {
+      const targetInputId = btn.getAttribute("data-target");
       const inputField = document.getElementById(targetInputId);
       const path = await ipcRenderer.invoke("open-folder-dialog", null);
-      if(path && inputField) {
+      if (path && inputField) {
         inputField.value = path;
       }
     });
-  }
+  });
 
 
   if (saveButton) {

@@ -59,6 +59,7 @@ ipcMain.on("run-system", (event, content) => {
   event.reply("writeLog", `Starting ${content.name}`);
 
   let emulatorPath = content.emulator.path.replace("${emulatorpath}", content.config.emulatorpath);
+  console.log(content)
 
   let epTEMP = content.emulator.param.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
   let emulatorParam = epTEMP ? epTEMP.split(" ") : []; //content.emulator.param ? content.emulator.param.split(' ') : "";
