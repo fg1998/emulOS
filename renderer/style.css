@@ -330,11 +330,23 @@ textarea {
 
 #config-form {
   display: grid;
-  grid-template-columns: 10fr 50fr 1fr;
+  grid-template-columns: 1fr 10fr;
   row-gap: 15px;
   column-gap: 20px;
   align-items: center;
   margin-right: 20px;
+}
+
+#config-form-emulos {
+  display: grid;
+  grid-template-columns: 15fr 50fr 1fr;
+  row-gap: 15px;
+  column-gap: 20px;
+  align-items: center;
+  margin-right: 20px;
+}
+.variable-name {
+  font-size: xx-small;
 }
 
 #config-form label {

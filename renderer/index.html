@@ -91,19 +91,28 @@
         <div id="config-emulos-modal">
           <div class="modal-content config">
             <h3>emulOS Config</h3>
-            <div id="config-form">
+            <div id="config-form-emulos">
 
-              <label for="bios-path">BIOS path:</label>
+
+              <label for="bios-path">emulOS path: <span class="variable-name">${emulospath}</span></label>
+              <input type="text" id="emulos-path" />
+              <span id="open-folder" data-target="emulos-path"><i class="fa fa-folder"></i></span>
+
+              <label for="bios-path">BIOS path: <span class="variable-name">${biospath}</span></label>
               <input type="text" id="bios-path" />
               <span id="open-folder" data-target="bios-path"><i class="fa fa-folder"></i></span>
 
-              <label for="emulator-path">Emulators Path:</label>
+
+              <label for="emulator-path">Emulators Path: <span class="variable-name">${emulatorpath}</span></label>
               <input type="text" id="emulator-path"/>
               <span id="open-folder" data-target="emulator-path"><i class="fa fa-folder"></i></span>
 
-              <label for="config-path">Config Files Path:</label>
+              <label for="config-path">Config Files Path: <span class="variable-name">${configpath}</span></label>
               <input type="text" id="config-path" />
               <span id="open-folder" data-target="config-path"><i class="fa fa-folder"></i></span>
+              <span></span>
+              <span style="font-size: smaller;text-align: left;">Use this variables values on emulator.json or even in this config section</br>
+                  ex. config-path can be ${emulosPath}/myconfigdir</span>
 
             </div>
             <div id="config-modal-buttons">

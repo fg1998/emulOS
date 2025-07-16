@@ -426,12 +426,14 @@ function configEmulos() {
   const biosPath = document.getElementById("bios-path");
   const emulatorPath = document.getElementById("emulator-path");
   const configPath = document.getElementById("config-path");
+  const emulosPath = document.getElementById("emulos-path");
   const saveButton = document.getElementById("save-emulos-config");
   const closeBtn = document.getElementById("close-emulos-config");
 
   biosPath.value = data.config.biospath || "";
   emulatorPath.value = data.config.emulatorpath || "";
   configPath.value = data.config.configpath || "";
+  emulosPath.value = data.config.emulospath || "";
   modal.classList.add("show");
   modal.style.display = "flex"; 
 }
