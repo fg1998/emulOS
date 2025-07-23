@@ -5,6 +5,7 @@ const { stdout, stderr } = require("process");
 const { system } = require("systeminformation");
 const execFile = require("child_process").execFile;
 
+
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const win = new BrowserWindow({
@@ -23,7 +24,7 @@ function createWindow() {
   });
 
   win.loadFile("renderer/index.html");
-  //win.webContents.openDevTools(); // DevTools ativado
+  win.webContents.openDevTools(); // DevTools ativado
 }
 
 app.whenReady().then(() => {
@@ -40,7 +41,6 @@ app.on("window-all-closed", function () {
 ipcMain.on("wifiConfig", async (event, content) => {
   event.reply("writeLog", "Starting nmtui");
   const command = "xterm";
-  //const command = "/home/fg1998/emulators/zesarux/zesarux"
   const param = "-fullscreen -e sudo nmtui";
   paramlist = param.split(" ");
 

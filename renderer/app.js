@@ -5,6 +5,9 @@ const { ipcRenderer, contentTracing } = require("electron");
 const { exec } = require("child_process");
 const { json } = require("stream/consumers");
 const { log } = require("console");
+const { osInfo } = require("systeminformation");
+const os = require("os");
+
 
 // IPC EVENTS
 
@@ -13,10 +16,9 @@ ipcRenderer.on("writeLog", (event, message) => {
 });
 
 
-
-
-
-
+function getOsName() {
+  return os.platform();
+  }
 
 // fila de mensagens
 const messageQueue = [];
@@ -137,7 +139,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-const dataFile = path.join(__dirname, "../data/emulators.json");
+
+console.log(getOsName())
+const dataFile = path.join(__dirname, `../data/emulators.${getOsName()}.json`);
 let data = JSON.parse(fs.readFileSync(dataFile));
 
 const brandList = document.getElementById("brand-list");
@@ -223,7 +227,7 @@ const emuByKey = new Map(
 );
 
 function renderSystems() {
-  const dataFile = path.join(__dirname, "../data/emulators.json");
+  const dataFile = path.join(__dirname, `../data/emulators.${getOsName()}.json`);
   let data = JSON.parse(fs.readFileSync(dataFile));
 
   systemList.innerHTML = "";
@@ -572,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (saveButton) {
     saveButton.addEventListener("click", () => {
-      const dataFile = path.join(__dirname, "../data/emulators.json");
+      const dataFile = path.join(__dirname, `../data/emulators.${getOsName()}.json`);
       const dataObj = JSON.parse(fs.readFileSync(dataFile, "utf-8"));
 
       const brandVal = document.getElementById("config-brand").value;
@@ -628,7 +632,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      const oldName = path.join(__dirname, "../data/emulators_old.json");
+      const oldName = path.join(__dirname, `../data/emulators.old.${getOsName()}.json`);
 
       try {
         fs.renameSync(dataFile, oldName);

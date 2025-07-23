@@ -1,5 +1,6 @@
 {
   "config": {
+    "emulospath": "/home/emulos/emulOS",
     "biospath": "/home/emulos/emulators/bios",
     "configpath": "/home/emulos/emulOS/config",
     "emulatorpath": "/home/emulos/emulators"
@@ -172,7 +173,7 @@
       "path": "${emulatorpath}/dosbox/usr/bin/dosbox",
       "desc": "IBM PC Emulator",
       "param": "",
-      "instructions": "F1 - menu"
+      "instructions": "CTRL + [F9] - exit"
     },
     {
       "name": "dosbox-x",
@@ -180,7 +181,7 @@
       "path": "${emulatorpath}/dosbox-x/dosbox-x",
       "desc": "IBM PC Emulator (dosbox-x)",
       "param": "",
-      "instructions": "F1 - menu"
+      "instructions": "CTRL + [F9] - exit"
     },
     {
       "name": "previous",
@@ -432,7 +433,7 @@
     {
       "id": "1746187342995",
       "brand": "sinclair",
-      "name": "ZX81",
+      "name": "ZX81 WIN2",
       "desc": "The Sinclair ZX81 revolutionized home computing in 1981, offering affordable programming, minimal graphics, and inspiring a hobbyist community, sparking innovation",
       "emulator": "zesarux",
       "parameter": "--machine zx81",
@@ -902,7 +903,7 @@
       "name": "emulOS Config",
       "desc": "emulOS Distro config tools",
       "emulator": "terminal",
-      "parameter": "-fullscreen -e sudo /home/emuos/emulOS/install_first.sh",
+      "parameter": "-e sudo /home/emulos/emulOS/install_first.sh",
       "favorite": false,
       "image": "raspi-config.png",
       "year": "2025"

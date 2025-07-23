@@ -1,6 +1,6 @@
 {
   "name": "emulos",
-  "productName": "emulos",
+  "productName": "EmulOS",
   "version": "0.0.2",
   "description": "Computer (not console) emulator frontend",
   "main": "main.js",
@@ -8,7 +8,10 @@
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder --publish always",
-    "dist:deb": "electron-builder --linux deb --armv7l --publish never"
+    "dist:draft": "electron-builder --publish onTagOrDraft",
+    "dist:win": "electron-builder --win nsis --x64 --publish always",
+    "dist:linux": "electron-builder --linux deb --armv7l --publish never",
+    "dist:mac": "electron-builder --mac dmg --publish never"
   },
   "dependencies": {
     "electron-updater": "^4.6.5",
@@ -23,6 +26,7 @@
   "build": {
     "appId": "com.fg1998.emulos",
     "productName": "EmulOS",
+    "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
     "files": [
       "main.js",
       "preload.js",
@@ -37,11 +41,20 @@
       "output": "release"
     },
     "linux": {
-      "target": [
-        "deb"
-      ],
+      "target": ["deb"],
       "category": "Utility",
-      "icon": "renderer/assets/emulos_logo.png"
+      "icon": "build/icon.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "icon": "build/icon.icns"
     },
     "deb": {
       "artifactName": "${name}_${version}_${arch}.deb",
@@ -50,7 +63,7 @@
         "libappindicator1",
         "libxtst6"
       ],
-      "afterInstall" : "fix-install-path.sh",
+      "afterInstall": "fix-install-path.sh",
       "fpm": false
     },
     "publish": [
@@ -58,7 +71,7 @@
         "provider": "github",
         "owner": "fg1998",
         "repo": "emulos",
-        "releaseType": "release"
+        "releaseType": "draft"
       }
     ]
   }

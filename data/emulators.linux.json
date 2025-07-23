@@ -1,0 +1,912 @@
+{
+  "config": {
+    "emulospath": "/home/emulos/emulOS",
+    "biospath": "/home/emulos/emulators/bios",
+    "configpath": "/home/emulos/emulOS/config",
+    "emulatorpath": "/home/emulos/emulators"
+  },
+  "brands": [
+    {
+      "name": "sinclair",
+      "desc": "Sinclair"
+    },
+    {
+      "name": "amstradcpc",
+      "desc": "Amstrad CPC"
+    },
+    {
+      "name": "apple",
+      "desc": "Apple"
+    },
+    {
+      "name": "commodore",
+      "desc": "Commodore"
+    },
+    {
+      "name": "msx",
+      "desc": "MSX"
+    },
+    {
+      "name": "trs",
+      "desc": "Tandy/Radio Shack"
+    },
+    {
+      "name": "Atari",
+      "desc": "Atari"
+    },
+    {
+      "name": "misc",
+      "desc": "Misc"
+    },
+    {
+      "name": "ibmpc",
+      "desc": "IBM PC"
+    },
+    {
+      "name": "utils",
+      "desc": "System Tools"
+    }
+  ],
+  "emulators": [
+    {
+      "name": "FUSE",
+      "key": "fuse",
+      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "--full-screen"
+    },
+    {
+      "name": "ZEsarUX",
+      "key": "zesarux",
+      "path": "${emulatorpath}/zesarux/bin/zesarux",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "--vo sdl --fullscreen --disablefooter --quickexit --nowelcomemessage",
+      "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
+    },
+    {
+      "name": "ZEsarUX-configfile",
+      "key": "zesarux-configfile",
+      "path": "${emulatorpath}/zesarux/bin/zesarux",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "",
+      "instructions": "[F5] Show Menu </br> [F10] Exit </br> "
+    },
+    {
+      "name": "Vice X64",
+      "key": "commodore64",
+      "path": "${emulatorpath}/vice/bin/x64",
+      "desc": "Vice commodore 8 bit emulator - c64",
+      "param": "-VICIIfull",
+      "instructions": "[F12] - Menu"
+    },
+    {
+      "name": "Vice X128",
+      "key": "commodore128",
+      "path": "${emulatorpath}/vice/bin/x128",
+      "desc": "Vice commodore 8 bit emulator - c128",
+      "param": "-VICIIfull",
+      "instructions": "[F12] - Menu"
+    },
+    {
+      "name": "Vice VIC",
+      "key": "commodoreVic",
+      "path": "${emulatorpath}/vice/bin/xvic",
+      "desc": "Vice commodore 8 bit emulator - VIC",
+      "param": "-VICfull",
+      "instructions": "[F12] - Menu"
+    },
+    {
+      "name": "uae",
+      "key": "amiga",
+      "path": "${emulatorpath}/amiberry/bin/amiberry",
+      "desc": "Commodore Amiga emulator",
+      "param": "-G",
+      "instructions": "[F1] - Open Settings [F10] - Quit"
+    },
+    {
+      "name": "linapple",
+      "key": "linapple",
+      "path": "${emulatorpath}/linapple/linapple",
+      "desc": "Apple 8 bit emulator",
+      "param": "--conf",
+      "instructions": "[F1] - Help </br> CTRL + [F2] - Could Boot </br> CTRL + [F12] - Hot Reset (Control + Reset) </br> [F12] - Exit"
+    },
+    {
+      "name": "minivmac",
+      "key": "minivmac",
+      "path": "${emulatorpath}/minivmac/minivmac",
+      "desc": "Original Macintosh Emulator",
+      "param": "-r ${biospath}/macintosh/vMac.ROM",
+      "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
+    },
+    {
+      "name": "basiliskII",
+      "key": "basiliskii",
+      "path": "${emulatorpath}/BasiliskII/BasiliskII",
+      "desc": "Apple Classic Performa Emulator",
+      "param": "--screen dga/800/600 scale_integer true scale_nearest true --rom ${biospath}/macintosh/performa.rom",
+      "instructions": "CTRL + H - Help </br> CTRL + Q - Exit"
+    },
+    {
+      "name": "openMSX",
+      "key": "openMSX",
+      "path": "${emulatorpath}/openMSX/bin/openmsx",
+      "desc": "MSX Emulator",
+      "param": "",
+      "instructions": "Alt + [F4] - Exit"
+    },
+    {
+      "name": "sdltrs",
+      "key": "sdltrs",
+      "path": "${emulatorpath}/sdltrs/bin/sdltrs",
+      "desc": "TRS-80 Emulator",
+      "param": "-fullscreen",
+      "instructions": "F7 - menu"
+    },
+    {
+      "name": "hatari",
+      "key": "hatari",
+      "path": "${emulatorpath}/hatari/usr/bin/hatari",
+      "desc": "Atari ST/STE/TT/Falcon emulator",
+      "param": "",
+      "instructions": "F12 - menu   [ALT] + Q - Exit"
+    },
+    {
+      "name": "atari8bit",
+      "key": "atari8bit",
+      "path": "${emulatorpath}/atari800/usr/bin/atari800",
+      "desc": "Atari ST/STE/TT/Falcon emulator",
+      "param": "",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "Coco",
+      "key": "coco",
+      "path": "${emulatorpath}/xroar/bin/xroar",
+      "desc": "Tandy Color Computer/Dragon emulator",
+      "param": "-fs -rompath ${biospath}/coco/",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "dosbox",
+      "key": "dosbox",
+      "path": "${emulatorpath}/dosbox/usr/bin/dosbox",
+      "desc": "IBM PC Emulator",
+      "param": "",
+      "instructions": "CTRL + [F9] - exit"
+    },
+    {
+      "name": "dosbox-x",
+      "key": "dosbox-x",
+      "path": "${emulatorpath}/dosbox-x/dosbox-x",
+      "desc": "IBM PC Emulator (dosbox-x)",
+      "param": "",
+      "instructions": "CTRL + [F9] - exit"
+    },
+    {
+      "name": "previous",
+      "key": "previos",
+      "path": "${emulatorpath}/previous/previous",
+      "desc": "NeXT Computer Emulator",
+      "param": "",
+      "instructions": "F1 - menu"
+    },
+    {
+      "name": "ti99sim",
+      "key": "ti99sim",
+      "path": "${emulatorpath}/ti99sim/bin/ti99sim-sdl",
+      "desc": "Texas TI-99 emulator",
+      "param": "",
+      "instructions": "ALT + F4 - Exit"
+    },
+    {
+      "name": "none",
+      "key": "none",
+      "path": "",
+      "desc": "null emulator for utils menu",
+      "param": "",
+      "instructions": ""
+    },
+    {
+      "name": "terminal",
+      "key": "terminal",
+      "desc": "null emulator for utils menu",
+      "path": "/usr/bin/xterm",
+      "param": "",
+      "instructions": ""
+    }
+  ],
+  "systems": [
+    {
+      "id": "3",
+      "brand": "sinclair",
+      "name": "ZX Spectrum 48kb",
+      "desc": "The ZX Spectrum was among the decade’s best-selling computers, captivating millions via its iconic rubber keys and vibrant gaming library. 16kb or 48kb, color",
+      "emulator": "zesarux",
+      "favorite": true,
+      "image": "spectrum48.png",
+      "parameter": "--machine 48k",
+      "year": "1982"
+    },
+    {
+      "id": "4",
+      "brand": "sinclair",
+      "name": "Spectrum 128",
+      "desc": "The ZX Spectrum 128, released in 1985–86, expanded RAM to 128 KB and Spectrum+ keyboard.",
+      "emulator": "zesarux",
+      "favorite": false,
+      "image": "spectrum128.png",
+      "parameter": "--machine 128k",
+      "year": "1986"
+    },
+    {
+      "id": "5",
+      "brand": "sinclair",
+      "name": "Microdigital TK90X",
+      "desc": "The Microdigital TK90X is a Brazilian clone of the Sinclair ZX Spectrum. It uses a Z80A CPU, offers 16–48KB RAM, BASIC ROM, CMOS graphics, and TV output.",
+      "emulator": "zesarux",
+      "favorite": false,
+      "image": "tk90x.png",
+      "parameter": "--machine TK90X",
+      "year": "1985"
+    },
+    {
+      "id": "6",
+      "brand": "sinclair",
+      "name": "Microdigital TK95",
+      "desc": "The Microdigital TK95 is an evolution of the TK90X with an enhanced mechanical keyboard, Z80A CPU, 48 KB RAM, 16 KB ROM, composite video output, and built-in joystick ports, housed in a plastic case.",
+      "emulator": "zesarux",
+      "favorite": false,
+      "image": "tk95.png",
+      "parameter": "--machine tk95",
+      "year": "1986"
+    },
+    {
+      "id": "1746205656735",
+      "brand": "commodore",
+      "name": "PET",
+      "desc": "The VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
+      "emulator": "commodorePet",
+      "parameter": "",
+      "favorite": false,
+      "image": "pet.png",
+      "year": "1980"
+    },
+    {
+      "id": "1746205656735",
+      "brand": "commodore",
+      "name": "VIC 20",
+      "desc": "The VIC-20 featured a 1.1 MHz MOS 6502 CPU, 5 KB RAM, 176×184 graphics, and cartridge-based storage",
+      "emulator": "commodoreVic",
+      "parameter": "",
+      "favorite": false,
+      "image": "vic20.png",
+      "year": "1980"
+    },
+    {
+      "id": "8",
+      "brand": "commodore",
+      "name": "Commodore 64",
+      "desc": "Commodore 64 featured a MOS 6510 CPU at 1 MHz, 64 KB RAM, and the iconic SID sound chip.",
+      "emulator": "commodore64",
+      "favorite": true,
+      "image": "c64.png",
+      "parameter": "",
+      "year": "1982"
+    },
+    {
+      "id": "9",
+      "brand": "commodore",
+      "name": "Commodore 128",
+      "desc": "Commodore 128 offered dual CPUs (8502 at 2 MHz, Z80 at 4 MHz), 128 KB RAM, and three modes.",
+      "emulator": "commodore128",
+      "favorite": false,
+      "image": "c128.png",
+      "parameter": "",
+      "year": "1985"
+    },
+    {
+      "id": "11",
+      "brand": "msx",
+      "name": "Hotbit 1.2",
+      "desc": "Brazilian MSX 1.2",
+      "emulator": "openMSX",
+      "favorite": true,
+      "image": "hotbit.png",
+      "parameter": "-machine Sharp_HB-8000_1.2",
+      "year": "1985"
+    },
+    {
+      "id": "12",
+      "brand": "msx",
+      "name": "Expert 1.1",
+      "desc": "Brazilian MSX 1",
+      "emulator": "openMSX",
+      "favorite": false,
+      "image": "expert.png",
+      "parameter": "-machine Gradiente_Expert_GPC-1",
+      "year": "1985"
+    },
+    {
+      "id": "13",
+      "brand": "msx",
+      "name": "VG8000",
+      "desc": "Philips MSX 1.0",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Philips_VG_8000",
+      "image": "vg8000.png",
+      "year": "1983"
+    },
+    {
+      "id": "14",
+      "brand": "msx",
+      "name": "FS-5500 F2",
+      "desc": "National FS-5500 F2 MSX2",
+      "emulator": "openMSX",
+      "image": "fs5500f2.png",
+      "favorite": false,
+      "parameter": "-machine National_FS-5500F2",
+      "year": "1985"
+    },
+    {
+      "id": "15",
+      "brand": "msx",
+      "name": "FS-A1WSX",
+      "desc": "Panasonic MSX2+",
+      "emulator": "openMSX",
+      "favorite": false,
+      "image": "fsa1wsx.png",
+      "parameter": "-machine Panasonic_FS-A1WSX",
+      "year": "1989"
+    },
+    {
+      "id": "16",
+      "brand": "msx",
+      "name": "Boosted MSX2",
+      "desc": "2048Kb, V9958, SCC+, FMPAC, MSX Audio, MoonSound, GFX9000, 512Kb RAM, Basic Compiler",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSX2_EN",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "1633441",
+      "brand": "msx",
+      "name": "Boosted MSX2+ JP",
+      "desc": "Kanji ROM, MSX-MUSIC, 2048 Kb, V9958, SCC+, MSX Audio, MoonSound, GFX9000, 512Kb RAM, Basic Compiler ",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSX2+_JP",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "166664322",
+      "brand": "msx",
+      "name": "Boosted Turbo-R",
+      "desc": "R800, Kanji ROM, MSX-Music, PCM, MSX-MIDI, 2048 kb Mapper, V9958, SCC+, MSX Audio, MoonSound, GFX9000, %12Kb MegaRAM, Basic compiler, IDE Interface with 100Mb HD and CD-ROM",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine Boosted_MSXturboR_with_IDE",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "166664332",
+      "brand": "msx",
+      "name": "Nextor IDE Expert 3",
+      "desc": "Custom MSX2+ with Nextor IDE and hard Disk",
+      "emulator": "openMSX",
+      "favorite": false,
+      "parameter": "-machine CIEL_Expert-Turbo -exta DDX_3.0 -extb nextor -hda ~/emulators/bios/MSXhd.dsk",
+      "image": "boostedMSX.png",
+      "year": "2024"
+    },
+    {
+      "id": "17",
+      "brand": "msx",
+      "name": "FS-A1GT",
+      "desc": "Panasonic MSX Turbo R",
+      "emulator": "openMSX",
+      "favorite": false,
+      "image": "fsa1gt.png",
+      "parameter": "-machine Panasonic_FS-A1GT",
+      "year": "1991"
+    },
+    {
+      "id": "18",
+      "brand": "commodore",
+      "name": "Amiga 1000 (Workbench 1.1)",
+      "desc": "1985 Commodore Amiga 1000 shipped with a Motorola 68000 CPU at 7.16 MHz, 256 KB RAM, and the custom OCS chipset.",
+      "emulator": "amiga",
+      "parameter": "-f ${configpath}/workbench_11_amiga1000.uae",
+      "favorite": false,
+      "image": "a1000.png",
+      "romcheck": [
+        "amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "amiga/Workbench v1.1 rev 31.334 (1986)(Commodore)(Disk 1 of 2)(Workbench)[m icon positions].adf"
+      ],
+      "year": "1985"
+    },
+    {
+      "id": "1746187342995",
+      "brand": "sinclair",
+      "name": "ZX81",
+      "desc": "The Sinclair ZX81 revolutionized home computing in 1981, offering affordable programming, minimal graphics, and inspiring a hobbyist community, sparking innovation",
+      "emulator": "zesarux",
+      "parameter": "--machine zx81",
+      "image": "zx81.png",
+      "favorite": false,
+      "year": "1981"
+    },
+    {
+      "id": "1746187705637",
+      "brand": "sinclair",
+      "name": "Cambridge Z88",
+      "desc": "The Cambridge Z88, launched in 1987, pioneered portable computing with battery efficiency, integrated software suite, and compact design for professionals.",
+      "emulator": "zesarux",
+      "parameter": "--machine z88",
+      "favorite": false,
+      "image": "z88.png",
+      "year": "1987"
+    },
+    {
+      "id": "1746188745235",
+      "brand": "sinclair",
+      "name": "Sinclair QL",
+      "desc": "The Sinclair QL was an affordable business microcomputer with a Motorola 68008 CPU and innovative microdrive storage",
+      "emulator": "zesarux",
+      "parameter": "--machine ql",
+      "favorite": false,
+      "image": "ql.png",
+      "year": "1984"
+    },
+    {
+      "id": "1746189319331",
+      "brand": "sinclair",
+      "name": "Sam Coupe",
+      "desc": "The Sam Coupé was an 8-bit microcomputer manufactured by Miles Gordon Technology in 1989, featuring advanced graphics, stereo sound, microdrives.",
+      "emulator": "zesarux",
+      "parameter": "--machine sam",
+      "favorite": false,
+      "image": "sam.png",
+      "year": "1989"
+    },
+    {
+      "id": "1746189592269",
+      "brand": "sinclair",
+      "name": "ZX Uno",
+      "desc": "The ZX-Uno is an FPGA-based ZX Spectrum clone, crowdfunded in 2016, featuring SD card storage, PS/2 keyboard, composite video, audio.",
+      "emulator": "zesarux",
+      "parameter": "--machine zxuno --fullscreen",
+      "favorite": false,
+      "image": "uno.png",
+      "year": "2016"
+    },
+    {
+      "id": "1746190076243",
+      "brand": "sinclair",
+      "name": "ZX Spectrum NEXT",
+      "desc": "The ZX Spectrum Next is an FPGA-based developed by Victor Truco and launched in 2017 offering Z80 at 28 MHz, 2 MB RAM, HDMI, SD storage.",
+      "emulator": "zesarux-configfile",
+      "parameter": "--configfile ${configpath}/spectrumnext.config",
+      "favorite": false,
+      "image": "next.png",
+      "year": "2017"
+    },
+    {
+      "id": "1723991781908",
+      "brand": "amstradcpc",
+      "name": "CPC 464",
+      "desc": "The Amstrad CPC 464 launched in 1984 with integrated cassette drive, 64 KB RAM, vibrant graphics, BASIC, and affordable home computing",
+      "emulator": "zesarux",
+      "parameter": "--machine cpc464 --fullscreen",
+      "favorite": true,
+      "image": "cpc464.png",
+      "year": "1984"
+    },
+    {
+      "id": "1226196",
+      "brand": "amstradcpc",
+      "name": "PCW 8256",
+      "desc": "Launched in 1985, 256Kb RAM, disk drive and included printer, targeting office market with word-processor integrated",
+      "emulator": "zesarux",
+      "parameter": "--machine PCW8256 --fullscreen",
+      "favorite": true,
+      "image": "pcw8256.png",
+      "year": "1984"
+    },
+    {
+      "id": "1846192015135",
+      "brand": "amstradcpc",
+      "name": "CPC 664",
+      "desc": "Launched in 1985 offered 64 KB RAM, built-in 3-inch floppy drive, sleek design, vivid graphics, and BASIC.",
+      "emulator": "zesarux",
+      "parameter": "--machine cpc664 --fullscreen",
+      "favorite": false,
+      "image": "cpc664.png",
+      "year": "1985"
+    },
+    {
+      "id": "2146192157583",
+      "brand": "amstradcpc",
+      "name": "CPC 6128",
+      "desc": "The Amstrad CPC 6128 released in 1985 featured 128 KB RAM, built-in 3-inch floppy disk, advanced BASIC, and vibrant display modes.",
+      "emulator": "zesarux",
+      "parameter": "--machine cpc6128 --fullscreen",
+      "favorite": false,
+      "image": "cpc6128.png",
+      "year": "1985"
+    },
+    {
+      "id": "1746193174813",
+      "brand": "commodore",
+      "name": "Amiga 500",
+      "desc": "Commodore Amiga 500 featured a 7.16 MHz Motorola 68000, 512 KB RAM, and the Agnus, Denise, Paula custom chips.",
+      "emulator": "amiga",
+      "parameter": "-f ${configpath}/workbench_13_amiga500.uae",
+      "favorite": false,
+      "image": "a500.png",
+      "romcheck": [
+        "amiga/Kickstart v1.3 rev 34.5 (1987)(Commodore)(A500-A1000-A2000-CDTV).rom",
+        "amiga/Workbench v1.3 rev 34.20 (1988)(Commodore)(A500-A2000)(Disk 1 of 2)(Workbench)[m].adf"
+      ],
+      "year": "1987"
+    },
+    {
+      "id": "10",
+      "brand": "commodore",
+      "name": "Amiga 500+",
+      "desc": "Commodore A500+ includes 1MB chip RAM, Kickstart 2.04, onboard clock port and PCMCIA slot, unlike A500’s 512KB and Kickstart 1.3.",
+      "emulator": "amiga",
+      "favorite": false,
+      "image": "a500.png",
+      "parameter": "-f ${configpath}/workbench_204_amiga500plus.uae",
+      "romcheck": [
+        "amiga/Kickstart v2.04 r37.175 (1991)(Commodore)(A500+).rom"
+      ],
+      "year": "1991"
+    },
+    {
+      "id": "1746193196512",
+      "brand": "commodore",
+      "name": "Amiga 600 HD",
+      "desc": "Commodore Amiga 600 features 1MB Chip RAM, onboard PCMCIA slot, compact design, Paula audio, limited expansion compared to original A500.",
+      "emulator": "amiga",
+      "favorite": false,
+      "image": "a600.png",
+      "parameter": "-f ${configpath}/workbench_204_amiga600HD.uae",
+      "romcheck": [
+        "amiga/Kickstart v2.05 r37.350 (1992)(Commodore)(A600HD).rom"
+      ],
+      "year": "1992"
+    },
+    {
+      "id": "1746193196544",
+      "brand": "commodore",
+      "name": "Amiga 1200 HD",
+      "desc": "Commodore Amiga 1200 shipped with a 14 MHz Motorola 68EC020 CPU, 2 MB RAM, AGA chipset, and a PCMCIA slot.",
+      "emulator": "amiga",
+      "parameter": "-f ${configpath}/workbench_301_amiga1200.uae",
+      "favorite": true,
+      "image": "a1200.png",
+      "romcheck": [
+        "amiga/Kickstart v3.1 r40.68 (1993)(Commodore)(A1200).rom"
+      ],
+      "year": "1992"
+    },
+    {
+      "id": "1746193236753",
+      "brand": "commodore",
+      "name": "Amiga 4000 ClassicWB",
+      "desc": "Commodore Amiga 4000 delivered a 25 MHz Motorola 68040 CPU, 2 MB Fast RAM expandable, and the AGA chipset.",
+      "emulator": "amiga",
+      "parameter": "-f ${configpath}/classicwb_a4000.uae",
+      "favorite": false,
+      "image": "a4000.png",
+      "romcheck": [
+        "amiga/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"
+      ],
+      "year": "1992"
+    },
+    {
+      "id": "1746194267547",
+      "brand": "apple",
+      "name": "Apple ][ Plus",
+      "desc": "Apple II Plus added Integer BASIC and 16–48 KB RAM support, offering color graphics and expansion slots, and became a major success.",
+      "emulator": "linapple",
+      "parameter": "${configpath}/linapple_apple2plus.conf",
+      "favorite": true,
+      "image": "apple2plus.png",
+      "year": "1979"
+    },
+    {
+      "id": "1746201310917",
+      "brand": "apple",
+      "name": "Apple //e",
+      "desc": "Apple IIe featured a 1 MHz 6502 CPU, 64 KB RAM (expandable to 128 KB), ProDOS support, durable keyboard.",
+      "emulator": "linapple",
+      "parameter": "${configpath}/linapple_apple2e.conf",
+      "favorite": false,
+      "image": "apple2e.png",
+      "year": "1983"
+    },
+    {
+      "id": "1746201510230",
+      "brand": "apple",
+      "name": "Performa System 7.5.5",
+      "desc": "The Macintosh Performa running System 7.5.5 delivers classic Mac OS features, multimedia performance, and intuitive, user-friendly computing in vintage style",
+      "emulator": "basiliskii",
+      "parameter": "--disk ${biospath}/macintosh/755_2GB_drive.dsk",
+      "favorite": false,
+      "image": "performa5230.png",
+      "year": "1996"
+    },
+    {
+      "id": "1746193870184",
+      "brand": "apple",
+      "name": "Macintosh 128 system 3.2",
+      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
+      "emulator": "minivmac",
+      "parameter": "${biospath}/macintosh/system3_2.dsk",
+      "favorite": false,
+      "image": "mac.png",
+      "year": "1984"
+    },
+    {
+      "id": "1746193870184",
+      "brand": "apple",
+      "name": "Macintosh 128 system 2.2",
+      "desc": "Macintosh 128K, released in 1984, achieved success with a Motorola 68000 CPU at 8 MHz, 128 KB RAM, 9-inch monochrome display, and GUI mouse interface.",
+      "emulator": "minivmac",
+      "parameter": "${biospath}/macintosh/system1_1.dsk",
+      "favorite": false,
+      "image": "mac.png",
+      "year": "1984"
+    },
+    {
+      "id": "1746203338322",
+      "brand": "trs",
+      "name": "TRS-80 Model III",
+      "desc": "Released in 1980, used a Zilog Z80A at 2.03 MHz with 16–48 KB RAM and cassette storage.",
+      "emulator": "sdltrs",
+      "parameter": "/home/emulos/emulOS/config/trs80model3.t8c",
+      "favorite": false,
+      "image": "trs80model3.png",
+      "year": "1980"
+    },
+    {
+      "id": "1746203449033",
+      "brand": "trs",
+      "name": "TRS Color Computer 2",
+      "desc": "The TRS-80 Color Computer 2 featured a Motorola 6809E at 0.895 MHz, 16–64 KB RAM, and 256×192 graphics.",
+      "emulator": "coco",
+      "parameter": "-machine cocous -bas bas14.rom -extbas extbas11.rom -nodos -ram 64 -kbd-translate",
+      "favorite": false,
+      "image": "trscolor2.png",
+      "year": "1983"
+    },
+    {
+      "id": "1746203681426",
+      "brand": "trs",
+      "name": "Prologica CP-500",
+      "desc": "Introduced in 1982 by Prológica as a Brazilian clone of the TRS-80 Model III, the CP-500 ran a Zilog Z80A at 2 MHz with 16–48 KiB RAM and used floppy-disk storage.",
+      "emulator": "sdltrs",
+      "parameter": "/home/emulos/emulOS/config/cp500.t8c",
+      "favorite": false,
+      "image": "cp500.png",
+      "year": "1982"
+    },
+    {
+      "id": "1746204504016",
+      "brand": "Atari",
+      "name": "Atari 800",
+      "desc": "Atari 800 offered a 1.79 MHz MOS 6502, expandable 8–48 KB RAM, and 320×192 high-resolution graphics",
+      "emulator": "atari8bit",
+      "parameter": "-config ${configpath}/atari800.cfg",
+      "favorite": false,
+      "image": "atari800.png",
+      "year": "1979"
+    },
+    {
+      "id": "1746204609974",
+      "brand": "Atari",
+      "name": "Atari 1200XL",
+      "desc": "Atari 800XL featured a 1.79 MHz MOS 6502C CPU, 64 KB RAM, and 320×192 graphics.",
+      "emulator": "atari8bit",
+      "parameter": "-config ${configpath}/atari1200.cfg",
+      "favorite": false,
+      "image": "atari1200xl.png",
+      "year": "1983"
+    },
+    {
+      "id": "1746204798260",
+      "brand": "Atari",
+      "name": "Atari 520ST TOS 1.04",
+      "desc": "Atari 520ST ran a Motorola 68000 CPU at 8 MHz with 1024 KiB RAM, 320×200 color graphics; floppy-disk storage.",
+      "emulator": "hatari",
+      "parameter": "-c ${configpath}/520_ST_TOS_104",
+      "favorite": false,
+      "image": "atari520st.png",
+      "year": "1985"
+    },
+    {
+      "id": "17996304798260",
+      "brand": "Atari",
+      "name": "Atari STE 1Mb TOS 2.06",
+      "desc": "1989 improved version of Atari ST, with better graphics and multimedia hardware and operating system",
+      "emulator": "hatari",
+      "parameter": "-c ${configpath}/1MB_STE_TOS_206",
+      "favorite": false,
+      "image": "atariste.png",
+      "year": "1989"
+    },
+    {
+      "id": "1746205326971",
+      "brand": "Atari",
+      "name": "Falcon 030 HD",
+      "desc": "Introduced in 1992, Atari’s Falcon 030 ran a Motorola 68030 at 16 MHz with 1 MB RAM (expandable), onboard DSP, MIDI ports, and SVGA graphics.",
+      "emulator": "hatari",
+      "parameter": "-c ${configpath}/Falcon030",
+      "favorite": false,
+      "image": "atarifalcon.png",
+      "year": "1992"
+    },
+    {
+      "id": "1748452744401",
+      "brand": "misc",
+      "name": "Texas TI-99/4A",
+      "desc": "Texas Instruments TI-99/4A: early 1980s home computer with 16-bit CPU, color graphics, speech, and cartridge-based software.",
+      "emulator": "ti99sim",
+      "parameter": "-f --console=${biospath}/ti99/TI-994A.ctg",
+      "favorite": false,
+      "image": "ti99.png",
+      "year": "1981"
+    },
+    {
+      "id": "176643744401",
+      "brand": "misc",
+      "name": "Spectravideo SV-318",
+      "desc": "Spectravideo 318 is an early 8-bit home computer, not MSX compatible, with z80 CPU and BASIC interpreter from Microsoft",
+      "emulator": "zesarux",
+      "parameter": "--machine svi318",
+      "favorite": false,
+      "image": "sv318.png",
+      "year": "1981"
+    },
+    {
+      "id": "52940331",
+      "brand": "misc",
+      "name": "Jupiter Ace",
+      "desc": "Jupiter Ace was a British 8-bit home computer, running FORTH instead of BASIC, using Z80 CPU",
+      "emulator": "zesarux",
+      "parameter": "--machine ace",
+      "favorite": false,
+      "image": "jupiterace.png",
+      "year": "1982"
+    },
+    {
+      "id": "1748888276711",
+      "brand": "trs",
+      "name": "TRS Color Computer 1.0 32Kb",
+      "desc": "The TRS-80 Color Computer (CoCo) was a Tandy home computer using the Motorola 6809 CPU with color graphics.",
+      "emulator": "coco",
+      "parameter": "-machine cocous -bas bas11.rom -extbas extbas10.rom -nodos -ram 32 -kbd-translate",
+      "favorite": false,
+      "image": "coco.png",
+      "year": "1980"
+    },
+    {
+      "id": "1748889132754",
+      "brand": "trs",
+      "name": "Prologica CP-400 DOS",
+      "desc": "The CP-400 was Prologica’s response to Brazil’s market restrictions, replicating the TRS-80 Color Computer with full software compatibility.",
+      "emulator": "coco",
+      "parameter": "-machine cocous -bas cp400bas.rom -extbas cp400extbas.rom -nodos -ram 64 -kbd-translate",
+      "favorite": false,
+      "image": "cp400.png",
+      "year": "1984"
+    },
+    {
+      "id": "1748889353040",
+      "brand": "trs",
+      "name": "Dragon 32",
+      "desc": "Dragon 32, British TRS-80 CoCo clone. Motorola 6809 CPU, 32KB RAM, compatible with CoCo software, cassette and cartridge support.",
+      "emulator": "coco",
+      "parameter": "-machine dragon32 -extbas d32.rom -nodos -ram 64 -kbd-translate",
+      "favorite": false,
+      "image": "dragon32.png",
+      "year": "1982"
+    },
+    {
+      "id": "1748889389220",
+      "brand": "trs",
+      "name": "Dragon 64",
+      "desc": "Dragon 64, enhanced British CoCo-compatible system. Motorola 6809 CPU, 64KB RAM, RS-232 port, identical software compatibility with Dragon 32.",
+      "emulator": "coco",
+      "parameter": "-machine dragon64 -extbas d64rom1.rom -altbas d64rom2.rom -nodos -kbd-translate",
+      "favorite": false,
+      "image": "dragon64.png",
+      "year": "1983"
+    },
+    {
+      "id": "174888944",
+      "brand": "ibmpc",
+      "name": "IBM-PC windows 3.1",
+      "desc": "Major redesign with Program Manager, File Manager, 16 color VGA support, enhanced multitasking and broad software developer adoption",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win311.conf",
+      "favorite": false,
+      "image": "windows3.png",
+      "year": "1990"
+    },
+    {
+      "id": "1748981763271",
+      "brand": "ibmpc",
+      "name": "IBM-PC Windows 1.04",
+      "desc": "First GUI for IBM PCs, offering tiled windows, mouse support and basic applications like notepad, calculator and paint",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win1.conf",
+      "favorite": false,
+      "image": "windows1.png",
+      "year": "1985"
+    },
+    {
+      "id": "1748982181086",
+      "brand": "ibmpc",
+      "name": "IBM-PC VGA windows 2.0",
+      "desc": "Introduced overlapping windows, improved memory management, desktop icons and better application support, including Excel and Word integration",
+      "emulator": "dosbox",
+      "parameter": "-conf ${configpath}/win2.conf",
+      "favorite": false,
+      "image": "windows2.png",
+      "year": "1987"
+    },
+    {
+      "id": "1748982181086",
+      "brand": "ibmpc",
+      "name": "IBM-PC VGA Windows 95 OSR2",
+      "desc": "Windows 95 OSR2 improved stability added FAT32 support, better hardware drives, USB and networkin for home users",
+      "emulator": "dosbox-x",
+      "parameter": "-conf ${configpath}/win95.conf",
+      "favorite": false,
+      "image": "windows95.png",
+      "year": "1995"
+    },
+    {
+      "id": "2376982086",
+      "brand": "utils",
+      "name": "xterm",
+      "desc": "XWindow Terminal Emulator",
+      "emulator": "terminal",
+      "parameter": "",
+      "favorite": false,
+      "image": "xterm.png",
+      "year": "2025"
+    },
+    {
+      "id": "2659332086",
+      "brand": "utils",
+      "name": "raspi-config",
+      "desc": "Raspberry pi config tools",
+      "emulator": "terminal",
+      "parameter": "-fullscreen -e sudo /usr/bin/raspi-config",
+      "favorite": false,
+      "image": "raspi-config.png",
+      "year": "2025"
+    },
+    {
+      "id": "277532086",
+      "brand": "utils",
+      "name": "emulOS Config",
+      "desc": "emulOS Distro config tools",
+      "emulator": "terminal",
+      "parameter": "-e sudo /home/emulos/emulOS/install_first.sh",
+      "favorite": false,
+      "image": "raspi-config.png",
+      "year": "2025"
+    }
+  ]
+}
