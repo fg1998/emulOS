@@ -20,6 +20,12 @@ function getOsName() {
   return os.platform();
   }
 
+function getAppPath() {
+  //const dataPath = path.join(process.resourcesPath, 'data');
+  const dataPath = path.join("", './data');
+  console.log(dataPath);
+  return dataPath
+}
 // fila de mensagens
 const messageQueue = [];
 let typingInProgress = false;
@@ -139,9 +145,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+function getArg(name) {
+  const arg = process.argv.find(a => a.startsWith(`--${name}=`));
+  return arg ? arg.split("=")[1] : null;
+}
+
 
 console.log(getOsName())
-const dataFile = path.join(__dirname, `../data/emulators.${getOsName()}.json`);
+
+const dataPath = getArg("dataPath");
+console.log("DataPath:", dataPath)
+
+
+const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
 let data = JSON.parse(fs.readFileSync(dataFile));
 
 const brandList = document.getElementById("brand-list");
@@ -227,7 +243,7 @@ const emuByKey = new Map(
 );
 
 function renderSystems() {
-  const dataFile = path.join(__dirname, `../data/emulators.${getOsName()}.json`);
+  const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
   let data = JSON.parse(fs.readFileSync(dataFile));
 
   systemList.innerHTML = "";
@@ -576,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (saveButton) {
     saveButton.addEventListener("click", () => {
-      const dataFile = path.join(__dirname, `../data/emulators.${getOsName()}.json`);
+      const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
       const dataObj = JSON.parse(fs.readFileSync(dataFile, "utf-8"));
 
       const brandVal = document.getElementById("config-brand").value;
@@ -632,7 +648,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      const oldName = path.join(__dirname, `../data/emulators.old.${getOsName()}.json`);
+      const oldName = path.join(getAppPath(), `emulators.old.${getOsName()}.json`);
 
       try {
         fs.renameSync(dataFile, oldName);

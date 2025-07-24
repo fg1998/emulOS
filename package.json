@@ -9,9 +9,9 @@
     "start": "electron .",
     "dist": "electron-builder --publish always",
     "dist:draft": "electron-builder --publish onTagOrDraft",
-    "dist:win": "electron-builder --win nsis --x64 --publish always",
-    "dist:linux": "electron-builder --linux deb --armv7l --publish never",
-    "dist:mac": "electron-builder --mac dmg --publish never"
+    "dist:win": "electron-builder --win nsis zip --x64 --publish always",
+    "dist:linux": "electron-builder --linux deb tar.gz --armv7l --publish never",
+    "dist:mac": "electron-builder --mac dmg zip --publish never"
   },
   "dependencies": {
     "electron-updater": "^4.6.5",
@@ -26,27 +26,52 @@
   "build": {
     "appId": "com.fg1998.emulos",
     "productName": "EmulOS",
-    "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
+    "artifactName": "emulos-app-v${version}-${os}-${arch}.${ext}",
+
+    "asar": true,
+    "asarUnpack": [
+      "data/**/*",
+      "config/**/*",
+      "docs/**/*"
+    ],
+
+    "extraResources": [
+      {
+        "from": "data/",
+        "to": "../data",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "config/",
+        "to": "../config",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "docs/",
+        "to": "../docs",
+        "filter": ["**/*"]
+      }
+    ],
+
     "files": [
       "main.js",
       "preload.js",
       "renderer/**/*",
-      "data/**/*",
-      "docs/**/*",
-      "config/**/*",
       "node_modules/**/*"
     ],
+
     "directories": {
       "buildResources": "build",
       "output": "release"
     },
+
     "linux": {
-      "target": ["deb"],
+      "target": ["deb", "tar.gz"],
       "category": "Utility",
       "icon": "build/icon.png"
     },
     "win": {
-      "target": "nsis",
+      "target": ["nsis", "zip"],
       "icon": "build/icon.ico"
     },
     "nsis": {
@@ -54,10 +79,11 @@
       "allowToChangeInstallationDirectory": true
     },
     "mac": {
+      "target": ["dmg", "zip"],
       "icon": "build/icon.icns"
     },
     "deb": {
-      "artifactName": "${name}_${version}_${arch}.deb",
+      "artifactName": "emulos-app-v${version}_${arch}.deb",
       "maintainer": "Fernando Garcia <fg1998@gmail.com>",
       "depends": [
         "libappindicator1",

@@ -17,6 +17,11 @@ function createWindow() {
     fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
+       additionalArguments: [
+        `--dataPath=${app.isPackaged 
+          ? path.join(process.resourcesPath, "data")
+          : path.join(__dirname, "data")}`
+      ],
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
       contextIsolation: false,
