@@ -14,9 +14,11 @@
     "dist:mac": "electron-builder --mac dmg zip --publish never"
   },
   "dependencies": {
+    "core-util-is": "^1.0.3",
     "electron-updater": "^4.6.5",
     "node-wifi": "^2.0.16",
     "systeminformation": "^5.25.11",
+    "unzipper": "^0.12.3",
     "wifi-control": "^2.0.1"
   },
   "devDependencies": {
@@ -27,51 +29,58 @@
     "appId": "com.fg1998.emulos",
     "productName": "EmulOS",
     "artifactName": "emulos-app-v${version}-${os}-${arch}.${ext}",
-
     "asar": true,
     "asarUnpack": [
       "data/**/*",
       "config/**/*",
       "docs/**/*"
     ],
-
     "extraResources": [
       {
         "from": "data/",
         "to": "../data",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       },
       {
         "from": "config/",
         "to": "../config",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       },
       {
         "from": "docs/",
         "to": "../docs",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       }
     ],
-
     "files": [
       "main.js",
       "preload.js",
       "renderer/**/*",
       "node_modules/**/*"
     ],
-
     "directories": {
       "buildResources": "build",
       "output": "release"
     },
-
     "linux": {
-      "target": ["deb", "tar.gz"],
+      "target": [
+        "deb",
+        "tar.gz"
+      ],
       "category": "Utility",
       "icon": "build/icon.png"
     },
     "win": {
-      "target": ["nsis", "zip"],
+      "target": [
+        "nsis",
+        "zip"
+      ],
       "icon": "build/icon.ico"
     },
     "nsis": {
@@ -79,7 +88,10 @@
       "allowToChangeInstallationDirectory": true
     },
     "mac": {
-      "target": ["dmg", "zip"],
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "icon": "build/icon.icns"
     },
     "deb": {

@@ -19,6 +19,24 @@ function getArg(name) {
   return arg ? arg.split("=")[1] : null;
 }
 
+async function download_bios() {
+  console.log('aqui')
+    const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+    let data = JSON.parse(fs.readFileSync(dataFile));
+    const config = data.config
+
+
+    const url = document.getElementById("download_url");
+    const target = data.config.biospath;
+
+    try {
+        const result = await ipcRenderer.invoke("download-and-extract", { url, extractTo: target });
+        alert(result);
+    } catch (err) {
+        alert("Erro: " + err.message);
+    }
+}
+
 
 function getOsName() {
   return os.platform();
@@ -820,13 +838,16 @@ function doAlertModal(errorMessage, btnActionText, btnActionFunction ){
  // Remove old events
   btnAction.onclick = null;
 
-  // Add new function to callback
-  if (typeof btnActionFunction === "function") {
+  // Se for string, procura no escopo global
+  if (typeof btnActionFunction === "string" && typeof window[btnActionFunction] === "function") {
     btnAction.addEventListener("click", () => {
-      btnActionFunction();
+      window[btnActionFunction]();
     });
+  } 
+  // Se for função mesmo, usa direto
+  else if (typeof btnActionFunction === "function") {
+    btnAction.addEventListener("click", btnActionFunction);
   }
-
   errorMessageObj.innerHTML = errorMessage;
   errorModal.classList.add("show");
   errorModal.style.display = "flex";
@@ -870,10 +891,16 @@ function checkConfigFolders() {
     errorMessage+= '<p>Many of these files are available online because they are either public domain, shared by original rights holders, or from companies that no longer exist. However, some files may still be under copyright, or their legal status may be uncertain. In some cases, you may need to own the original hardware or a legal copy of the BIOS or system you want to emulate. EmulOS does not include any of these files by default. You’ll need to download them yourself or create dumps from your own hardware if possible. </p>'
     errorMessage+= "<p>Our friends at @emulatorhistory have compiled a collection with all BIOS/OS files needed for emulOS. If you own the right or have authorized copies of these files (e.g. Commodore) simply press Download Button bellow to accept and wait download</p>"
     errorMessage+= "<p>If you do not own or wish to avoid copyright isseus, please copy and paste the URL 'https://archive.org/download/bios-noamiga20250630/bios-noamiga.tar.gz' and replace it as the URL for download</p>";
-    errorMessage+= "URL for Dowload: <input type='text' class='inputURL' value='https://archive.org/download/bios-20250610/bios.tar.gz'></input>"
+    errorMessage+= "URL for Dowload: <input type='text' id='download_url' class='inputURL' value='https://archive.org/download/bios-20250610/bios.tar.gz'></input>"
 
     doAlertModal(errorMessage, "Download", "download_bios" )
   }
+
+
+ipcRenderer.on("download-progress", (event, percent) => {
+    document.getElementById("progress-bar").value = percent;
+    document.getElementById("progress-text").innerText = `${percent}%`;
+});
 
 
 

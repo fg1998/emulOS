@@ -4,6 +4,8 @@ const fs = require("fs").promises;
 const { stdout, stderr } = require("process");
 const { system } = require("systeminformation");
 const execFile = require("child_process").execFile;
+const https = require("https");
+const unzipper = require("unzipper");
 
 
 function createWindow() {
@@ -128,6 +130,48 @@ ipcMain.handle("open-folder-dialog", async (event) => {
   return result.filePaths[0];
 });
 
+
+ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
+    return new Promise((resolve, reject) => {
+        const tempZip = path.join(extractTo, "temp.zip");
+        if (!fs.existsSync(extractTo)) fs.mkdirSync(extractTo, { recursive: true });
+
+        const file = fs.createWriteStream(tempZip);
+        https.get(url, (response) => {
+            if (response.statusCode !== 200) {
+                reject(new Error(`Erro ao baixar: ${response.statusCode}`));
+                return;
+            }
+
+            const totalSize = parseInt(response.headers["content-length"], 10);
+            let downloaded = 0;
+
+            response.on("data", (chunk) => {
+                downloaded += chunk.length;
+                const percent = ((downloaded / totalSize) * 100).toFixed(2);
+                event.sender.send("download-progress", percent);
+            });
+
+            response.pipe(file);
+
+            file.on("finish", () => {
+                file.close(() => {
+                    // Descompacta
+                    fs.createReadStream(tempZip)
+                        .pipe(unzipper.Extract({ path: extractTo }))
+                        .on("close", () => {
+                            fs.unlinkSync(tempZip);
+                            event.sender.send("download-progress", 100); // 100% final
+                            resolve("Download e extração concluídos!");
+                        })
+                        .on("error", reject);
+                });
+            });
+        }).on("error", (err) => {
+            fs.unlink(tempZip, () => reject(err));
+        });
+    });
+});
 
 
 

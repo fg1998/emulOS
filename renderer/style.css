@@ -535,3 +535,7 @@ body {
 .inputURL {
   width: 60%;
 }
+
+#progress-bar {
+  width: 80%;
+}
