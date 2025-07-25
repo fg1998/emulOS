@@ -433,7 +433,7 @@
     {
       "id": "1746187342995",
       "brand": "sinclair",
-      "name": "ZX81 WIN2",
+      "name": "ZX81 - 9",
       "desc": "The Sinclair ZX81 revolutionized home computing in 1981, offering affordable programming, minimal graphics, and inspiring a hobbyist community, sparking innovation",
       "emulator": "zesarux",
       "parameter": "--machine zx81",

@@ -4,16 +4,20 @@ const path = require("path");
 const { ipcRenderer, contentTracing } = require("electron");
 const { exec } = require("child_process");
 const { json } = require("stream/consumers");
-const { log } = require("console");
+const { log, error } = require("console");
 const { osInfo } = require("systeminformation");
 const os = require("os");
 
 
 // IPC EVENTS
-
 ipcRenderer.on("writeLog", (event, message) => {
   logMessage(message, false);
 });
+
+function getArg(name) {
+  const arg = process.argv.find(a => a.startsWith(`--${name}=`));
+  return arg ? arg.split("=")[1] : null;
+}
 
 
 function getOsName() {
@@ -21,12 +25,11 @@ function getOsName() {
   }
 
 function getAppPath() {
-  //const dataPath = path.join(process.resourcesPath, 'data');
   const dataPath = path.join("", './data');
-  console.log(dataPath);
+
   return dataPath
 }
-// fila de mensagens
+
 const messageQueue = [];
 let typingInProgress = false;
 
@@ -131,7 +134,7 @@ function processQueue() {
   typeNext();
 }
 
-
+//Splash Screen
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-screen");
   const main = document.querySelector("main");
@@ -144,17 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
-function getArg(name) {
-  const arg = process.argv.find(a => a.startsWith(`--${name}=`));
-  return arg ? arg.split("=")[1] : null;
-}
-
-
-console.log(getOsName())
-
-const dataPath = getArg("dataPath");
-console.log("DataPath:", dataPath)
 
 
 const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
@@ -171,7 +163,7 @@ function renderSidebar() {
   data.brands.forEach((b) => {
     const div = document.createElement("div");
     //div.innerHTML = `<i class="fa fa-desktop" style="margin-right: 8px;"></i> ${b.desc}`;
-    console.log(b)
+ 
     div.innerHTML = `<image src="assets/icons/${b.name}.png" class="system-icon" /><span class="system-name"> ${b.desc}</span>`;
     div.dataset.brand = b.name;
     div.onclick = () => {
@@ -352,6 +344,9 @@ filtered.sort((a, b) => {
 
 renderSidebar();
 
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("about-modal");
   const openBtn = document.getElementById("about");
@@ -389,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Animação de troca
+
   const list = document.getElementById("system-list");
   const brandItems = document.querySelectorAll("#brand-list div");
 
@@ -406,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Selecionar automaticamente a primeira Brand
+  // Select first brand
   if (brandItems.length > 0) {
     brandItems[0].click();
   }
@@ -537,6 +532,7 @@ function configSystem(sys) {
   modal.classList.add("show");
   modal.style.display = "flex";
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-emulos-config");
@@ -754,7 +750,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       } catch(error) {
         logMessage(`[red]${error}`)
-        doError("missing_bios")
+        errorMessage = '<p>It seems a required BIOS or OS file is missing from the expected folder. emulOS depends on the same BIOS files as RetroPie, so you’ll need to obtain them by either</p>'
+        errorMessage += '<li>Transferring the files via SSH from your device</li>'
+        errorMessage += "<li>Downloading them directly with curl from their raw URLs</li>"
+        errorMessage += '<p>Please note that many of these files are proprietary—make sure you have a valid license or own the original hardware before using them. To download via curl, click the download button below and follow the on-screen instructions.</p>'
+
+        doAlertModal(errorMessage, "", "")
       }
 
 
@@ -801,17 +802,81 @@ window.addEventListener('load', () => {
     logMessage("Welcome to [white] ** EmulOS **");
     logMessage("If you appreciate EmulOS, please consider supporting our development on github.com/sponsors/fg1998")
     logMessage("[yellow] Caso você seja brasileiro, considere fazer uma doação via PIX para fg1998@gmail.com")
-  }, 3000);
+    checkConfigFolders();
+  }, 2000);
   
+  
+
 });
 
-function doError(errorType){
+
+
+function doAlertModal(errorMessage, btnActionText, btnActionFunction ){
   const errorModal = document.getElementById('error-modal');
-  const errorMessage = document.getElementById('error-message');
-  errorMessage.innerHTML += '<p>It seems a required BIOS or OS file is missing from the expected folder. emulOS depends on the same BIOS files as RetroPie, so you’ll need to obtain them by either</p>'
-  errorMessage.innerHTML += '<li>Transferring the files via SSH from your device</li>'
-  errorMessage.innerHTML += "<li>Downloading them directly with curl from their raw URLs</li>"
-  errorMessage.innerHTML += '<p>Please note that many of these files are proprietary—make sure you have a valid license or own the original hardware before using them. To download via curl, click the download button below and follow the on-screen instructions.</p>'
+  const errorMessageObj = document.getElementById('error-message');
+  const btnAction = document.getElementById('error-action-btn');
+  btnAction.innerText = btnActionText;
+
+ // Remove old events
+  btnAction.onclick = null;
+
+  // Add new function to callback
+  if (typeof btnActionFunction === "function") {
+    btnAction.addEventListener("click", () => {
+      btnActionFunction();
+    });
+  }
+
+  errorMessageObj.innerHTML = errorMessage;
   errorModal.classList.add("show");
   errorModal.style.display = "flex";
+}
+
+
+function isDirEmpty(dirPath) {
+  try {
+    const files = fs.readdirSync(dirPath);
+    return files.length === 0; // true se não tem nada
+  } catch (err) {
+    // Se não existe ou não é diretório
+    return true;
+  }
+}
+
+function checkConfigFolders() {
+
+  const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+  let data = JSON.parse(fs.readFileSync(dataFile));
+  const config = data.config
+  
+
+  if(config.emulospath  == "") {
+    logMessage("[blue]The paths in config file emulators.json are empty. EmulOS will try to fix them")
+    //The config paths are empty. Let's fill them 
+    //EmulosPath comes from app.js 
+    config.emulospath = getArg("appPath");
+    //Emulators path
+    config.emulatorpath = path.join(config.emulospath, '../emulators')
+    //Bios path   
+    config.biospath = path.join(config.emulatorpath, "bios");
+    //Config path
+    config.configpath = path.join(config.emulospath, "config");
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+  }
+
+  console.log(config.biospath)
+  if(isDirEmpty(config.biospath)) {
+    errorMessage = '<p>It seems a required BIOS or OS file is missing from the expected folder. The bios folder contains files needed for some emulators to work properly. These include ROMs, operating systems, disk images, and hard drive images. Without them, some systems may not run correctly or may not start at all.'
+    errorMessage+= '<p>Many of these files are available online because they are either public domain, shared by original rights holders, or from companies that no longer exist. However, some files may still be under copyright, or their legal status may be uncertain. In some cases, you may need to own the original hardware or a legal copy of the BIOS or system you want to emulate. EmulOS does not include any of these files by default. You’ll need to download them yourself or create dumps from your own hardware if possible. </p>'
+    errorMessage+= "<p>Our friends at @emulatorhistory have compiled a collection with all BIOS/OS files needed for emulOS. If you own the right or have authorized copies of these files (e.g. Commodore) simply press Download Button bellow to accept and wait download</p>"
+    errorMessage+= "<p>If you do not own or wish to avoid copyright isseus, please copy and paste the URL 'https://archive.org/download/bios-noamiga20250630/bios-noamiga.tar.gz' and replace it as the URL for download</p>";
+    errorMessage+= "URL for Dowload: <input type='text' class='inputURL' value='https://archive.org/download/bios-20250610/bios.tar.gz'></input>"
+
+    doAlertModal(errorMessage, "Download", "download_bios" )
+  }
+
+
+
+
+
 }

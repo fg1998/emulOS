@@ -1,9 +1,9 @@
 {
   "config": {
-    "emulospath": "/home/emulos/emulOS",
-    "biospath": "/home/emulos/emulators/bios",
-    "configpath": "/home/emulos/emulOS/config",
-    "emulatorpath": "/home/emulos/emulators"
+    "emulospath": "C:\\Users\\fg199\\emulOS",
+    "biospath": "C:\\Users\\fg199\\emulators\\bios",
+    "configpath": "C:\\Users\\fg199\\emulOS\\config",
+    "emulatorpath": "C:\\Users\\fg199\\emulators"
   },
   "brands": [
     {
@@ -433,7 +433,7 @@
     {
       "id": "1746187342995",
       "brand": "sinclair",
-      "name": "ZX81",
+      "name": "ZX81 - 9",
       "desc": "The Sinclair ZX81 revolutionized home computing in 1981, offering affordable programming, minimal graphics, and inspiring a hobbyist community, sparking innovation",
       "emulator": "zesarux",
       "parameter": "--machine zx81",

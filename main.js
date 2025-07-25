@@ -18,9 +18,9 @@ function createWindow() {
     autoHideMenuBar: true,
     webPreferences: {
        additionalArguments: [
-        `--dataPath=${app.isPackaged 
-          ? path.join(process.resourcesPath, "data")
-          : path.join(__dirname, "data")}`
+        `--appPath=${app.isPackaged 
+          ? process.resourcesPath
+          : __dirname}`
       ],
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,

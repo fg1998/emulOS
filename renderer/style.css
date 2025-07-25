@@ -531,3 +531,7 @@ body {
   vertical-align: middle;
   line-height: 30px; /* igual à altura da imagem para alinhamento vertical */
 }
+
+.inputURL {
+  width: 60%;
+}
