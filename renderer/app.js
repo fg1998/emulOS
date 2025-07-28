@@ -20,20 +20,22 @@ function getArg(name) {
 }
 
 async function download_bios() {
-  console.log('aqui')
+
     const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
     let data = JSON.parse(fs.readFileSync(dataFile));
     const config = data.config
 
 
-    const url = document.getElementById("download_url");
-    const target = data.config.biospath;
+    const url = document.getElementById("download_url").value;
+    const target = path.join(data.config.emulatorpath, "..");
 
     try {
+ 
         const result = await ipcRenderer.invoke("download-and-extract", { url, extractTo: target });
-        alert(result);
+        logMessage(result, false);
     } catch (err) {
-        alert("Erro: " + err.message);
+      console.log(err)
+        alert("Error: " + err.message);
     }
 }
 
@@ -892,7 +894,8 @@ function checkConfigFolders() {
     errorMessage+= "<p>Our friends at @emulatorhistory have compiled a collection with all BIOS/OS files needed for emulOS. If you own the right or have authorized copies of these files (e.g. Commodore) simply press Download Button bellow to accept and wait download</p>"
     errorMessage+= "<p>If you do not own or wish to avoid copyright isseus, please copy and paste the URL 'https://archive.org/download/bios-noamiga20250630/bios-noamiga.tar.gz' and replace it as the URL for download</p>";
     errorMessage+= "URL for Dowload: <input type='text' id='download_url' class='inputURL' value='https://archive.org/download/bios-20250610/bios.tar.gz'></input>"
-
+    //errorMessage+= "URL for Dowload: <input type='text' id='download_url' class='inputURL' value='https://archive.org/download/test.tar_202507/test.tar.gz'></input>"
+    
     doAlertModal(errorMessage, "Download", "download_bios" )
   }
 
@@ -901,6 +904,10 @@ ipcRenderer.on("download-progress", (event, percent) => {
     document.getElementById("progress-bar").value = percent;
     document.getElementById("progress-text").innerText = `${percent}%`;
 });
+
+ipcRenderer.on("downloadMessage", (event, text) => {
+  document.getElementById('download_msg').innerHTML = text
+})
 
 
 

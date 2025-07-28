@@ -537,5 +537,10 @@ body {
 }
 
 #progress-bar {
-  width: 80%;
+  width: 90%;
+}
+
+#download_msg {
+  width: 100%;
+  text-align: center;
 }

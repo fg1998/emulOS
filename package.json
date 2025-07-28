@@ -6,7 +6,7 @@
   "main": "main.js",
   "author": "Fernando Garcia <fg1998@gmail.com>",
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --enable-logging",
     "dist": "electron-builder --publish always",
     "dist:draft": "electron-builder --publish onTagOrDraft",
     "dist:win": "electron-builder --win nsis zip --x64 --publish always",
@@ -16,8 +16,10 @@
   "dependencies": {
     "core-util-is": "^1.0.3",
     "electron-updater": "^4.6.5",
+    "follow-redirects": "^1.15.9",
     "node-wifi": "^2.0.16",
     "systeminformation": "^5.25.11",
+    "tar": "^7.4.3",
     "unzipper": "^0.12.3",
     "wifi-control": "^2.0.1"
   },

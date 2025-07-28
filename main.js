@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain, screen, dialog } = require("electron");
 const path = require("path");
-const fs = require("fs").promises;
+const fsp = require("fs").promises;
+const fs = require("fs");
 const { stdout, stderr } = require("process");
 const { system } = require("systeminformation");
 const execFile = require("child_process").execFile;
-const https = require("https");
+const { https } = require("follow-redirects");
+const tar = require("tar");
 const unzipper = require("unzipper");
 
 
@@ -95,7 +97,7 @@ ipcMain.on("run-system", (event, content) => {
 
 ipcMain.handle("toggle-favorite", (event, systemId) => {
   const dataPath = path.join(__dirname, "data", "emulators.json");
-  const data = JSON.parse(fs.readFileSync(dataPath));
+  const data = JSON.parse(fsp.readFileSync(dataPath));
   let updated = false;
 
   data.forEach((brand) => {
@@ -110,7 +112,7 @@ ipcMain.handle("toggle-favorite", (event, systemId) => {
   });
 
   if (updated) {
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+    fsp.writeFileSync(dataPath, JSON.stringify(data, null, 2));
   }
 
   return updated;
@@ -131,48 +133,71 @@ ipcMain.handle("open-folder-dialog", async (event) => {
 });
 
 
-ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
-    return new Promise((resolve, reject) => {
-        const tempZip = path.join(extractTo, "temp.zip");
-        if (!fs.existsSync(extractTo)) fs.mkdirSync(extractTo, { recursive: true });
 
-        const file = fs.createWriteStream(tempZip);
-        https.get(url, (response) => {
-            if (response.statusCode !== 200) {
-                reject(new Error(`Erro ao baixar: ${response.statusCode}`));
-                return;
+
+ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
+  return new Promise((resolve, reject) => {
+    if (!fs.existsSync(extractTo)) fs.mkdirSync(extractTo, { recursive: true });
+
+    // Nome temporário baseado na URL
+    const fileName = path.basename(url);
+    const tempFile = path.join(extractTo, `temp_${fileName}`);
+
+    const file = fs.createWriteStream(tempFile);
+
+    event.sender.send("downloadMessage", "Downloading ...");
+
+    https.get(url, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Download error: ${response.statusCode}`));
+        return;
+      }
+
+      const totalSize = parseInt(response.headers["content-length"] || "0", 10);
+      let downloaded = 0;
+
+      response.on("data", (chunk) => {
+        downloaded += chunk.length;
+        if (totalSize) {
+          const percent = ((downloaded / totalSize) * 100).toFixed(2);
+          event.sender.send("download-progress", percent);
+        }
+      });
+
+      response.pipe(file);
+
+      file.on("finish", () => {
+        event.sender.send("downloadMessage", "File Downloaded");
+        file.close(async () => {
+          try {
+            // Detecta formato
+            if (fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")) {
+              event.sender.send("downloadMessage", "Uncompressing ... WAIT !");
+              await tar.x({ file: tempFile, cwd: extractTo, unlink: true });
+            } else if (fileName.endsWith(".zip")) {
+              await new Promise((res, rej) => {
+                fs.createReadStream(tempFile)
+                  .pipe(unzipper.Extract({ path: extractTo }))
+                  .on("close", res)
+                  .on("error", rej);
+              });
+            } else {
+              throw new Error("File not supported");
             }
 
-            const totalSize = parseInt(response.headers["content-length"], 10);
-            let downloaded = 0;
-
-            response.on("data", (chunk) => {
-                downloaded += chunk.length;
-                const percent = ((downloaded / totalSize) * 100).toFixed(2);
-                event.sender.send("download-progress", percent);
-            });
-
-            response.pipe(file);
-
-            file.on("finish", () => {
-                file.close(() => {
-                    // Descompacta
-                    fs.createReadStream(tempZip)
-                        .pipe(unzipper.Extract({ path: extractTo }))
-                        .on("close", () => {
-                            fs.unlinkSync(tempZip);
-                            event.sender.send("download-progress", 100); // 100% final
-                            resolve("Download e extração concluídos!");
-                        })
-                        .on("error", reject);
-                });
-            });
-        }).on("error", (err) => {
-            fs.unlink(tempZip, () => reject(err));
+            fs.unlinkSync(tempFile); // apaga o temporário
+            event.sender.send("download-progress", 100);
+            event.sender.send("downloadMessage", "Extract done !");
+            resolve("Download and extract done");
+          } catch (err) {
+            reject(err);
+          }
         });
+      });
+    }).on("error", (err) => {
+      fs.unlink(tempFile, () => reject(err));
     });
+  });
 });
-
-
 
 
