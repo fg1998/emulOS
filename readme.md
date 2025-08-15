@@ -22,7 +22,7 @@ The goal is to emulate as many systems as possible without worrying about the RO
 
 EmulOS is being developed with the Raspberry Pi 400 in mind, as its form factor is the one I find most appealing compared to computers from the 80s/90s.
 
-![screenshot](https://github.com/fg1998/emulOS/blob/main/screenshot.png)
+![screenshot](https://github.com/fg1998/emulOS/blob/main/emulos.png)
 
 
 
