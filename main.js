@@ -1,30 +1,41 @@
+// main.js
 const { app, BrowserWindow, ipcMain, screen, dialog } = require("electron");
 const path = require("path");
-const fsp = require("fs").promises;
 const fs = require("fs");
-const { stdout, stderr } = require("process");
-const { system } = require("systeminformation");
-const execFile = require("child_process").execFile;
+const fsp = fs.promises;
+const { execFile } = require("child_process");
 const { https } = require("follow-redirects");
 const tar = require("tar");
 const unzipper = require("unzipper");
 
+// Helpers de path
+function getBasePath() {
+  return app.isPackaged ? process.resourcesPath : app.getAppPath();
+}
+function getDataPath() {
+  return path.join(getBasePath(), "data");
+}
+function getOsName() {
+  switch (process.platform) {
+    case "win32": return "win";
+    case "darwin": return "mac";
+    default: return "linux";
+  }
+}
 
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: width,
-    height: height,
-    //kiosk: true,
+    width,
+    height,
     fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
-       additionalArguments: [
-        `--appPath=${app.isPackaged 
-          ? process.resourcesPath
-          : __dirname}`
+      // Passa o basePath pro renderer
+      additionalArguments: [
+        `--appPath=${getBasePath()}`
       ],
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
@@ -33,27 +44,32 @@ function createWindow() {
   });
 
   win.loadFile("renderer/index.html");
-  //win.webContents.openDevTools(); // DevTools ativado
+  // win.webContents.openDevTools(); // habilite se quiser
 }
 
 app.whenReady().then(() => {
+  console.log("[EmulOS]", {
+    isPackaged: app.isPackaged,
+    resourcesPath: process.resourcesPath,
+    appPath: app.getAppPath(),
+    dataPath: getDataPath(),
+  });
   createWindow();
-  app.on("activate", function () {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
-app.on("window-all-closed", function () {
+app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-ipcMain.on("wifiConfig", async (event, content) => {
+// === WIFI (nmtui via xterm) ===
+ipcMain.on("wifiConfig", async (event) => {
   event.reply("writeLog", "Starting nmtui");
   const command = "xterm";
-  const param = "-fullscreen -e sudo nmtui";
-  paramlist = param.split(" ");
-
-  const extProcess = execFile(command, paramlist, (error, stdout, stderr) => {
+  const paramlist = "-fullscreen -e sudo nmtui".split(" ");
+  execFile(command, paramlist, (error, stdout, stderr) => {
     if (error) {
       console.log(error);
       event.reply("logMessage", `Error: ${error.message}`);
@@ -64,27 +80,32 @@ ipcMain.on("wifiConfig", async (event, content) => {
   });
 });
 
+// === RUN SYSTEM ===
 ipcMain.on("run-system", (event, content) => {
   event.reply("writeLog", `Starting ${content.name}`);
 
   let emulatorPath = content.emulator.path.replace("${emulatorpath}", content.config.emulatorpath);
-  console.log(content)
+  let epTEMP = content.emulator.param
+    ?.replace(/\$\{configpath\}/g, content.config.configpath)
+    ?.replace(/\$\{biospath\}/g, content.config.biospath);
+  let emulatorParam = epTEMP ? epTEMP.split(" ") : [];
 
-  let epTEMP = content.emulator.param.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
-  let emulatorParam = epTEMP ? epTEMP.split(" ") : []; //content.emulator.param ? content.emulator.param.split(' ') : "";
-  let spTEMP = content.parameter.replace(/\$\{configpath\}/g, content.config.configpath).replace(/\$\{biospath\}/g, content.config.biospath);
+  let spTEMP = content.parameter
+    ?.replace(/\$\{configpath\}/g, content.config.configpath)
+    ?.replace(/\$\{biospath\}/g, content.config.biospath);
   let systemParam = spTEMP ? spTEMP.split(" ") : [];
+
   let totalParam = [...emulatorParam, ...systemParam];
+
+  // system tools (emulator "none")
+  if (!emulatorPath) {
+    emulatorPath = totalParam[0];
+    totalParam = [];
+  }
 
   event.reply("writeLog", emulatorPath + " " + totalParam.join(" "));
 
-  //For system Tools - They are using 'none' as emulator
-  if(emulatorPath === "") {
-    emulatorPath = totalParam[0];
-    totalParam = []
-  }
-
-  const extProcess = execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
+  execFile(emulatorPath, totalParam, (error, stdout, stderr) => {
     if (error) {
       console.log("****", error);
       event.reply("writeLog", `[red] Error: ${error.message}`);
@@ -95,16 +116,18 @@ ipcMain.on("run-system", (event, content) => {
   });
 });
 
-ipcMain.handle("toggle-favorite", (event, systemId) => {
-  const dataPath = path.join(__dirname, "data", "emulators.json");
-  const data = JSON.parse(fsp.readFileSync(dataPath));
+// === FAVORITE (se quiser usar no futuro pelo main) ===
+ipcMain.handle("toggle-favorite", async (_event, systemId) => {
+  const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
+  const data = JSON.parse(fs.readFileSync(dataFile, "utf8"));
   let updated = false;
 
-  data.forEach((brand) => {
-    brand.emulators.forEach((emulator) => {
-      emulator.systems.forEach((system) => {
-        if (system.id === systemId) {
-          system.favorite = !system.favorite;
+  // ajuste aqui conforme seu schema real
+  (data.brands || []).forEach((brand) => {
+    (brand.emulators || []).forEach((emu) => {
+      (emu.systems || []).forEach((sys) => {
+        if (sys.id === systemId) {
+          sys.favorite = !sys.favorite;
           updated = true;
         }
       });
@@ -112,40 +135,36 @@ ipcMain.handle("toggle-favorite", (event, systemId) => {
   });
 
   if (updated) {
-    fsp.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
   }
-
   return updated;
 });
 
-ipcMain.handle("open-folder-dialog", async (event) => {
-  const win = BrowserWindow.getFocusedWindow(); // pega a janela atual
+// === OPEN FOLDER DIALOG ===
+ipcMain.handle("open-folder-dialog", async () => {
+  const win = BrowserWindow.getFocusedWindow();
   const result = await dialog.showOpenDialog(win, {
     title: "Selecione uma pasta",
-    properties: ['openDirectory']
+    properties: ["openDirectory"],
   });
-
-  if (result.canceled || result.filePaths.length === 0) {
-    return null;
-  }
-
+  if (result.canceled || result.filePaths.length === 0) return null;
   return result.filePaths[0];
 });
 
-
-
-
-ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
+// === DOWNLOAD & EXTRACT ===
+ipcMain.handle("download-and-extract", async (_event, { url, extractTo }) => {
   return new Promise((resolve, reject) => {
-    if (!fs.existsSync(extractTo)) fs.mkdirSync(extractTo, { recursive: true });
+    try {
+      if (!fs.existsSync(extractTo)) fs.mkdirSync(extractTo, { recursive: true });
+    } catch (e) {
+      return reject(e);
+    }
 
-    // Nome temporário baseado na URL
     const fileName = path.basename(url);
     const tempFile = path.join(extractTo, `temp_${fileName}`);
-
     const file = fs.createWriteStream(tempFile);
 
-    event.sender.send("downloadMessage", "Downloading ...");
+    _event.sender.send("downloadMessage", "Downloading ...");
 
     https.get(url, (response) => {
       if (response.statusCode !== 200) {
@@ -160,19 +179,18 @@ ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
         downloaded += chunk.length;
         if (totalSize) {
           const percent = ((downloaded / totalSize) * 100).toFixed(2);
-          event.sender.send("download-progress", percent);
+          _event.sender.send("download-progress", percent);
         }
       });
 
       response.pipe(file);
 
       file.on("finish", () => {
-        event.sender.send("downloadMessage", "File Downloaded");
+        _event.sender.send("downloadMessage", "File Downloaded");
         file.close(async () => {
           try {
-            // Detecta formato
             if (fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")) {
-              event.sender.send("downloadMessage", "Uncompressing ... WAIT !");
+              _event.sender.send("downloadMessage", "Uncompressing ... WAIT !");
               await tar.x({ file: tempFile, cwd: extractTo, unlink: true });
             } else if (fileName.endsWith(".zip")) {
               await new Promise((res, rej) => {
@@ -184,10 +202,9 @@ ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
             } else {
               throw new Error("File not supported");
             }
-
-            fs.unlinkSync(tempFile); // apaga o temporário
-            event.sender.send("download-progress", 100);
-            event.sender.send("downloadMessage", "Extract done !");
+            fs.unlinkSync(tempFile);
+            _event.sender.send("download-progress", 100);
+            _event.sender.send("downloadMessage", "Extract done !");
             resolve("Download and extract done");
           } catch (err) {
             reject(err);
@@ -199,5 +216,3 @@ ipcMain.handle("download-and-extract", async (event, { url, extractTo }) => {
     });
   });
 });
-
-

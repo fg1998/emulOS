@@ -13,19 +13,20 @@ export USE_SYSTEM_FPM=true
 
 #npx electron-builder --linux deb --armv7l
 ##FPM error, but dont worry. Lets create .deb
+export USE_SYSTEM_FPM=true
 npx electron-builder --linux deb --arm64
 
 
 
 fpm -s dir -t deb \
   -n emulos \
-  -v 0.0.2 \
+  -v 0.0.4 \
   -a arm64 \
   --description "EmulOS - Computer (not console) emulator Front End" \
   --maintainer "Fernando Garcia <fg1998@gmail.com>" \
   --deb-no-default-config-files \
   -C release/linux-arm64-unpacked \
-  -p release/emulos_0.0.2_arm64.deb \
+  -p release/emulos_0.0.4_arm64.deb \
   --depends "libatk-bridge2.0-0" \
   --depends "libgtk-3-0" \
   --depends "libnss3" \

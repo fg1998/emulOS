@@ -9,6 +9,37 @@ const { osInfo } = require("systeminformation");
 const os = require("os");
 
 
+function getArg(name) {
+  const arg = process.argv.find(a => a.startsWith(`--${name}=`));
+  return arg ? arg.split("=")[1] : null;
+}
+
+function getBasePath() {
+  const fromArg = getArg("appPath");
+  if (fromArg) return fromArg;
+  // empacotado → resourcesPath; dev → __dirname do renderer
+  return process.resourcesPath || __dirname;
+}
+
+function getDataPath() {
+  return path.join(getBasePath(), "data");
+}
+
+function getOsName() {
+  // compatível com o que você usa no JSON
+  const p = os.platform();
+  if (p === "win32") return "win";
+  if (p === "darwin") return "mac";
+  return "linux";
+}
+
+//const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
+
+
+
+//module.exports = { getDataPath };
+
+
 // IPC EVENTS
 ipcRenderer.on("writeLog", (event, message) => {
   logMessage(message, false);
@@ -21,7 +52,9 @@ function getArg(name) {
 
 async function download_bios() {
 
-    const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+  
+    //const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+    const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
     let data = JSON.parse(fs.readFileSync(dataFile));
     const config = data.config
 
@@ -169,7 +202,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+//const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
 let data = JSON.parse(fs.readFileSync(dataFile));
 
 const brandList = document.getElementById("brand-list");
@@ -255,7 +289,8 @@ const emuByKey = new Map(
 );
 
 function renderSystems() {
-  const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+  //const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+  const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
   let data = JSON.parse(fs.readFileSync(dataFile));
 
   systemList.innerHTML = "";
@@ -608,7 +643,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (saveButton) {
     saveButton.addEventListener("click", () => {
-      const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+      //const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+      const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
       const dataObj = JSON.parse(fs.readFileSync(dataFile, "utf-8"));
 
       const brandVal = document.getElementById("config-brand").value;
@@ -868,7 +904,8 @@ function isDirEmpty(dirPath) {
 
 function checkConfigFolders() {
 
-  const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+  //const dataFile = path.join(getAppPath(), `emulators.${getOsName()}.json`);
+  const dataFile = path.join(getDataPath(), `emulators.${getOsName()}.json`);
   let data = JSON.parse(fs.readFileSync(dataFile));
   const config = data.config
   
