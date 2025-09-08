@@ -1,6 +1,7 @@
 
 # EmulOS  
 
+* [News in this version](#news-in-this-version)
 * [What is it and what is it for?](#what-is-it-and-what-is-it-for)
 * [Emulated Systems](#emulated-systems)
 * [Download .img file](#download-img-file)
@@ -8,11 +9,17 @@
 * [File Transfer – games, demos, programs, etc.](#file-transfer--games-demos-programs-etc)
 * [Emulators Used in this version](#emulators-used-in-this-version)
 * [Contributing and Thanks](#contributing-and-thanks)
-* [About BIOS files](#aboutbios)
-* [Acknowledgments](#acknowledgments)
+* [Contributing and Thanks](#contributing-and-thanks)
+* [About BIOS](#about-bios)
 
 
 
+
+## News in this version
+
+* Fixed the bug that did not allow changing any information of the emulators
+* Configuration files removed from the app.asar package and now available at ~/emulos-app/opt/EmulOS/resources/data/emulators.*.json
+* Configuration files now come in three different versions - emulators.linux.json, emulators.darwin.json and emulators.win32.json. Modify according to your host operating system
 
 ## What is it and what is it for?
 
