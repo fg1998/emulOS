@@ -109,7 +109,9 @@ More than 50 systems are emulated, with their respective BIOS and operating syst
 
 The ready-to-use `.img` file, suitable for writing to an SD card and running on a Raspberry Pi 4 series, is available at the link below.  
 
-SD card image: (https://archive.org/details/emulOS_033_img)
+SD card image Latest (Rpi 4/400): (https://archive.org/details/emulos_044.img)
+
+SD card image (older version 0.3.3): (https://archive.org/details/emulOS_033_img)
 
 
 Use your preferred SD card writing tool for Raspberry Pi according to your operating system (such as Balena Etcher, Win32 Disk Imager, etc.).
